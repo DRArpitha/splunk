@@ -1,0 +1,55 @@
+# Copyright (C) 2005-2011 Splunk Inc. All Rights Reserved.  Version 4.3.1 
+#
+# This is an example perfmon.conf.  These settings are used to configure
+# Splunk's Windows performance monitor scripted input. Refer to
+# perfmon.conf.spec and the documentation at splunk.com for more information
+# about this file. 
+#
+# To use one or more of these configurations, copy the configuration block
+# into perfmon.conf in $SPLUNK_HOME\etc\system\local\.  You must restart Splunk
+# to enable configurations.
+#
+# To learn more about configuration files (including precedence) please see the
+# documentation located at 
+# http://docs.splunk.com/Documentation/Splunk/latest/Admin/Aboutconfigurationfiles
+
+# Important: You must specify the names of objects, counters and instances 
+# exactly as they are shown in the Performance Monitor application.  Splunk Web
+# is the recommended interface to use to configure performance monitor inputs.
+
+# Important: These stanzas gather performance data from the local system only.
+# Use wmi.conf for performance monitor metrics on remote systems.
+
+# Query the PhysicalDisk performance object and gather disk access data for
+# all physical drives installed in the system. Store this data in the 
+# "perfmon" index.
+# Note: If the interval attribute is set to 0, Splunk will reset the interval
+# to 1.
+
+[PERFMON:LocalPhysicalDisk]
+interval = 0
+object = PhysicalDisk
+counters = Disk Bytes/sec; % Disk Read Time; % Disk Write Time; % Disk Time
+instances = *
+disabled = 0
+index = PerfMon
+
+# Gather common memory statistics using the Memory performance object, every 
+# 5 seconds.  Store the data in the "main" index.  Since none of the counters
+# specified have applicable instances, the instances attribute is not required.
+
+[PERFMON:LocalMainMemory]
+interval = 5
+object = Memory
+counters = Committed Bytes; Available Bytes; % Committed Bytes In Use
+disabled = 0
+index = main
+
+# Gather data on USB activity levels every 10 seconds.  Store this data in the default index.
+
+[PERFMON:USBChanges]
+interval = 10
+object = USB
+counters = Usb Control Data Bytes/Sec
+instances = *
+disabled = 0

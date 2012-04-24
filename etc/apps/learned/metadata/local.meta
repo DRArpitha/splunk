@@ -1,0 +1,14 @@
+[props/first_install-too_small]
+owner = nobody
+version = 4.3.1
+modtime = 1335243548.707062000
+
+[props/splunkd_stdout-too_small]
+owner = nobody
+version = 4.3.1
+modtime = 1335243548.815242000
+
+[props/dm_backfiller-too_small]
+owner = nobody
+version = 4.3.1
+modtime = 1335247880.400176000

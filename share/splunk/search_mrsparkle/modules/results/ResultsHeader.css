@@ -1,0 +1,9 @@
+.ResultsHeader {
+    padding:0px;
+    float:none !important;
+}
+.ResultsHeader a, 
+.ResultsHeader a:visited {
+    float: right;
+    margin-right: 5px;
+}

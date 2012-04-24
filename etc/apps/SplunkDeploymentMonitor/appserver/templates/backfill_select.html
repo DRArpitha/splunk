@@ -1,0 +1,153 @@
+<%page expression_filter="h" />
+<%inherit file="//layout/base.html" />
+<%namespace name="lib" file="//lib.html" import="*"/>
+
+<%def name="css()">
+    <%coreCSSFiles = [
+        "/static/css/view.css", 
+        "/static/css/skins/default/default.css"
+    ] %>
+    <%lib:stylesheet_tags files="${coreCSSFiles}" />
+</%def>
+
+<%def name="custom_css()">
+  <%lib:stylesheet_tags files="${['/static/app/%s/backfill_select.css' % app]}" /> 
+  <%lib:script_tags files="${['/static/app/%s/backfill_select.js' % app]}" />
+</%def>
+
+
+<div class="BackfillContainer">
+
+  <form id="backfill_select" action="#" method="GET">
+
+    <div id="error_container">
+    % if errors:
+        % for error in errors:
+        <p class="errorText">Error: ${error[1]}</p>
+        % endfor
+    % endif
+    </div>
+
+    <div class="BackfillSearch">
+      <span><h3>Choose saved searches:</h3></span>
+      <p>To use the predefined Deployment Monitor backfill templates, choose from the summary options below.</p>  
+      <p>Choose the earliest and latest times that you wish to backfill, and select additional backfill options for deduplication, order, and concurrency.</p>
+      <p class="DocLast">Then click 'Add Jobs' to move them to the job staging area on the far left. Repeat until you have selected all the relevant jobs.</p>
+    <div class="BackfillChooser">
+      <select title="To select multiple items, hold down the control key (or the command key on Mac) and then select the items" multiple="multiple" id="backfill_search_select" name="saved_search" disabled="disabled">
+          % for srch in searches:
+              % if name and name==srch.name:
+        <option value="${srch.name}" selected="selected">${srch.name}</option>
+              % else:
+        <option value="${srch.name}">${srch.name}</option>
+              % endif
+          % endfor
+      </select>
+      <select id="backfill_template_select" name="template">
+        <option value="All" selected="selected">All</options>
+        <option value="forwarders">Forwarders</option>
+        <option value="indexers">Indexers</option>
+        <option value="sourcetypes">Sourcetypes</option>
+        <option value="sources" >Sources</option>
+        <option value="hosts" >Hosts</option>
+        <option value="pools" >License pools</option>
+      </select>
+    </div>
+
+    </div>
+    <div class="BackfillTime trpCustomDateTime">
+      <span><h3>Choose Time Range:</h3></span>
+      <span><h4>Earliest</h4></span>
+      <div class="earliestDateTime dateRangeMode">
+        <input id="EarliestDate" class="earliestDate customDate " type="text" />
+        <div id="EarliestTime" class="earliestTime"></div>
+      </div>
+      <span><h4>Latest</h4></span>
+      <div class="latestDateTime dateRangeMode">
+        <input id="LatestDate" class="latestDate customDate" type="text" />
+        <div id="LatestTime" class="latestTime"></div>
+      </div>
+      <input type="hidden" id="earliest" name="earliest">
+      <input type="hidden" id="latest" name="latest">
+  
+      <div class="BackfillOptions">
+        <span><h3>Choose Options:</h3></span>
+        <div id="DedupOption">
+          <table class="optionsTable">
+            <tr>
+              <td>
+                <label>Perform Job Deduplication?</label>
+              </td>
+              <td>
+                <input id="dedup" type="checkbox" name="dedup" ${'checked="checked"' if form_content and form_content.dedup else ''} />
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="OrderOption">
+          <table class="optionsTable">
+            <tr>
+              <td>
+                <label>Backfill Newest Events First?</label>
+              </td>
+              <td>
+                <input id="order" name="reverse" type="checkbox" ${'checked="checked"' if form_content and form_content.reverse else ''} />
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="MaxJobsOption">
+          <table class="optionsTable">
+            <tr>
+              <td>
+                <label>Max Concurrent Searches?</label>
+              </td>
+              <td>
+                <input id="maxjobs" name="maxjobs" type="text" value=${form_content.maxjobs if form_content else 1} />
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+      <div class="BackfillOptions-spacer"></div>
+      <div class="BackfillControl">
+        <a href="#" class="splButton-primary" id="job_add">Add Jobs&nbsp;&nbsp;&gt;&gt;</a>
+      </div>
+    </div>
+ 
+  </form>
+   
+  <form id="backfill_form_submit" action="${make_url('/custom/%s/dmbackfill/%s/submit' % (app, app))}" method="POST">
+    <div class="BackfillJobHeader">
+      <span><h3 id="jobs_summary">Staged Jobs: 0</h3></span>
+      <p>When submitted, the jobs staged below will be appended to the backfill queue and then executed in descending order.  Drag and drop the staged jobs to change the order that they will be executed when the jobs are submitted to the backfill queue.</p>
+      <p class="DocLast">Use the per-job editing controls to show/hide job information, perform quick edits on job properties, or remove a job from the queue.</p>
+      <div class="BackfillJob">
+        <ol id="job_list">
+        </ol>
+      </div>
+
+      ${csrf_hidden_input()}
+
+      <div class="JobAllControls">
+        <span id="job_expand_span">
+          <a href=#" id="job_expand_all">Expand All</a>
+        </span>
+        <span>
+          <a href=#" id="job_min_all">Minimize All</a>
+        </span>
+        <span>
+          <a href=#" id="job_del_all">Remove All</a>
+        </span>
+      </div>
+
+      <div class="BackfillButtons">
+        <input id="backfill_submit" type="submit" class="splButton-primary" value="Submit Jobs">
+      </div>
+    </div>
+
+  </form>
+</div>
+
+

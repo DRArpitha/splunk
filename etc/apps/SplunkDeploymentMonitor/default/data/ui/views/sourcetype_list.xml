@@ -1,0 +1,95 @@
+<view autoCancelInterval="90" onunloadCancelJobs="true" isVisible="False" template="dashboard.html">
+  <label>Generic Sourcetypes list page</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="SearchBar" layoutPanel="splSearchControls-inline">
+    <param name="useAssistant">true</param>
+    <param name="useTypeahead">true</param>
+    <param name="useOwnSubmitButton">False</param>
+    <module name="TimeRangePicker">
+      <param name="selected">Last 4 hours</param>
+      <param name="searchWhenChanged">True</param>
+      <module name="SubmitButton">
+        <param name="allowSoftSubmit">True</param>
+        <module name="Message" layoutPanel="viewHeader">
+          <param name="filter">splunk.search.job</param>
+          <param name="clearOnJobDispatch">True</param>
+          <param name="maxSize">2</param>
+          <module name="ServerSideInclude">
+            <param name="src">text/page_title.html</param>
+          </module>
+
+
+          <!-- to get sid/q/s permalink resurrection working properly sometimes you have to have 
+          the XML tree come down to a somewhat redundant single dispatching child, like the JobProgressIndicator below, 
+          in order to get hte modules below that point working correctly. 
+          EG:   if you have TitleBar be the module at the fork point, instead of JobProgressIndicator below, 
+          then the TitleBar never gets the saved search name applied..
+          -->
+
+          <module name="JobProgressIndicator" layoutPanel="panel_row1_col1">
+
+            <module name="EnablePreview">
+              <param name="enable">True</param>
+              <param name="display">False</param>
+            </module>
+
+            <module name="ResultsHeader">
+              <param name="entityName">results</param>
+              <param name="entityLabel">sourcetype(s)</param>
+            </module>
+
+            <module name="Paginator">
+              <param name="entityName">results</param>
+              <param name="count">50</param>
+              
+              
+              <module name="SimpleResultsTable">
+                <param name="entityName">results</param>
+                <param name="drilldown">row</param>
+                
+                <!-- we turn all this complexity into a SEARCH thats just of splunk-server="10.1.6.244" -->
+
+                <module name="HiddenSearch">
+                  <param name="search">`sourcetype_metrics`</param> 
+                  <param name="earliest">-1d@d</param>
+                  <module name="ConvertToIntention">
+                    <param name="intention">
+                      <param name="name">addterm</param>
+                      <param name="arg">
+                        <param name="mysourcetype">$click.value$</param>
+                      </param>
+                      <!-- <param name="flags"><list>indexed</list></param>  -->
+                    </param>
+                    <module name="ViewRedirector">
+                      <param name="viewTarget">sourcetype_detail</param>
+                    </module>
+                    
+                  </module>
+                </module>
+              </module>
+              <module name="Paginator">
+                <param name="entityName">results</param>
+              </module>
+            </module>
+          </module>
+        </module>
+      </module>
+    </module>
+  </module>
+
+
+</view>
+
+
+

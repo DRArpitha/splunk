@@ -1,0 +1,25 @@
+<%inherit file="/layout/message.html" />
+
+<%def name="header()">
+    <h1>${_('App not found') | h}</h1>
+</%def>
+
+<p class="primaryMessage">
+    ${_('The app "%s" is not available') % app | h}
+</p>
+
+<p>The app you requested is not available on this system. Check the spelling of the app, or choose another from the following list:</p>
+<table style="width:45em">
+    % for a in apps:
+        <tr>
+            <td class="k"><a href="${make_url(['/app', a])}">${apps[a]['label'] | h}</a></td>
+            <td>
+                % if apps[a].get('description'):
+                    ${apps[a].get('description', '') | h}
+                % else:
+                    ${_('(no description)') | h}
+                % endif
+            </td>
+        </tr>
+    % endfor
+</table>

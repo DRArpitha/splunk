@@ -1,0 +1,286 @@
+<view autoCancelInterval="90" isVisible="false" onunloadCancelJobs="true" template="dashboard.html">
+  <label>Indexer Properties</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="BreadCrumb" layoutPanel="viewHeader">
+    <param name="options">
+      <list>
+        <param name="view">home</param>
+        <param name="label">Home</param>
+      </list>
+      <list>
+        <param name="view">all_indexers</param>
+        <param name="label">All Indexers</param>
+      </list>
+      <list>
+        <param name="label">Indexer Properties</param>
+      </list>
+    </param>
+  </module>
+  
+  
+  
+  <module name="TimeRangePicker" layoutPanel="panel_row1_col1" group="Overview">
+    <param name="selected">Last 30 minutes</param>
+    <param name="searchWhenChanged">True</param>
+    <!-- if you're trying to set the timerange here you're doing it wrong. -->
+    <!-- Look for a HiddenSearch module around where the drilldown is coming from. -->
+    <!-- it'll have an 'earliest' and/or 'latest' param -->
+
+    
+
+    <module name="JobProgressIndicator" >
+    <!-- custom CSS makes this guy invisible.  -->
+    <module name="HiddenFieldPicker">
+      <param name="fields">*</param>
+
+        <module name="HiddenPostProcess">
+          <!--param name="search"> eval gb=round(KB/1048576,4) | eval percentage = round(percentage,4) </param-->
+          <param name="search"> eval gb=round(KB/1048576,4) | fillnull avg_age | eval avg_age = round(avg_age,4) | eval percentage=if(parseQ_percentage>indexQ_percentage,parseQ_percentage,indexQ_percentage)</param>
+          
+        
+          <!-- note that we're rendering this one into an entirely different layout panel -->
+          <!-- functionally this is really serving as the page title -->
+          <module name="SingleValue" layoutPanel="viewHeader">
+            <param name="field">splunk_server</param>
+          </module>
+          
+          <module name="SingleValue">
+            <param name="field">splunk_server</param>
+            <param name="beforeLabel">Splunk Server:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">status</param>
+            <param name="beforeLabel">Current Status:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">gb</param>
+            <param name="beforeLabel">Total GB Indexed:</param>
+            <param name="format">decimal</param>
+          </module>
+
+
+          <!-- TODO - this 1000 may not be a global constant. Might be able to get the dynamic value into rangemap.   -->
+
+            <module name="SingleValue">
+              <param name="field">avg_age</param>
+              <param name="beforeLabel">Average Latency (in Seconds):</param>
+              <param name="format">decimal</param>
+              
+            </module>
+
+          <!-- TODO - the threshold of 50 being 'severe' may not be correct.   -->
+
+            <module name="SingleValue">
+              <param name="field">percentage</param>
+              <param name="beforeLabel">95% of the time, the Queue is X% full:</param>
+              <param name="format">decimal</param>
+            </module>
+
+
+        </module>
+
+
+     <module name="FieldSearch">
+      <param name="field">splunk_server</param>
+
+      <!-- obscure workaround so that the FieldSearch will pull its value out of the URL correctly. -->
+      <module name="NullModule">
+
+<module name="LinkSwitcher" group="Indexer Data Inputs" layoutPanel="panel_row2_col1">
+  <param name="mode">independent</param>
+  <param name="label"> </param>
+ 
+
+        <module name="HiddenSearch" layoutPanel="panel_row2_col1" group="Top Sourcetypes">
+          <param name="search">`sourcetype_metrics` | eval splunk_server=my_splunk_server | eval KB=round(bytes/1024,4) | stats sum(KB) as KB by mysourcetype | sort -KB limit=10</param>
+          
+          
+          <module name="HiddenChartFormatter">
+            <param name="charting.chart">bar</param>
+            <param name="charting.axisTitleX.text">Volume Indexed (KB)</param>
+            <param name="charting.axisTitleY.text">Sourcetype</param>
+            
+            
+            <module name="StaticContentSample">
+              <param name="text">Click a bar below to redirect to details for that sourcetype </param>
+            </module>
+
+            <module name="FlashChart">
+              <param name="height">300px</param>
+              <param name="enableResize">False</param>
+            
+	    <module name="HiddenSearch">
+              <param name="search">`sourcetype_metrics`</param>
+              <module name="ConvertToIntention">
+                <param name="intention">
+                  <param name="name">addterm</param>
+                  <param name="arg">
+                    <param name="st">$click.value$</param>
+                  </param>
+                  <param name="flags"><list>indexed</list></param>
+                </param>
+                <module name="ViewRedirector">
+                  <param name="viewTarget">sourcetype_detail</param>
+                </module>
+              </module>
+          </module>
+  
+            </module> <!--FlashChart-->
+
+            
+          </module> <!--HiddenChartFormatter-->
+        </module> <!--HiddenSearch-->
+
+        <module name="HiddenSearch" layoutPanel="panel_row2_col1" group="Top Forwarders">
+          <param name="search">`forwarder_metrics` | eval splunk_server=my_splunk_server | eval KB=round(kb,4) | stats sum(KB) as KB by sourceHost | sort -KB limit=10</param>
+
+
+          <module name="HiddenChartFormatter">
+            <param name="charting.chart">bar</param>
+            <param name="charting.axisTitleX.text">Volume Indexed (KB)</param>
+            <param name="charting.axisTitleY.text">Forwarder</param>
+
+
+            <module name="StaticContentSample">
+              <param name="text">Click a bar below to redirect to details for that forwarder </param>
+            </module>
+
+            <module name="FlashChart">
+              <param name="height">300px</param>
+              <param name="enableResize">False</param>
+
+            <module name="HiddenSearch">
+              <param name="search">`forwarder_metrics`</param>
+              <module name="ConvertToIntention">
+                <param name="intention">
+                  <param name="name">addterm</param>
+                  <param name="arg">
+                    <param name="sourceHost">$click.value$</param>
+                  </param>
+                  <param name="flags"><list>last</list></param>
+                </param>
+                <module name="ViewRedirector">
+                  <param name="viewTarget">forwarder_detail</param>
+                </module>
+              </module>
+          </module>
+
+            </module> <!--FlashChart-->
+
+            
+          </module> <!--HiddenChartFormatter-->
+        </module> <!--HiddenSearch-->
+
+</module> <!--LinkSwitcher-->
+
+
+
+<module name="LinkSwitcher" group="Indexer Data Inputs Over Time" layoutPanel="panel_row2_col2">
+  <param name="mode">independent</param>
+  <param name="label"> </param>
+
+
+        <module name="HiddenSearch" layoutPanel="panel_row2_col2" group="Top Sourcetypes">
+          <param name="search">`sourcetype_metrics` | eval splunk_server=my_splunk_server | eval MB = bytes/1048576 | eval _time=lastReceived | timechart sum(MB) as "Total MB" by mysourcetype</param>
+
+
+          <module name="HiddenChartFormatter">
+            <param name="charting.chart">column</param>
+            <param name="charting.axisTitleX.text">Time</param>
+            <param name="charting.axisTitleY.text">MB</param>
+  	    <param name="charting.chart.stackMode">stacked</param>
+
+            <module name="StaticContentSample">
+              <param name="text">Click a bar below to see statistics about just that time period </param>
+            </module>
+
+
+            <module name="FlashChart">
+              <param name="height">300px</param>
+              <param name="enableResize">False</param>
+	      <module name="HiddenSearch">
+                <param name="search">`sourcetype_metrics` | eval splunk_server=my_splunk_server | eval MB=bytes/1048576 | eval _time=lastReceived | stats sum(MB) as MB by mysourcetype | sort -MB | rename mysourcetype as "Sourcetype" MB as "Total MB"</param>
+
+
+                <module name="SimpleResultsHeader">
+                  <param name="entityName">results</param>
+                  <param name="headerFormat">sourcetype statistics $time$</param>
+                </module>
+                <module name="Paginator">
+                  <param name="entityName">results</param>
+                  <param name="count">10</param>
+                  <module name="SimpleResultsTable">
+                    <param name="entityName">results</param>
+                  </module>
+                </module>
+              </module>
+
+            </module> <!--FlashChart-->
+
+
+          </module> <!--HiddenChartFormatter-->
+        </module> <!--HiddenSearch-->
+
+        <module name="HiddenSearch" layoutPanel="panel_row2_col2" group="Top Forwarders">
+          <param name="search">`forwarder_metrics` | eval MB=kb/1024 | timechart sum(MB) as "Total MB" by sourceHost</param>
+
+
+          <module name="HiddenChartFormatter">
+            <param name="charting.chart">column</param>
+            <param name="charting.axisTitleX.text">Time</param>
+            <param name="charting.axisTitleY.text">MB</param>
+  	    <param name="charting.chart.stackMode">stacked</param>
+
+	    <module name="StaticContentSample">
+              <param name="text">Click a bar below to see statistics about just that time period </param>
+            </module>
+
+
+            <module name="FlashChart">
+              <param name="height">300px</param>
+              <param name="enableResize">False</param>
+<module name="HiddenSearch">
+                <param name="search">`forwarder_metrics` | eval MB=kb/1024 | stats sum(MB) as MB by sourceHost | sort -MB | rename sourceHost as "Forwarder" MB as "Total MB"</param>
+
+
+                <module name="SimpleResultsHeader">
+                  <param name="entityName">results</param>
+                  <param name="headerFormat">forwarder statistics $time$</param>
+                </module>
+                <module name="Paginator">
+                  <param name="entityName">results</param>
+                  <param name="count">10</param>
+                  <module name="SimpleResultsTable">
+                    <param name="entityName">results</param>
+                  </module>
+                </module>
+              </module>
+
+            </module> <!--FlashChart-->
+
+
+          </module> <!--HiddenChartFormatter-->
+        </module> <!--HiddenSearch-->
+</module> <!--LinkSwitcher-->
+
+
+</module> <!--NullMode-->
+</module> <!--FieldSearch-->
+
+      </module>
+    </module>
+  </module>
+</view>

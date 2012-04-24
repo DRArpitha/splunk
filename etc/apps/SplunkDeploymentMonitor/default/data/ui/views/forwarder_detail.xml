@@ -1,0 +1,156 @@
+<view autoCancelInterval="90" isVisible="false" onunloadCancelJobs="true" template="dashboard.html">
+  <label>Forwarder Properties</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="BreadCrumb" layoutPanel="viewHeader">
+    <param name="options">
+      <list>
+        <param name="view">home</param>
+        <param name="label">Home</param>
+      </list>
+      <list>
+        <param name="view">all_forwarders</param>
+        <param name="label">All Forwarders</param>
+      </list>
+      <list>
+        <param name="label">Forwarder Properties</param>
+      </list>
+    </param>
+  </module>
+  <module name="GenericHeader" layoutPanel="panel_row1_col1">
+    <param name="label">Overview</param>
+  </module>
+  
+  <module name="TimeRangePicker" layoutPanel="panel_row1_col1">
+    <param name="selected">Last 30 minutes</param>
+    <param name="searchWhenChanged">True</param>
+    <!-- if you're trying to set the timerange here you're doing it wrong. -->
+    <!-- Look for a HiddenSearch module around where the drilldown is coming from. -->
+    <!-- it'll have an 'earliest' and/or 'latest' param -->
+    <module name="JobProgressIndicator">
+      <module name="HiddenFieldPicker">
+        <param name="fields">*</param>
+      
+        <module name="HiddenPostProcess">
+          <param name="search">  stats first(_time) as lastReceived first(sourceHost) as sourceHost first(sourceIp) as sourceIp dc(sourcePort) as sourcePortCount first(connectionType) as connectionType first(build) as build first(version) as version first(os) as os first(arch) as arch values(destPort) as destPort avg(tcp_eps) as EPS avg(kb) as avg_KBps | eval platform=if(os="n/a","n/a",os+" on "+arch) | eval status = if(isnull(avg_KBps),"missing",if(avg_KBps==0,"quiet","active")) | eval avg_EPS = round(EPS,4) | eval avg_KBps = round(avg_KBps,4) | convert timeformat="%m/%d/%Y %H:%M:%S" ctime(lastReceived) as lastReceivedStr
+
+</param>
+            
+          <!-- note that we're rendering this one into an entirely different layout panel -->
+          <!-- functionally this is really serving as the page title -->
+          <module name="SingleValue" layoutPanel="viewHeader">
+            <param name="field">sourceHost</param>
+          </module>
+          
+          <!-- repeat it again in case people dont look at titles, which they dont -->
+          <module name="SingleValue">
+            <param name="beforeLabel">Hostname:</param>
+            <param name="field">sourceHost</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="beforeLabel">Current Status:</param>
+            <param name="field">status</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">lastReceivedStr</param>
+            <param name="beforeLabel">Last Time Data Received:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">connectionType</param>
+            <param name="beforeLabel">Forwarder Type:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="beforeLabel">Splunk Version:</param>
+            <param name="field">version</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="beforeLabel">Platform:</param>
+            <param name="field">platform</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">sourceIp</param>
+            <param name="beforeLabel">Source IP:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">destPort</param>
+            <param name="beforeLabel">Destination Port:</param>
+          </module>
+
+          
+          <module name="SingleValue">
+            <param name="field">sourcePortCount</param>
+            <param name="beforeLabel">Connections This Period:</param>
+          </module>
+        
+           
+          <module name="SingleValue">
+            <param name="field">avg_KBps</param>
+            <param name="beforeLabel">Average KB Per Second:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">avg_EPS</param>
+            <param name="beforeLabel">Average Events Per Second:</param>
+          </module>
+
+        </module>
+        <!-- 
+        <module name="LinkSwitcher" layoutPanel="panel_row2_col1">
+          <param name="mode">independent</param>
+          <param name="label"> </param>
+          -->
+
+        <!-- factoring out some common properties to avoid repetitious config -->
+        <module name="HiddenChartFormatter" layoutPanel="panel_row2_col1">
+          <param name="charting.chart">line</param>
+          <param name="charting.axisTitleX.text">Time</param>
+          
+          <!-- as good a place to hang this little static module as any -->
+          <module name="GenericHeader">
+            <param name="label">Volume</param>
+          </module>
+            
+          <module name="HiddenPostProcess">
+            <param name="search">  eval KB=kb | timechart sum(KB) as "current KB" | eval max_KB_last_week =  [search earliest=-10110m@m latest=-10080m@m `forwarder_metrics`| stats max(kb) as query count | fillnull query | fields query] | eval avg_all_fwd_today = [search `all_forwarders_stats` | stats avg(all_fwd_avg_kb) as query] | rename max_KB_last_week as "all forwarders max last week" avg_all_fwd_today as "all forwarders avg today" </param> 
+            <module name="HiddenChartFormatter">
+              <param name="charting.axisTitleY.text">KB</param>
+              <module name="FlashChart">
+                <param name="width">100%</param>
+                <param name="height">200px</param>
+              </module>
+            </module>
+          
+          </module>
+          <module name="HiddenPostProcess">
+            <param name="search"> timechart avg(tcp_eps) as "current events per second" | eval max_eps_last_week = [search earliest=-10110m@m latest=-10080m@m `forwarder_metrics` | stats max(tcp_eps) as query count | fillnull query | fields query] | eval avg_all_fwd_today = [search `all_forwarders_stats` | stats  avg(all_fwd_avg_eps) as query] | rename max_eps_last_week as "all forwarders max last week" avg_all_fwd_today as "all forwarders avg today"</param>
+            <module name="HiddenChartFormatter">
+              <param name="charting.axisTitleY.text">Events/Second</param>
+              <module name="FlashChart">
+                <param name="width">100%</param>
+                <param name="height">200px</param>
+              </module>
+            </module>
+
+        </module>
+      </module>
+    </module>
+  </module>
+  </module>
+</view>

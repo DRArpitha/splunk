@@ -1,0 +1,600 @@
+<view autoCancelInterval="90" onunloadCancelJobs="true" template="dashboard.html">
+  <label>License Usage</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="TitleBar" layoutPanel="viewHeader">
+    <param name="actionsMenuFilter">dashboard</param>
+  </module>
+  <module name="BreadCrumb" layoutPanel="viewHeader">
+    <param name="options">
+      <list>
+        <param name="view">home</param>
+        <param name="label">Home</param>
+      </list>
+      <list>
+        <param name="label">License Usage</param>
+      </list>
+    </param>
+  </module>
+
+
+ <module name="HiddenSavedSearch" group="Cumulative MB per Day by Sourcetype" layoutPanel="panel_row1_col1" autoRun="True">
+    <param name="savedSearch">All sourcetypes cumulative timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<!--module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module-->
+
+      </module>
+
+    </module>
+  </module>
+</module> 
+
+<module name="LinkSwitcher" group="MB Received" layoutPanel="panel_row2_col1">
+  <param name="mode">independent</param>
+  <param name="label"> </param>
+
+ <module name="HiddenSavedSearch" group="by Sourcetype" autoRun="True">
+    <param name="savedSearch">All sourcetypes timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+
+      </module>
+    </module>
+  </module>
+</module> 
+
+ <module name="HiddenSavedSearch" group="by Source" autoRun="True">
+    <param name="savedSearch">All sources timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+
+      </module>
+    </module>
+  </module>
+</module> 
+
+
+ <module name="HiddenSavedSearch" group="by Host" autoRun="True">
+    <param name="savedSearch">All hosts timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+
+      </module>
+    </module>
+  </module>
+</module> 
+
+
+ <module name="HiddenSavedSearch" group="by Forwarder" autoRun="True">
+    <param name="savedSearch">All forwarders timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+
+      </module>
+    </module>
+  </module>
+</module> 
+
+
+ <module name="HiddenSavedSearch" group="by Indexer" autoRun="True">
+    <param name="savedSearch">All indexers timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+
+      </module>
+    </module>
+  </module>
+</module> 
+
+
+ <module name="HiddenSavedSearch" group="by License Pool" autoRun="True">
+    <param name="savedSearch">All pools timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+
+      </module>
+    </module>
+  </module>
+</module> 
+
+
+
+</module>
+
+<module name="LinkSwitcher" group="Usage Statistics" layoutPanel="panel_row3_col1">
+  <param name="mode">independent</param>
+  <param name="label"> </param>
+
+  <module name="HiddenSavedSearch" group="by Sourcetype" autoRun="True">
+    <param name="savedSearch">All sourcetypes</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="SimpleResultsHeader">
+        <param name="entityName">results</param>
+        <param name="headerFormat">$count$ sourcetype(s)</param>
+      </module>
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> sort -bytes | eval Mbytes = round(bytes/1048576,2) | eval Mbytes = tostring(Mbytes, "commas") | fields mysourcetype status lastReceived Mbytes | rename mysourcetype as "Sourcetype" lastReceived as "Last Received"  status as "Current Status" Mbytes as "Total MB Received" | fieldformat "Last Received"=strftime('Last Received', "%D %H:%M:%S %p")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+            <!-- we turn all this complexity into a SEARCH thats just of splunk-server="10.1.6.244" -->
+
+            <module name="HiddenSearch">
+              <param name="search">`sourcetype_metrics`</param> 
+              <param name="earliest">-1d@d</param>
+              <module name="ConvertToIntention">
+                <param name="intention">
+                  <param name="name">addterm</param>
+                  <param name="arg">
+                    <param name="st">$click.value$</param>
+                  </param>
+                  <param name="flags"><list>indexed</list></param>
+                </param>
+                <module name="ViewRedirector">
+                  <param name="viewTarget">sourcetype_detail</param>
+                </module>
+                
+              </module>
+            </module>
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+      </module>
+
+    </module>
+  </module>
+
+ 
+  <module name="HiddenSavedSearch" group="by Source" autoRun="True">
+    <param name="savedSearch">All sources</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="SimpleResultsHeader">
+        <param name="entityName">results</param>
+        <param name="headerFormat">$count$ source(s)</param>
+      </module>
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> sort -bytes | eval Mbytes = round(bytes/1048576,2) |  eval Mbytes = tostring(Mbytes,"commas") | fields source lastReceived Mbytes | rename source as "Source" lastReceived as "Last Received"  Mbytes as "Total MB Received Today" | fieldformat "Last Received"=strftime('Last Received', "%D %H:%M:%S %p")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+      </module>
+
+    </module>
+  </module>
+
+  <module name="HiddenSavedSearch" group="by Host" autoRun="True">
+    <param name="savedSearch">All hosts</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="SimpleResultsHeader">
+        <param name="entityName">results</param>
+        <param name="headerFormat">$count$ host(s)</param>
+      </module>
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> sort -bytes | eval Mbytes = round(bytes/1048576,2) | eval Mbytes = tostring(Mbytes,"commas") | fields host lastReceived Mbytes | rename host as "Host" lastReceived as "Last Received"  Mbytes as "Total MB Received Today" | fieldformat "Last Received"=strftime('Last Received', "%D %H:%M:%S %p")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+      </module>
+
+    </module>
+  </module>
+
+
+  <module name="HiddenSavedSearch" group="by Forwarder" autoRun="True">
+    <param name="savedSearch">All forwarders</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="SimpleResultsHeader">
+        <param name="entityName">results</param>
+        <param name="headerFormat">$count$ forwarder(s)</param>
+      </module>
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> sort -KB | fields sourceHost lastReceived KB | rename sourceHost as "Forwarder" lastReceived as "Last Received"  KB as "Total KB Received Today" | fieldformat "Last Received"=strftime('Last Received', "%D %H:%M:%S %p")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+            <!-- we turn all this complexity into a SEARCH thats just of splunk-server="10.1.6.244" -->
+
+            <module name="HiddenSearch">
+              <param name="search">`forwarder_metrics`</param> 
+              <param name="earliest">-1d@d</param>
+              <module name="ConvertToIntention">
+                <param name="intention">
+                  <param name="name">addterm</param>
+                  <param name="arg">
+                    <param name="sourceHost">$click.value$</param>
+                  </param>
+                  <param name="flags"><list>indexed</list></param>
+                </param>
+                <module name="ViewRedirector">
+                  <param name="viewTarget">forwarder_detail</param>
+                </module>
+                
+              </module>
+            </module>
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+      </module>
+
+    </module>
+  </module>
+
+
+  <module name="HiddenSavedSearch" group="by Indexer" autoRun="True">
+    <param name="savedSearch">All indexers</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="SimpleResultsHeader">
+        <param name="entityName">results</param>
+        <param name="headerFormat">$count$ indexer(s)</param>
+      </module>
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> eval KB = round(KB,2) | sort -KB | fields splunk_server _time KB | rename splunk_server as "Indexer" _time as "Last Received"  KB as "Total KB Received Today" | fieldformat "Last Received"=strftime('Last Received', "%D %H:%M:%S %p")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+            <!-- we turn all this complexity into a SEARCH thats just of splunk-server="10.1.6.244" -->
+
+            <module name="HiddenSearch">
+              <param name="search">`all_indexers`</param> 
+              <param name="earliest">-1d@d</param>
+              <module name="ConvertToIntention">
+                <param name="intention">
+                  <param name="name">addterm</param>
+                  <param name="arg">
+                    <param name="splunk_server">$click.value$</param>
+                  </param>
+                  <param name="flags"><list>indexed</list></param>
+                </param>
+                <module name="ViewRedirector">
+                  <param name="viewTarget">indexer_detail</param>
+                </module>
+                
+              </module>
+            </module>
+
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+      </module>
+
+    </module>
+  </module>
+
+
+
+  <module name="HiddenSavedSearch" group="by License Pool" autoRun="True">
+    <param name="savedSearch">All pools</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="SimpleResultsHeader">
+        <param name="entityName">results</param>
+        <param name="headerFormat">$count$ pool(s)</param>
+      </module>
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> sort -bytes | eval Mbytes = round(bytes/1048576,2)  | eval Mbytes = tostring(Mbytes,"commas") | fields pool lastReceived Mbytes | rename pool as "License Pool" lastReceived as "Last Received"  Mbytes as "Total MB Received Today" | fieldformat "Last Received"=strftime('Last Received', "%D %H:%M:%S %p")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+      </module>
+
+    </module>
+  </module>
+
+
+
+</module>
+
+ 
+</view>

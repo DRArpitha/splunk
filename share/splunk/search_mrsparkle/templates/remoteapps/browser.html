@@ -1,0 +1,174 @@
+<%!
+    title = 'Find more apps'
+    from splunk.appserver.mrsparkle.lib import util
+%>
+
+<%inherit file="../layout/admin.html" />
+<%namespace name="helpers" file="../admin/_helpers.html"/>
+
+<%
+from splunk.appserver.mrsparkle.lib.msg_pool import MsgPoolMgr, UI_MSG_POOL
+msg_obj = MsgPoolMgr.get_poolmgr_instance()[UI_MSG_POOL].pop(msgid)
+
+
+# compile breadcrumbs string for passoff to the appinstall page
+this_url = util.strip_url(util.current_url_path(include_qs=True))
+child_breadcrumbs = util.complete_breadcrumb(breadcrumbs, this_url)
+child_breadcrumbs_string = util.build_breadcrumbs_string(child_breadcrumbs)
+
+%>
+
+<%def name="paginator()">
+            <div class="Paginator appsPaginator">
+                <% 
+                    qs = {}
+                    qs.update(cherrypy.request.params) 
+                %>
+                <ul>
+                % if pager.previous_exists():
+                    <% qs['offset'] = pager.previous_offset() %>
+                    <li class="previous">
+                        <a href="${ make_url(baseUrl, _qs=qs) }">&laquo;${_('previous')}</a>
+                    </li>
+                % endif
+                % for page in pager.page_range:
+                    <% qs['offset'] = pager.page_item_offset(page) %>
+                    <li class="${'page active' if pager.is_active_page(page) else 'page'}">
+                        <a href="${ make_url(baseUrl, _qs=qs) }">${page}</a>
+                    </li>
+                % endfor
+                &nbsp;
+                % if pager.next_exists():
+                    <% qs['offset'] = pager.next_offset() %>
+                    <li class="next">
+                        <a href="${ make_url(baseUrl, _qs=qs) }">${_('next')}&raquo;</a>
+                    </li>
+                % endif
+                </ul>
+            </div> 
+</%def>
+
+% if msg_obj:
+    <%helpers:message content="${msg_obj.text}" level="${msg_obj.severity}" msg_obj="${msg_obj}"/>
+% endif
+
+
+<form name="pagingControl" method="get">
+    <div class="eaiFilterControls splClearfix">
+    	<div class="eaiFilterControl eaiSearchControl">
+    		<label class="searchTextSetting"><img src="${make_url('/static/img/skins/default/mag_glass_icon_transparent.png')}" /></label>
+        	<input name="q" type="text" value='${q|h}' class="eaiFilter"> 
+        	<input class="searchButton" value="" type="submit">
+        </div>
+    </div>
+</form>
+
+<div class="dataInputsWrapper">
+    
+    <div id="applicationsWrapper">
+                   
+        <div id="appsSplunkbaseApps">
+            <h1>${_('Find more apps')}</h1>
+                            
+            <div class="dataInputsDesc">
+                ${_('Browse to find more apps to get the most out of your Splunk experience.')}
+            </div>
+            
+            % if not apps:    
+                <h2 class="empty_results">${_('No apps were found matching this search string.')}</h2>    
+            % endif
+            
+            <% paginator() %>            
+            
+            <div class="appsList">
+                <ul>
+                % for app in apps:
+                    <%
+                        try:
+                            icon_url = app['iconURL']
+                        except:
+                            icon_url = 'appIcon_null.png'
+                    %>
+                    <li>
+                        <div class="appsApplicationBox">
+                            % if icon_url is not None : 
+                                <img width="36px" src="${icon_url}" class="appIcon">  
+                            % else :
+                                <img width="36px" src="${make_url('/static/app/launcher/appIcon_null.png')}" class="appIcon">
+                            % endif
+                            
+                            
+                            <div class="appDetail">
+                                <h2>${app['appName']}</h2>
+                                
+                                <div class="appsApplicationDesc">
+                                    ${app.summary}
+                                    <a href="${app['appURL']}" class="spl-external-link spl-icon-external-link-sm" target="_blank">Read more </a>
+                                </div>
+                                
+                                <table class="appDetailsTable">
+                                    <tbody>
+                                    <tr>
+                                        <th>${_('Author:')}</th>
+                                        <td class='author'>${app.owner}</td>
+                                        
+                                        <th>${_('Version:')}</th>
+                                        <td class='version'>${app['latestVersion']}</td>
+
+                                        <th>${_('Last updated:')}</th>
+                                        <td class='last_updated'>${app['dateAddonUpdated']}</td>
+                                        
+                                        <th>${_('Downloads:')}</th>
+                                        <td class='downloads'>${app['downloads']}</td>
+                                        
+                                        <th>${_('License:')}</th>
+                                        <td class='license'>${app['license']}</td> 
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <div class="buttonDiv">
+                                    % if app['price'] and 'free' in app['price'].lower():
+                                        % if 'installed' in app:
+                                            % if 'update_available' in app: 
+                                                <button class="splButton-primary" onclick="window.location='${make_url([installUrl, app['appID']], _qs=dict(return_to=baseUrl, breadcrumbs=child_breadcrumbs_string) )}';">
+                                                    <span>${_('Update')}</span>
+                                                </button>
+                                                % if app['implicit_id_required']:
+                                                    <div class="textstatus">${_('Be sure that your version of this app came from Splunkbase before updating.')}</div>
+                                                % endif
+                                            % else:
+                                                <div class="textstatus">${_('Latest version installed')}</div>
+                                            % endif
+                                        % else:
+                                            <button class="splButton-primary" onclick="window.location='${make_url([installUrl, app['appID']], _qs=dict(return_to=baseUrl, breadcrumbs=child_breadcrumbs_string) )}';">
+                                                <span>${_('Install free')}</span>
+                                            </button>
+                                        % endif
+                                    % else :
+                                        <button class="splButton-primary" onclick="window.open('${app['appURL']}');">
+                                            <span>${_('Download app')}</span>
+                                        </button>
+                                    % endif 
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="clear"></div>
+                            
+                        </div>
+                    </li>
+            
+                % endfor
+                </ul>
+            </div>
+        
+            <% paginator() %>
+        </div>
+    </div>
+
+    <div class="mainPaneBottomPadding"></div>
+
+</div>
+
+

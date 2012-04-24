@@ -1,0 +1,38 @@
+# Copyright (C) 2005-2011 Splunk Inc. All Rights Reserved.  Version 4.3.1 
+#
+# This file contains an example server.conf.  Use this file to configure SSL and HTTP server options.
+#
+# To use one or more of these configurations, copy the configuration block into
+# server.conf in $SPLUNK_HOME/etc/system/local/. You must restart Splunk to enable configurations.
+#
+# To learn more about configuration files (including precedence) please see the documentation 
+# located at http://docs.splunk.com/Documentation/Splunk/latest/Admin/Aboutconfigurationfiles
+
+# Allow users 8 hours before they time out
+[general]
+sessionTimeout=8h
+pass4SymmKey = changeme
+
+# Listen on IPv6 in addition to IPv4...
+listenOnIPv6 = yes
+# ...but make all outgoing TCP connections on IPv4 exclusively
+connectUsingIpVersion = 4-only
+
+# Turn on SSL:
+
+[sslConfig]
+enableSplunkdSSL = true
+useClientSSLCompression = true
+sslKeysfile = server.pem
+sslKeysfilePassword = password
+caCertFile = cacert.pem
+caPath = $SPLUNK_HOME/etc/auth
+certCreateScript = genMyServerCert.sh
+
+
+
+######## SSO Example ########
+# This example trusts all logins from the splunk web server and localhost
+# Note that a proxy to the splunk web server should exist to enforce authentication
+[general]
+trustedIP = 127.0.0.1

@@ -1,0 +1,108 @@
+# Copyright (C) 2005-2011 Splunk Inc. All Rights Reserved.  Version 4.3.1 
+#
+# This is an example transforms.conf.  Use this file to create regexes and rules for transforms.
+# Use this file in tandem with props.conf.
+#
+# To use one or more of these configurations, copy the configuration block into transforms.conf 
+# in $SPLUNK_HOME/etc/system/local/. You must restart Splunk to enable configurations.
+#
+# To learn more about configuration files (including precedence) please see the documentation 
+# located at http://docs.splunk.com/Documentation/Splunk/latest/Admin/Aboutconfigurationfiles
+
+# Note: These are examples.  Replace the values with your own customizations.
+
+
+# Indexed field:
+
+[netscreen-error]
+REGEX =  device_id=[^ ]+\s+\[w+\](.*)(?
+FORMAT = err_code::$1
+WRITE_META = true
+
+# Extracted field:
+
+[netscreen-error]
+REGEX = device_id=[^ ]+\s+\[w+\](.*)(?
+FORMAT = err_code::$1
+
+# Override host:
+
+[hostoverride]
+DEST_KEY = MetaData:Host
+REGEX = \s(\w*)$
+FORMAT = host::$1
+
+
+# Extracted fields:
+
+[netscreen-error]
+REGEX = device_id=[^ ]+\s+\[w+\](.*)(?
+FORMAT = err_code::$1
+
+
+# Static lookup table
+
+[mylookuptable]
+filename = mytable.csv
+
+# one to one lookup
+# guarantees that we output a single lookup value for each input value, if no match exists, 
+# we use the value of "default_match", which by default is "NONE"
+[mylook]
+filename = mytable.csv
+max_matches = 1
+min_matches = 1
+default_match = nothing
+
+# external command lookup table
+
+[myexternaltable]
+external_cmd = testadapter.py blah
+fields_list = foo bar
+
+# Temporal based static lookup table
+
+[staticwtime]
+filename = mytable.csv
+time_field = timestamp
+time_format = %d/%m/%y %H:%M:%S
+
+
+# Mask sensitive data:
+
+[session-anonymizer]
+REGEX = (?m)^(.*)SessionId=\w+(\w{4}[&"].*)$
+FORMAT = $1SessionId=########$2
+DEST_KEY = _raw
+
+
+# Route to an alternate index:
+
+[AppRedirect]
+REGEX = Application
+DEST_KEY = _MetaData:Index
+FORMAT = Verbose
+
+
+# Extract comma-delimited values into fields:
+
+[extract_csv]
+DELIMS = ","
+FIELDS = "field1", "field2", "field3"
+
+# This example assigns the extracted values from _raw to field1, field2 and field3 (in order of 
+# extraction). If more than three values are extracted the values without a matching field name 
+# are ignored.
+
+[pipe_eq]
+DELIMS = "|", "="
+
+# The above example extracts key-value pairs which are separated by '|'
+# while the key is delimited from value by '='.
+
+
+[multiple_delims]
+DELIMS = "|;", "=:"
+
+# The above example extracts key-value pairs which are separated by '|' or ';'.
+# while the key is delimited from value by '=' or ':'. 

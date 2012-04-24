@@ -1,0 +1,429 @@
+<%!
+import splunk
+import logging
+import hashlib
+import os.path
+import splunk.appserver.mrsparkle.lib.i18n as i18n
+import splunk.appserver.mrsparkle.lib.filechain as filechain
+import cherrypy
+from mako.exceptions import RichTraceback
+from splunk.appserver.mrsparkle.lib import util
+from splunk.appserver.mrsparkle.lib.eai import cpQuoteEntity
+logger = logging.getLogger('splunk.appserver.templates.lib')
+import splunk.appserver.mrsparkle.lib.module as module
+
+modules = module.moduleMapper.getInstalledModules()
+%>
+
+<%namespace name="helpers" file="//view/_helpers.html" import="*"/>
+
+
+<%def name="add_script_block()">
+    <%
+    if attributes.get('script_blocks', None) is None:
+        attributes['script_blocks'] = []
+    attributes['script_blocks'].append(capture(caller.body))
+    %>
+</%def>
+
+<%def name="fillform(form_defaults, form_errors)">
+    <%
+    from formencode import htmlfill
+    context.write(htmlfill.render(capture(caller.body), form_defaults, form_errors, auto_insert_errors=False))
+    %>
+</%def>
+
+<%def name="get_script_blocks()">
+    % if attributes.get('script_blocks'):
+    <script type="text/javascript">
+    % for script_block in attributes.get('script_blocks', []):
+    //<![CDATA[
+        ${script_block} \
+    //]]>
+    % endfor
+    </script>
+    % endif
+</%def>
+
+## DO NOT USE compile flag - here only to maintain compatibility with customer templates
+<%def name="script_tags(files, compile=False)">
+    <% seen = attributes.setdefault('script_tags_seen', set()) %>
+	<%
+        disable_messenger = cherrypy.session.get('sessionKey', None) is None
+        minify_js = splunk.util.normalizeBoolean(cherrypy.config.get('minify_js'))
+	%>
+    % for file in files:
+        % if minify_js and not file.startswith('/static/app/') and not file.startswith('/config?') and not file.endswith('init.js') and not file.endswith('highcharts.js'): 
+            % if 'common.min.js' not in seen:
+                % if disable_messenger:
+                    <script type="text/javascript">
+                        var DISABLE_MESSENGER = true;
+                    </script>
+                % endif
+                <script type="text/javascript" src="${make_url('/static/js/common.min.js')}"></script> \
+                <% seen.add('common.min.js') %>
+            % endif
+            % if '/modules/' in file:
+                <%
+                    basename = 'modules-' + filechain.generate_file_list_hash(files) + '.min.js'
+                %>
+                % if basename not in seen:
+                     <% filechain.chain_modules_js(files) %>
+                    <script type="text/javascript" src="${make_url(['modules', basename])}"></script> \
+                    <% seen.add(basename) %>
+                % endif
+            % endif
+        % elif file not in seen:
+            <script type="text/javascript" src="${make_url(file)}"></script> \
+            <% seen.add(file) %>
+        % endif
+    % endfor
+</%def>
+
+## DO NOT USE compile flag - here only to maintain compatibility with customer templates
+<%def name="stylesheet_tags(files, compile=False, media=None)">
+    <%
+        seen = attributes.setdefault('stylesheet_tags_seen', set())
+        minify_css = splunk.util.normalizeBoolean(cherrypy.config.get('minify_css'))
+    %>
+    % for file in files:
+        % if minify_css and '/modules/' in file:
+            <%
+                basename = 'modules-' + filechain.generate_file_list_hash(files) + '.min.css'
+            %>
+            % if basename not in seen:
+                 <% filechain.chain_modules_css(files) %>
+                <link rel="stylesheet" href="${make_url(['modules', basename])}" ${'' if media is None else 'media="%s" ' % media}/> \
+                <% seen.add(basename) %>
+            % endif
+        % elif file not in seen:
+            <link rel="stylesheet" href="${make_url(file)}" ${'' if media is None else 'media="%s" ' % media}/> \
+            <% seen.add(file) %>
+        % endif
+     % endfor
+</%def>
+
+<%def name="traceback(header=None, parent_element_class_name='traceback', row_highlight_class_name='active', max_lines=5)">
+    <%
+    tback = RichTraceback()
+    line = tback.lineno
+    if tback.source:
+        lines = tback.source.split('\n')
+    else:
+        lines = None
+    %>
+    <div class="${parent_element_class_name}">
+        <h2>${header if header else "Error!"}</h2>
+        <h3>${str(tback.error.__class__.__name__)|h}: ${str(tback.error)|h}</h3>
+        % if lines:
+            <table cellpadding="0" cellspacing="0">
+                % for index in range(max(0, line-(max_lines-1)), min(len(lines), line+max_lines)):
+                    <tr ${'class="'+row_highlight_class_name+'"' if index + 1 == line else ''}>
+                        <td>${index + 1}</td>
+                        <td><pre>${lines[index] | h}</pre></td>
+                    </tr>
+                % endfor
+            </table>
+        % endif
+        <dl>
+            % for (filename, lineno, function, line) in tback.reverse_traceback:
+                <dt>${filename}, line ${lineno}:</dt>
+                <dd>${line | h}</dd>
+            % endfor
+        </dl>
+    </div>
+</%def>
+
+<%def name="generate_select_options(optionArray, selectedValue=None)">
+    % for pair in optionArray:
+        <% sel = ' selected="1"' if selectedValue != None and unicode(pair[0], 'utf-8') == unicode(selectedValue, 'utf-8') else '' %> \
+<option value="${pair[0]|h}"${sel}>${pair[1] | h}</option> \
+    % endfor
+</%def>
+
+
+<%def name="getSavedSearch(module, savedSearchName, useHistory=False, namespace=None, owner=None, nativeObjectMode=None)">
+<%
+    jsonSearch = None
+    jobNotFoundMessage = 'Module %(module)s: Could not find a previously run search for saved search "%(savedSearchName)s".'
+    savedSearchNotFoundMessage = 'Module %(module)s: Could not find a saved search named "%(savedSearchName)s".'
+    quoteExceededMessage = 'Module %(module)s: There are too many searches running; unable to dispatch "%(savedSearchName)s".'
+
+    try : 
+        savedSearchObject = splunk.search.getSavedSearch(
+            label = savedSearchName,
+            namespace = namespace,
+            owner = owner
+        )
+        # if decomp isn't supported, return decomp fail
+	if not splunk.util.normalizeBoolean(cherrypy.config.get('support_decomposition')):
+           q = util.layPiping(savedSearchObject["qualifiedSearch"])
+           jsonSearch = {
+                "fullSearch" : q,
+                "baseSearch" : q,
+                "intentions": [],
+                "decompositionFailed": True,
+                "s": savedSearchObject.name,
+                "earliest": savedSearchObject.get('dispatch.earliest_time'),
+                "latest": savedSearchObject.get('dispatch.latest_time')
+            }
+        else:
+           jsonSearch = splunk.appserver.mrsparkle.util.resurrectFromSavedSearch(
+               savedSearchObject = savedSearchObject,
+               hostPath = splunk.mergeHostPath(),
+               namespace = namespace,
+               owner = owner
+           )
+
+        useHistory = unicode(useHistory).capitalize()
+        if (useHistory in ["Auto", "None", "True"]) :
+            if useHistory == "None":
+                logger.warn("useHistory == None is being depreciated, please use Auto instead.")
+         
+            historySearch = 'name=scheduler* OR name=rt_scheduler*'
+
+            # for real-time, not scheduled searches try to use an already running instance of the search
+            if not splunk.util.normalizeBoolean(savedSearchObject.get('is_scheduled')) and \
+               savedSearchObject.get('dispatch.earliest_time')                         and \
+               savedSearchObject.get('dispatch.earliest_time').startswith('rt') :
+                historySearch = 'isDone=0 AND isRealTimeSearch=1 AND isZombie=0 AND isFinalized=0'
+
+
+            try:
+                # Note that we never submit anything other than useHistory="true". 
+                # this is because its problematic to let the python dispatch the search for us.
+                # instead if there's no job run by the scheduler, we return the other context data and let the 
+                # client dispatch the search itself.
+                job = splunk.search.getJobForSavedSearch(
+                    savedSearchName,
+                    useHistory="True", 
+                    namespace=namespace,
+                    owner=owner,
+                    search=historySearch,
+                    historyURI= savedSearchObject.getLink("history")
+                )
+                if (job) :
+                    jsonSearch["job"] = job.toJsonable(timeFormat='unix')
+                    
+                elif useHistory == "True":
+                    helpers.message('error', jobNotFoundMessage % {'savedSearchName': savedSearchName, 'module': module['id']})
+
+            except splunk.RESTException, e:
+            
+                # Payment Required!
+                # Get a job by using useHistory = True
+                if e.statusCode == 402:
+                    logger.warn("Could not retrieve the job history for the saved search '%s' because the current license does not allow it." % savedSearchName)
+                    helpers.message("info", _("This view references scheduled searches that do not run automatically in Free Splunk. Please wait while they run now."))
+                else:
+                    raise e
+
+
+            except splunk.BadRequest, e:
+                logger.exception(e)
+                if len(e.extendedMessages) > 0:
+                    for msg in e.extendedMessages:
+                        logger.error(msg['text'])
+                        helpers.message(msg['type'].lower(), msg['text'])
+                else:
+                    helpers.message('error', jobNotFoundMessage % {'savedSearchName': savedSearchName, 'module': module['id']})
+            
+    except splunk.ResourceNotFound, e:
+        logger.exception(e)
+        if nativeObjectMode!='SimpleDashboard': 
+            helpers.message('error', savedSearchNotFoundMessage % {'savedSearchName': savedSearchName, 'module': module['id']})
+        
+    except splunk.QuotaExceededException, e:
+        logger.warn(str(e))
+        helpers.message('warn', quoteExceededMessage % {'searchName': savedSearchName, 'module': module['id']})
+%>
+<%call expr="add_script_block()">
+    % if jsonSearch:
+        Splunk.Module.loadParams.${module['id']}.jsonSearch = ${jsonify(jsonSearch)};
+    % else:
+        Splunk.Module.loadParams.${module['id']}.jsonSearch = null;
+    % endif
+</%call>
+</%def>
+
+<%def name="csrf_hidden_input()">
+<input type="hidden" name="splunk_form_key" value="${util.getFormKey()|h}" />
+</%def>
+
+
+<%def name="render_exception(e)">
+    <span class="exception_name">${e.msg if hasattr(e, 'msg') else e | h}</span>
+        % if hasattr(e, 'extendedMessages') and e.extendedMessages:
+            &#8212;
+            % for item in e.extendedMessages:
+            <span class="exception_message">${item['text'] | h}</span>
+            % endfor
+        % endif
+</%def>
+
+
+
+<%def name="manager_save_search_link(namespace, id, name, label=None)">
+    <a href="${make_url(['manager', namespace, 'saved', 'searches', cpQuoteEntity(name, urlquote=False)], _qs=dict(action='edit', ns=namespace, uri=id, redirect_override_cancel=make_url(['manager', namespace, 'saved', 'searches'], translate=False))) | h}" target="_blank" class="spl-icon-external-link-xsm">${label or name | h}</a>.
+</%def>
+
+<%def name="wizard_errors(header, errors)">
+    % if len(errors)>0:
+        <h2 class="error">${header|h}</h2>
+        <ul class="errors">
+        % for error in errors:
+            <li>${error|h}</li>
+        % endfor
+        </ul>
+    % endif
+</%def>
+
+<%def name="wizard_save_search_form(app, saved_search, display_share=True)">
+    <%self:wizard_errors header="${_('Your search could not be saved.')}" errors='${saved_search.errors}'/>
+    <%self:csrf_hidden_input/>
+    % if saved_search.id:
+        <input type="hidden" name="id" value="${saved_search.id | h}"/>
+    % endif
+    <input type="hidden" name="ui.vsid" value="${saved_search.ui.vsid or '' |h}" />
+    <input type="hidden" name="ui.dispatch_view" value="${saved_search.ui.dispatch_view or '' |h}" />
+    <input type="hidden" name="ui.display_view" value="${saved_search.ui.display_view or '' |h}" />
+    <table class="saveSearchForm">
+        <tbody>
+            <tr>
+                <td class="col1"><label for="name"><span class="required">*</span> ${_('Search name')}</label></td>
+                <td class="col2"><input type="text" name="name" maxlength="100" value="${saved_search.name or '' |h}" id="name" ${'disabled="disabled"' if saved_search.id else ''}/></td>
+            </tr>
+            <tr>
+                <td class="col1"><label for="search"><span class="required">*</span> ${_('Search string')}</label></td>
+                <td class="col2"><textarea name="search" id="search">${saved_search.search or '' |h}</textarea></td>
+            </tr>
+            <tr>
+                <td class="col1"><label for="dispatch_earliest_time">${_('Time range')}</label></td>
+                <td class="col2">
+                    <input type="text" name="dispatch.earliest_time" value="${saved_search.dispatch.earliest_time or '' |h}" id="dispatch_earliest_time" class="dispatch_time"/> 
+                    <label class="dispatch_time_to">${_('to')}</label> 
+                    <input type="text"  name="dispatch.latest_time" value="${saved_search.dispatch.latest_time or '' |h}" class="dispatch_time"/>
+					<p class="note">
+						${_("-1d (one day ago), now (triggering time)")}<br />
+						${_("rt-1d (one day ago in real-time), rt(triggering time)")}<br />
+					    ${_("Time specifiers: y, mon, d, h, m, s")}
+					    <a href="${generateSelfHelpLink('learnmore.alert.relativetime')}" class="spl-icon-external-link-xsm" target="_blank" class="spl-icon-external-link-xsm">${_('Learn more')}</a>
+					</p>
+                </td>
+            </tr>
+            % if display_share:
+                
+                <tr>
+                    <td class="col1 share"><span class="orphanLabel">${_('Share')}</span></td>
+                    <td class="col2">
+                    	<fieldset><legend class="hiddenLabel">${_('Share')}</legend>
+                        <ul>
+                            <li>
+                                <input type="radio" name="sharing" value="user" id="private" class="sharing typeRadio" ${'checked="checked"' if saved_search.metadata.sharing=='user' or saved_search.id is None else ''}/>
+                                <label for="private">${_('Keep search private')}</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="sharing" value="app" id="share" class="sharing typeRadio" ${'checked="checked"' if saved_search.metadata.sharing=='app' else ''}/>
+                                <label for="share">${_('Share as read-only to all users of current app')}</label>
+                            </li>
+                            <li class="note">
+                                ${_('<em>Additional permission settings available in </em><br/><strong>Manager &raquo; Searches and reports</strong>')}
+                            </li>
+                        </ul>
+                        </fieldset>
+                    </td>
+                
+                </tr>
+            % endif
+        </tbody>
+    </table>
+    <%self:add_script_block>
+    $(document).ready(function(){
+        var searchName = $('#name')[0];
+        if(searchName.disabled==false){
+            searchName.focus();
+        }else{
+            $('#search').focus();
+        }
+    });
+    </%self:add_script_block>
+</%def>
+
+<%def name="wizard_steps(items, active)">
+    <ul class="steps splClearfix">
+        % for idx, item in enumerate(items):
+            <% idx = idx + 1 %>
+            <li${' class="active"'if active==idx else ''}>
+                <em>${idx}</em>
+                <h2>${item | h}</h2>
+            </li>
+        % endfor
+    </ul>
+    <div class="splClearFix"></div>
+</%def>
+
+<%def name="wizard_cancel_delete(action, id, dashboard_id=None)">
+    <form method="post" action="${action | h}" class="cancel">
+        ${csrf_hidden_input()}
+        <input type="hidden" name="id" value="${id | h}"/>
+        % if dashboard_id:
+        	<input type="hidden" name="dashboard_id" value="${dashboard_id | h}"/>
+        % endif
+        <button class="splButton-secondary" type="submit">${_('Cancel')}</button>
+    </form>
+</%def>
+
+<%def name="wizard_schedules()">
+    <%
+    return [
+        ('* * * * *', _('minute')),
+        ('*/5 * * * *', _('5 minutes')),
+        ('*/15 * * * *', _('15 minutes')),
+        ('*/30 * * * *', _('30 minutes')),
+        ('0 * * * *', _('hour')),
+        ('0 */4 * * *', _('4 hours')),
+        ('0 */12 * * *', _('12 hours')),
+        ('0 0 * * *', _('day at midnight')),
+        ('0 18 * * *', _('day at 6pm')),
+        ('0 0 * * 6', _('Saturday at midnight'))
+    ]
+    %>
+</%def>
+
+<%def name="sort_link(label, url, params, sort_by)">
+    <%
+        css_class = 'splSortNone'
+        qs = {}
+        qs.update(params)
+        if qs.get('sort_by') == sort_by:
+            if qs.get('sort_dir') is None or qs.get('sort_dir') == 'desc':
+                qs['sort_dir'] = 'asc'
+                css_class = 'splSortAsc'
+            else:
+                qs['sort_dir'] = 'desc'
+                css_class = 'splSortDesc'
+        else:
+            qs['sort_by'] = sort_by
+            qs['sort_dir'] = 'desc'
+    %>
+    <a href="${make_url(url, _qs=qs)}" class="sortable"><span>${label|h}</span><span class="${css_class|h}"></span></a>
+</%def>
+
+<%def name="get_application_css(app)">
+    <%
+    from lib.apps import local_apps
+    css = None
+    local_app = local_apps.apps.get(app, None)
+    if local_app:
+        local_app.setdefault('static', {}).setdefault('css', [])
+        if local_app['static']['css'].count('application.css')>0:
+            css = '/static/app/%s/application.css' % app
+    %>
+    % if css:
+        <link rel="stylesheet" href="${make_url(css)}" />
+    % endif
+    <% appPatches = local_apps[app]['patch'].get('css', []) %>
+    % for patch in appPatches:
+         <link rel="stylesheet" href="${make_url(patch)}" />
+    % endfor
+</%def>

@@ -1,0 +1,32 @@
+<%!
+    title = 'App Install'
+    %>
+    <%namespace name="lib" file="//lib.html" import="*"/>
+    <%inherit file="//layout/admin.html" />
+    <%
+    import splunk
+    from splunk.appserver.mrsparkle.lib import util, i18n
+%>
+
+<div class="spl-gdi-wrapper spl-prompt-message-layout"> 
+	<div class="jmFormOptions">
+	    <h2 class="spl-page-hdr spl-icon-success-md" > 
+	        <span> 
+	            <!-- replace with page title --> 
+	            Success
+	            <!-- end replace with page title --> 
+	        </span> 
+	    </h2> 
+	    <span class="spl-hr-solid-lite"></span> 
+	    <!-- start prompt message --> 
+	    <div class="spl-prompt-message-wrapper"> 
+	        <h3 class="spl-main-description-hdr"> 
+	            App installed successfully
+	        </h3> 
+	        <p class="spl-main-description"> 
+	           The app was installed successfully.
+	        </p> 
+	    </div> 
+    </div>
+</div> 
+

@@ -1,0 +1,229 @@
+/* elements */
+body, html {
+	padding:0;
+	margin:0;
+	height:100%;
+	overflow:hidden;
+}
+input, textarea, select {
+	margin: 0;
+}
+#alerts li {
+	list-style:none;
+	float:left;
+}
+#alerts ul, #alerts li {
+	margin: 0;
+	padding: 0;
+}
+#alerts table {
+	width:100%;
+	margin: 0 10px;
+}
+#alerts th, #alerts td {
+	text-align:left;
+	vertical-align:top;
+	padding:3px 5px;
+}
+#alerts th {
+	border-bottom:1px solid	#999;
+}
+#alerts td {
+	vertical-align:top;
+	padding: 5px 3px;
+}
+#alerts tr:last-child td {
+	border-bottom:none;
+}
+#alerts td input {
+	margin: 0;
+	border: none;
+}
+/* shared */
+#alerts .formelement1, 
+#alerts #app, 
+#alerts #owner 
+{
+    white-space: nowrap;
+    width: 100px;
+}
+#alerts #app {
+    width:250px;
+}
+#alerts #alerts_id, #alerts #severity {
+	white-space:nowrap;
+	width:60px;
+}
+
+/* header */
+#alerts #header {
+	height:43px;
+	position:relative;
+	background: black url(/static/img/skins/default/bg_appHeaderWrapper.png) repeat-x;
+	padding:  0 10px;
+}
+#alerts #header .appLogo {
+	float: left;
+}
+#alerts #header h1 {
+	line-height: 43px;
+}
+#alerts #header .splIcon-close {
+	margin-top: 15px;
+	float: right;
+}
+
+/* filters */
+#alerts #filters {
+	position:relative;
+	background:url("/static/img/skins/default/overlay_bottomgradient_soft.png") repeat-x bottom #EDEDE7;
+	_background: #EDEDE7;
+	border-bottom:1px solid #CCC;
+	border-top:1px solid #CCC;
+	display:block;
+	padding:10px  0 10px 10px;
+	zoom:1;
+}
+#alerts #filters table {
+	margin:  0;
+}
+#alerts #filters table td {
+	margin:  0;
+	padding:  0;
+	vertical-align: middle;
+}
+#alerts #filters .col2 {
+	width:200px;
+}
+#alerts #filters li {
+	padding-right: 10px;
+}
+#alerts #filters label {
+	padding-right:5px;
+}
+#alerts #filters #search {
+	border: 1px solid #CCC;
+}
+/* pagination */
+#Pagination {
+	position: relative;
+	padding: 5px 10px;
+	background: #EDEDE7;
+}
+
+#Pagination ul {
+	float: left;
+}
+
+#Pagination li {
+	margin-right: 2px;
+	display: block;
+}
+
+#Pagination a {
+	display: block;
+	padding: 3px 6px;
+}
+
+#Pagination a:hover{
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #CCC;
+	text-decoration: none;
+}
+
+#Pagination a.active, #Pagination a.active:hover {
+	background-color: #999;
+	border-color: #999;
+	color: white;
+}
+
+#Pagination a.disabled, #Pagination a.disabled:hover {
+	color: #999;
+	cursor: text;
+	visibility: visible;
+}
+
+#Pagination .count {
+	float: right;
+	margin:  0;
+	padding: 5px;
+}
+
+/* results */
+#alerts #results {
+	overflow:auto;
+	background: white url(/static/img/skins/default/bg_innertopshadow_28.png) repeat-x;
+	border-top: 1px solid #CCC;
+	position: relative;
+}
+#alerts #results table {
+	margin-top:15px;
+	width:98%;
+}
+#alerts #results td {
+	border-bottom:1px solid	#CCC;
+}
+#alerts #results .none {
+	text-align:center;
+	font-weight:bold;
+}
+#alerts #results .sortable {
+	position:relative;
+	padding-right:3px;
+}
+#alerts #results .sortable span {
+	color:#000;
+}
+#alerts #results .bulk {
+	text-indent:-5000px;	
+    direction:ltr;
+}
+#alerts #results .severity {
+	background:url(/static/img/skins/default/icon_alerts.png) no-repeat 0 -32px;
+	_background-image:url(/static/img/skins/default/icon_alerts_ie6.png);
+	padding-left:20px;
+	padding-top:2px;
+}
+#alerts #results .severitylow {
+	background-position:0 -16px;
+}
+#alerts #results .severityhigh {
+	background-position:0 -48px;
+}
+#alerts #results .severitycritical {
+	background-position:0 -64px;
+}
+#alerts #results .severityinfo {
+	background-position:0 0;
+}
+#alerts #results .severitymedium {
+	background-position:0 -32px;
+}
+/* actions */
+#alerts #actions {
+	position:relative;
+	background: #EDEDE7 url(/static/img/skins/default/overlay_bottomgradient_soft.png) repeat-x scroll 0 100%;
+	_background-image: none;
+	font-size:12px;
+	border-top:1px solid #CCC;
+	height:44px;
+}
+#alerts #actionsSelection {
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+#alerts #actionsSelection span {
+	padding-right:5px;
+}
+#alerts #actionsSelection a {
+	margin-right:5px;	
+}
+#alerts #actionsSelection .selected {
+	padding-left:5px;
+}
+#alerts #actionsSelection button {
+	margin: 0;
+}

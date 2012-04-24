@@ -1,0 +1,31 @@
+<%inherit file="//layout/view.html" />
+<%namespace name="lib" file="//lib.html" import="*" />
+<%namespace name="helper" file="//admin/_helpers.html" import="header" />
+
+## Load the nav module(s) if required
+% if 'appHeader' in modules:
+    <%call expr="parent.buildSimplePanelContainer(modules, 'messaging')"></%call>
+    <div class="appHeaderWrapper">
+        <%call expr="parent.buildSimplePanelContainer(modules, 'appHeader')"></%call>
+    </div>
+% endif
+
+<%helper:header namespace="${namespace}"/>
+<div class="adminContent">
+    ${next.body()} 
+</div>
+
+<%def name="title()">
+    ${_('Bigjava Manager - Bigjava %(version)s') % dict(version=cherrypy.config.get('version_label'), build_number=cherrypy.config.get('build_number')) | h} 
+</%def>
+
+<%def name="css()">
+    <% parent.css() %>
+    <%lib:stylesheet_tags files="${['/static/css/view.css', '/modules/nav/AccountBar.css', '/modules/nav/ManagerBar.css', '/modules/messaging/Message.css', '/modules/paginator/paginator.css', '/static/css/admin.css', '/static/css/print.css', '/static/css/codemirror.css']}" />
+</%def>
+
+## js needs to be included in head of page due to admin architecture for re-use.
+<%def name="head()">
+    <%lib:script_tags files="${['/static/js/contrib/jquery.cookie.js', '/static/js/splunk.jquery.csrf_protection.js']}" />
+    <% parent.head(enable_viewport=False) %>
+</%def>

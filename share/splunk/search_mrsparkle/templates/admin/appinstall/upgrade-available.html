@@ -1,0 +1,84 @@
+<%!
+    title = 'App Install'
+%>
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%namespace name="helpers" file="//admin/_helpers.html"/>
+<%inherit file="//layout/admin.html" />
+<%
+    import splunk
+    from splunk.appserver.mrsparkle.lib import util, i18n
+%>
+
+% if error:
+    <%helpers:message content="${error}" level="error"/>
+% endif
+
+<script language="JavaScript">
+    $(function() {
+        $('#upgradeform').submit(function() {
+            $('button').attr('disabled', 'disabled');
+            $('.splButton-primary').text(${_('Processing..')|jsonify});
+            return true;
+        });
+
+        $('.splButton-secondary').click(function() {
+            window.location = ${jsonify(make_url(breadcrumbs[-2][1] if len(breadcrumbs)>1 else state['return_to']))};
+            return false;
+        });
+    });
+</script>
+
+<%
+  implicit_id_required = splunk.util.normalizeBoolean(state.get('implicit_id_required', None))
+%>
+<div class="spl-gdi-wrapper spl-prompt-message-layout"> 
+	<div class="jmFormOptions">
+	    <h2 class="spl-page-hdr spl-icon-attention-md" > 
+	        <span> 
+	            <!-- replace with page title --> 
+	            ${_('App update available')}
+	            <!-- end replace with page title --> 
+	        </span> 
+	    </h2> 
+	    <span class="spl-hr-solid-lite"></span> 
+	    <!-- start prompt message --> 
+	    <form id="upgradeform" method="POST" action="${make_url(['/manager/appinstall', appid, 'update'])}">
+	    <input type="hidden" name="state" value="${state.serialize()}">
+        ${csrf_hidden_input()}
+	    <div class="spl-prompt-message-wrapper"> 
+	        <h3 class="spl-main-description-hdr"> 
+	            % if implicit_id_required:
+	            ${_('Overwrite from Splunkbase')}
+	            % else:
+	            ${_('Update from Splunkbase')}
+	            % endif
+	        </h3> 
+	        <p class="spl-main-description"> 
+	            % if implicit_id_required:
+	            ${_('Your app does not have a valid app ID and may not have originated from Splunkbase. Be sure to first back up your configuration as this operation is irreversible.')}<br><br>
+	            ${_('Click the button below if you are sure you would like to overwrite the local copy of this app with the newest version on Splunkbase.')}<br>
+	            % else:
+	            ${_('The requested app is already installed, but a newer version is available on Splunkbase.')}<br><br>
+	            ${_('Click the button below to update the app to the newer version now.')}<br>
+	            % endif
+	           ${_('Note that a restart of Splunk may be required after update.')}
+	        </p> 
+	    </div> 
+	</div>
+	
+    <!-- Start button bar --> 
+    <div class="jmFormActions"> 
+        <button class="splButton-secondary">
+            <span>${_('Cancel')}</span> 
+        </button> 
+        <button class="splButton-primary" type="submit"> 
+            % if implicit_id_required:
+            <span>${_('Overwrite')}</span> 
+            % else:
+            <span>${_('Update')}</span> 
+            % endif
+        </button> 
+    </div> 
+    </form>
+</div> 
+

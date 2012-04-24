@@ -1,0 +1,27 @@
+<%page expression_filter="h" />
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%inherit file="//layout/base.html" />
+
+<%def name="css()">
+    <%coreCSSFiles = [
+        "/static/css/view.css", 
+        "/static/css/skins/default/default.css"
+    ] %>
+    <%lib:stylesheet_tags files="${coreCSSFiles}" />
+</%def>
+
+<%def name="custom_css()">
+  <%lib:stylesheet_tags files="${['/static/app/%s/backfill_select.css' % app]}" /> 
+</%def>
+
+<div class="BackfillMessage">
+ 
+  <h2>Backfill: Success</h2>
+  <p>Your backfill jobs were submitted successfully.  Click 'Home' to go to the app's home page.</p>
+  <div class="ConfirmButtons">
+    <a class="splButton-secondary" target="_parent" href="${make_url(['app', app])}">Home</a>
+  </div>
+
+</div>
+
+

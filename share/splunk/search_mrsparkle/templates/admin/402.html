@@ -1,0 +1,27 @@
+<%!
+    title = 'Insufficent License Level'
+    from splunk.appserver.mrsparkle.lib.msg_pool import MsgPoolMgr, UI_MSG_POOL
+    from mako.filters import html_escape
+%>
+<%namespace name="helpers" file="_helpers.html"/>
+<%inherit file="//layout/admin.html"/>
+
+<% msg_obj = MsgPoolMgr.get_poolmgr_instance()[UI_MSG_POOL].pop(msgid) %>
+
+<div class="eaiPagination">
+    <h2>${nagwareMessaging.get('label')|h}</h2> 
+
+    % if nagwareMessaging.get("description"):
+        <p>${nagwareMessaging["description"]|h}</p>
+    % endif
+</div>
+<br />
+<div class="msgBox">
+    <h2>${_("%s is an Enterprise license-level feature and is currently not available on this instance.") % html_escape(nagwareMessaging.get("label"))}</h2>
+    
+    <p>${_('To enable this and other Enterprise features, <a href="http://www.splunk.com/r/aboutlicenses" target="_blank" class="spl-icon-external-link-xsm">learn more about licenses</a> at Splunk.com or <a href="http://www.splunk.com/r/getlicense" target="_blank" class="spl-icon-external-link-xsm">contact Splunk Sales</a> directly.')}</p>
+    
+    % if msg_obj:
+        <p class="machine">Splunkd response: ${msg_obj.text|h}</p>
+    % endif
+</div>

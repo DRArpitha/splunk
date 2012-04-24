@@ -1,0 +1,87 @@
+/* overrides */
+.masterFooter {
+    background-color: #fff;
+}
+
+/* specifics */
+#sid {
+    color: #666;
+    font-size: 11px;
+    padding-left: 15px;
+}
+#summary, #perf {
+    padding: 0px 15px;
+}
+#details {
+    padding: 0px 15px;
+    background-color: #fff;
+}
+
+#explanation {
+}
+#explanation.ok {
+    border-color: green;
+}
+#explanation.zombied {
+    border-color: red;
+}
+#explanation.failed {
+    border-color: red;
+}
+#explanation.paused {
+    border-color: orange;
+}
+#explanation.noresults {
+    border-color: blue;
+}
+#explanation.messaged {
+    border-color: blue;
+}
+
+pre {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    white-space: normal;
+}
+.searchString span {
+    padding: 2px;
+}
+.searchString .highlighted {
+    background-color: #ffff33;
+}
+.searchString .muted {
+    color: #333;
+}
+
+#summary li {
+    margin-left: 10px;
+}
+#messages .text {
+    font-weight: bold;
+}
+#messages li {
+    list-style-type: none;
+}
+
+
+#perf img {
+    height: 1px;
+}
+#perf img.durationBar {
+    height: 12px;
+    background-color: #777;
+}
+#perf table td.numeric {
+    text-align: right;
+}
+#perf td {
+    background-color: #fff;
+}
+#perf tr.sub img.durationBar {
+    background-color: #aaa;
+}
+

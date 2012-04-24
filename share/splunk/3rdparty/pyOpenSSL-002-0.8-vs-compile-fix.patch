@@ -1,0 +1,23 @@
+Some C compilers (like visual studio) don't like static pre-declarations
+of objects of unknown size.
+
+--- pyOpenSSL-0.8/src/crypto/x509name.c.ORIG	2009-04-14 16:05:11.000000000 -0700
++++ pyOpenSSL-0.8/src/crypto/x509name.c	2009-04-14 16:05:24.000000000 -0700
+@@ -13,7 +13,7 @@
+ #define crypto_MODULE
+ #include "crypto.h"
+ 
+-static PyMethodDef crypto_X509Name_methods[];
++extern PyMethodDef crypto_X509Name_methods[];
+ 
+ /*
+  * Constructor for X509Name, never called by Python code directly
+@@ -386,7 +386,7 @@
+  */
+ #define ADD_METHOD(name)        \
+     { #name, (PyCFunction)crypto_X509Name_##name, METH_VARARGS, crypto_X509Name_##name##_doc }
+-static PyMethodDef crypto_X509Name_methods[] =
++PyMethodDef crypto_X509Name_methods[] =
+ {
+     ADD_METHOD(hash),
+     ADD_METHOD(der),

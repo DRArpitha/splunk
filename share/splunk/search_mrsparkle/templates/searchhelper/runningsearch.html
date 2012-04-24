@@ -1,0 +1,56 @@
+ <script type="text/javascript">    
+      $(function(){
+          var moreText = _('More');
+          var lessText = _('Less');
+          
+          $('.saMoreLink').click(function(evt){
+            if ($(this).hasClass('saMoreLinkOpen')) {
+                $(this).removeClass('saMoreLinkOpen')
+                       .html(moreText + ' &raquo;');
+                $($(this).attr('divToShow')).css('display','none');   
+            } else {
+                $(this).addClass('saMoreLinkOpen')
+                       .html(lessText + ' &raquo;');
+                $($(this).attr('divToShow')).css('display', 'block');
+            }
+          });    
+      });
+    </script>
+
+<div class="info">Your search has started.</div>
+
+<a title="${_('Read online documentation.')}"  href="http://www.splunk.com/base/Documentation/4.0/SearchReference/ListOfSearchCommands" target=new class="saHelp">
+    <span class="salink">${_('help')}</span>
+</a>
+
+<h3>${_('Search assistant')}</h3>
+
+% if len(nexts) > 0:
+   <div class="saRow">
+    <div class="saCellInner">
+        <h4>${_('common next commands')}</h4> 
+        % if len(nexts) > 15:
+           <span class="splPipe">|</span><a class="saMoreLink" title="${_('See remaining search commands.')}" divToShow="#commandsdiv" id="commandsLabel">${_('More')} &raquo;</a>
+        % endif
+    
+        <ul class="saNextCommands">
+          % for next,desc in nexts[:15]:
+            <% s = search.strip() %>
+            <% if s.endswith("|"): s = s[:-1] %>
+    	<% replacement = s + " | " + next %>
+    	  <a title="${desc|h}" replacement="${replacement|h}">${next|h}</a>
+          % endfor
+          <div id="commandsdiv" style="display:none">
+               % for next,desc in nexts[15:]:
+                 <% s = search.strip() %>
+                 <% if s.endswith("|"): s = s[:-1] %>
+                 <% replacement = s + " | " + next %>
+                 <a title="${desc|h}" replacement="${replacement|h}">${next|h}</a>
+               % endfor
+          </div>
+        </ul>
+     </div>
+  </div>
+% endif
+
+

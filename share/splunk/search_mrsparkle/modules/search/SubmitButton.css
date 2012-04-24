@@ -1,0 +1,25 @@
+.SubmitButton .splButton-primary,
+.SubmitButton .splButton-secondary {
+    margin-left:0px;
+}
+
+.splFormSearch .SubmitButton {
+    clear: both;
+    float: left;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.splFormSearch .viewHeader .SubmitButton {
+    margin: 0px 5px;
+    padding: 0px;
+    clear: none;
+}
+
+
+input.searchButton,
+input.searchButton:focus, 
+input.searchButton:active
+{ 
+   outline: none; 
+}

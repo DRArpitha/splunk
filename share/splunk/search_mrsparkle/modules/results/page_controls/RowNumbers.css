@@ -1,0 +1,6 @@
+.RowNumbers input {
+    margin-top: 1px;
+}
+.RowNumbers label {
+    display: inline;
+}

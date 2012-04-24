@@ -1,0 +1,157 @@
+<view autoCancelInterval="90" onunloadCancelJobs="true" template="dashboard.html">
+  <label>License Report</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="TitleBar" layoutPanel="viewHeader">
+    <param name="actionsMenuFilter">dashboard</param>
+  </module>
+  <module name="BreadCrumb" layoutPanel="viewHeader">
+    <param name="options">
+      <list>
+        <param name="view">home</param>
+        <param name="label">Home</param>
+      </list>
+      <list>
+        <param name="label">License Report</param>
+      </list>
+    </param>
+  </module>
+
+
+<module name="HiddenSavedSearch" group="Usage Summary" layoutPanel="panel_row1_col1" autoRun="True">
+    <param name="savedSearch">Daily License Usage - last 30 days</param>
+
+     <module name="SingleValue">
+        <param name="beforeLabel">Peak daily usage in last 30 days:</param>
+        <param name="field">peakdailyusage</param>
+        <param name="afterLabel">GB</param>
+     </module>
+
+     <module name="SingleValue">
+        <param name="beforeLabel">Average daily usage across all days in last 30 days:</param>
+        <param name="field">avgdailyusage</param>
+        <param name="afterLabel">GB</param>
+     </module>
+
+</module> 
+<module name="HiddenSavedSearch" group="Usage Summary" layoutPanel="panel_row1_col1" autoRun="True">
+    <param name="savedSearch">Top Five Daily Usage - last 30 days</param>
+
+     <module name="SingleValue">
+        <param name="beforeLabel">Average usage across top 5 days in last 30 days:</param>
+        <param name="field">mytop5</param>
+        <param name="afterLabel">GB</param>
+     </module>
+
+</module> 
+
+ <module name="HiddenSavedSearch" group="Daily Volume by Week for Last 4 weeks" layoutPanel="panel_row2_col1" autoRun="True">
+    <param name="savedSearch">Daily License Usage Timechart - last 4 weeks</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">line</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">GB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+      
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+      </module>
+      <module name="ViewRedirectorLink">
+        <param name="viewTarget">flashtimeline</param>
+      </module>
+
+  </module>
+</module> 
+
+
+<module name="LinkSwitcher" group="Daily License Usage for Last 60 Days " layoutPanel="panel_row3_col1">
+  <param name="mode">independent</param>
+  <param name="label"> </param>
+
+  <module name="HiddenSavedSearch" group="by Indexer" autoRun="True">
+    <param name="savedSearch">Daily License Usage by Indexer - last 60 days</param>
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> fields day my_splunk_server gb | sort -day | rename my_splunk_server as "Indexer" day as "Date"  GB as "Total Volume Indexed" | fieldformat "Date"=strftime('Date', "%D")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+
+    </module>
+  </module>
+
+
+
+  <module name="HiddenSavedSearch" group="by License Pool" autoRun="True">
+    <param name="savedSearch">Daily License Usage by Pool - last 60 days</param>
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> fields day my_pool gb | sort -day | rename my_pool as "License Pool" day as "Date"  GB as "Total Volume Indexed" | fieldformat "Date"=strftime('Date', "%D")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+          </module>
+        </module>
+        <module name="Paginator">
+            <param name="entityName">results</param>
+        </module>
+
+
+    </module>
+  </module>
+
+
+</module>
+
+ 
+</view>

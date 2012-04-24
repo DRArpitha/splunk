@@ -1,0 +1,39 @@
+<%!
+    title = 'System settings'
+%>
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%inherit file="//layout/admin.html" />
+<%namespace name="helpers" file="_helpers.html"/>
+<%
+import splunk
+from splunk.appserver.mrsparkle.lib.msg_pool import MsgPoolMgr, UI_MSG_POOL
+from splunk.appserver.mrsparkle.lib import util, i18n
+
+msg_obj = MsgPoolMgr.get_poolmgr_instance()[UI_MSG_POOL].pop(msgid)
+%>
+% if msg_obj:
+    <%helpers:message content="${msg_obj.text}" level="${msg_obj.severity}"/>
+% endif
+<div class="dataInputsWrapper">
+    <h1>${_('System settings')}</h1>
+    <div class="dataInputsDesc">${_('Manage system settings including ports, host name, index path, email server, and system logging.')}</div>
+
+    <table class="splTable">
+            <tr>
+                <th>${_('')}</th>
+                <th>${_('')}</th>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'server', 'settings', 'settings'], _qs=dict(action='edit'))}">${_('General settings')}</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'admin', 'alert_actions', 'email'], _qs=dict(action='edit'))}">${_('Email alert settings')}</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'server', 'logger'])}">${_('System logging')}</a></td>
+                <td></td>
+            </tr>
+        </table>
+</div>

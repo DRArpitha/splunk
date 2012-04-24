@@ -1,0 +1,102 @@
+<view autoCancelInterval="90" isVisible="false" onunloadCancelJobs="true" template="dashboard.html">
+  <label>Sourcetype Properties</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="BreadCrumb" layoutPanel="viewHeader">
+    <param name="options">
+      <list>
+        <param name="view">home</param>
+        <param name="label">Home</param>
+      </list>
+      <list>
+        <param name="view">all_sourcetypes</param>
+        <param name="label">All Sourcetypes</param>
+      </list>
+      <list>
+        <param name="label">Sourcetypes Properties</param>
+      </list>
+    </param>
+  </module>
+ <module name="GenericHeader" layoutPanel="panel_row1_col1">
+    <param name="label">Overview</param>
+  </module>
+ 
+  <module name="TimeRangePicker" layoutPanel="panel_row1_col1">
+    <param name="selected">Last 30 minutes</param>
+    <param name="searchWhenChanged">True</param>
+
+    <module name="JobProgressIndicator">
+      <module name="HiddenFieldPicker">
+        <param name="fields">*</param>
+
+        <module name="HiddenPostProcess">
+<param name="search"> rename st as mysourcetype | stats first(lastReceived) as lastReceived sum(bytes) as bytes by mysourcetype | eval status = if(isnull(bytes) OR bytes=0,"missing","active") | convert timeformat="%m/%d/%Y %H:%M:%S" ctime(lastReceived) as lastReceivedStr </param>
+
+          <!-- note that we're rendering this one into an entirely different layout panel -->
+          <!-- functionally this is really serving as the page title -->
+          <module name="SingleValue" layoutPanel="viewHeader">
+            <param name="field">mysourcetype</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">mysourcetype</param>            
+	    <param name="beforeLabel">Sourcetype:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">status</param>
+            <param name="beforeLabel">Current Status:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">lastReceivedStr</param>
+            <param name="beforeLabel">Last Data Received:</param>
+          </module>
+
+          <module name="SingleValue">
+            <param name="field">bytes</param>
+            <param name="beforeLabel">Total Bytes Sent:</param>
+            <param name="format">decimal</param>
+          </module>
+
+    </module> <!--hiddenpostprocess-->
+
+
+       <!-- factoring out some common properties to avoid repetitious config -->
+        <module name="HiddenChartFormatter" layoutPanel="panel_row2_col1">
+          <param name="charting.chart">line</param>
+          <param name="charting.axisTitleX.text">Time</param>
+
+          <!-- as good a place to hang this little static module as any -->
+          <module name="GenericHeader">
+            <param name="label">Volume</param>
+          </module>
+
+          <module name="HiddenPostProcess">
+            <param name="search">  rename lastReceived as _time | eval bytes=if(isnull(bytes),0,bytes) | timechart sum(bytes) as "total Bytes" | eval max_B_last_week =  [search earliest=-10110m@m latest=-10080m@m `sourcetype_metrics`| stats max(bytes) as query count | fillnull query | fields query] | eval avg_all_fwd_today = [search `sourcetype_metrics` | stats avg(bytes) as query] | rename max_B_last_week as "all sourcetypes max last week" avg_all_fwd_today as "all sourcetypes avg today" </param>
+            <module name="HiddenChartFormatter">
+              <param name="charting.axisTitleY.text">Bytes</param>
+              <module name="FlashChart">
+                <param name="width">100%</param>
+                <param name="height">200px</param>
+      	      </module>
+
+            </module>
+        </module> <!--hiddenpostprocess-->
+    </module> <!--hiddenchartformatter-->
+
+    </module> <!--timerangepicker-->
+
+ </module> <!--hiddenfieldpicker-->
+</module> <!--jobprogressindicator-->
+</view>

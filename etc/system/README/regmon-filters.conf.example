@@ -1,0 +1,30 @@
+# Copyright (C) 2005-2011 Splunk Inc. All Rights Reserved.  Version 4.3.1 
+#
+# This file contains example filters for use by the Splunk Registry 
+# monitor scripted input. 
+#
+# To use one or more of these configurations, copy the configuration block into
+# regmon-filters.conf in $SPLUNK_HOME/etc/search/local/. You must restart Splunk # to enable configurations.
+#
+# To learn more about configuration files (including precedence) please see the
+# documentation located at 
+# http://docs.splunk.com/Documentation/Splunk/latest/Admin/Aboutconfigurationfiles
+
+# The following are examples of Registry monitor filters.  To create your own
+# filter, modify the values by following the specification outlined in
+# regmon-filters.conf.spec.
+
+[default]
+disabled = 1
+baseline = 0
+baseline_interval = 86400
+
+# Monitor all registry keys under the HKEY_CURRENT_USER Registry hive for 
+# "set," "create," "delete," and "rename" events created by all processes.
+# Store the events in the "regmon" splunk index
+
+[User keys]
+proc = c:\\.*
+hive = HKU\\.*
+type = set|create|delete|rename
+index = regmon

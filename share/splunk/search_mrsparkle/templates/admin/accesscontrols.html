@@ -1,0 +1,34 @@
+<%!
+    title = 'Access controls'
+%>
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%inherit file="//layout/admin.html" />
+<%
+import splunk
+from splunk.appserver.mrsparkle.lib import util, i18n
+
+%>
+
+<div class="dataInputsWrapper">
+    <h1>${_('Access controls')}</h1>
+    <div class="dataInputsDesc">${_('Specify authentication method, manage user settings, and manage roles.')}</div>
+    
+    <table class="splTable">
+            <tr>
+                <th>${_('')}</th>
+                <th>${_('Actions')}</th>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'authoverview'])}">${_('Authentication method')}</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'authentication', 'users'])}">${_('Users')}</a></td>
+                <td><a href="${make_url(['manager', namespace, 'authentication', 'users', '_new'], _qs=dict(action='edit'))}">${_('Add new')}</a></td>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'authorization', 'roles'])}">${_('Roles')}</a></td>
+                <td><a href="${make_url(['manager', namespace, 'authorization', 'roles', '_new'], _qs=dict(action='edit'))}">${_('Add new')}</a></td>
+            </tr>
+    </table>
+</div>

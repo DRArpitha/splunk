@@ -1,0 +1,8 @@
+
+
+.SingleFieldChooser .deleteSeries {
+    display:none;
+}
+.SingleFieldChooser fieldset.showDeleteLinks .deleteSeries {
+    display:inline;
+}

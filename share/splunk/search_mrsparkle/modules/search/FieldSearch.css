@@ -1,0 +1,8 @@
+.FieldSearch label {
+    display:block;
+    padding-top:5px;
+    margin-bottom:0;
+}
+.FieldSearch input {
+    margin-bottom:5px;
+}

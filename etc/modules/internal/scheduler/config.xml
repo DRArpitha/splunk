@@ -1,0 +1,10 @@
+<!-- Copyright (C) 2005-2011 Splunk Inc. All Rights Reserved.  Version 4.0 -->
+
+<pipeline name="scheduler" type="startup">
+     <processor name="LiveSplunks" plugin="schedulerlaunchprocessor">
+     	<config>
+		<!-- Start the saved splunk scheduler -->
+		<savedSplunker> </savedSplunker>
+	</config>
+     </processor>
+</pipeline>

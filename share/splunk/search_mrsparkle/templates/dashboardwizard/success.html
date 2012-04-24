@@ -1,0 +1,19 @@
+<%inherit file="/layout/wizard.html"/>
+<%namespace file="/lib.html" import="manager_save_search_link"/>
+<div class="content dashboardSuccess">
+    <h1 class="spl-icon-success-md">${_('Dashboard saved successfully')}</h1>
+    <p class="information">
+        <strong>${_('View dashboard')}</strong> <a href="${make_url(['app', dashboard.namespace, dashboard.name])}" class="spl-icon-external-link-xsm" onclick="window.parent.location=this.href; return false;">${dashboard.label | h}</a>.
+    </p>
+    <p class="information">
+        ${_('<strong>Modify the saved search</strong> at Manager &raquo; Searches and Reports &raquo;')} ${manager_save_search_link(saved_search.namespace, saved_search.id, saved_search.name)}
+    </p>
+</div>
+
+<ul class="buttons splClearfix">
+    <li class="right">
+        <a class="splButton-primary cancel" href="#">
+            <span>${_('OK')}</span>
+        </a>
+    </li>
+</ul> 

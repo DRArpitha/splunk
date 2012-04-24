@@ -1,0 +1,199 @@
+##
+## Splunk view RelaxNG schema
+##
+
+start = (View | Dashboard | Form)
+
+
+
+##
+## advanced XML view
+##
+
+BaseView = (
+    attribute refresh { text }?
+    & attribute onunloadCancelJobs { Boolean }?
+    & attribute autoCancelInterval { text }?
+    & attribute isVisible { text }?
+    & attribute autoRun { text }?
+    & attribute template { text }?
+    & attribute displayView { text }?
+    & attribute stylesheet { text }?
+    & attribute objectMode { text }?
+)
+
+View = element view { 
+    BaseView
+    & element label { text }?
+    & Module*
+}
+
+Module = element module {
+    attribute name { text }
+    & attribute layoutPanel { text }?
+    & attribute group { text }?
+    & attribute altTitle { text }?
+    & attribute autoRun { text }?
+    & Param* 
+    & Module*
+}
+
+Param = element param {
+    attribute name { text }
+    & Param* 
+    & List*
+    & text
+}
+
+List = element list {
+    Item*
+    &Param*
+    & text
+}
+
+Item = element item {
+    Param* 
+    & List*
+    & text
+}
+ 
+
+
+##
+## base simple XML
+##
+
+BaseSimple = (
+    BaseView
+    & element label { text }?
+    & Row*
+)
+    
+Row = element row {
+    attribute grouping { text }?
+    & Chart*
+    & Table*
+    & Single*
+    & Event*
+    & Html*
+}
+
+Panel = (element title { text }?
+    & ( element searchString { text } 
+        | element searchName { text } 
+        | element searchTemplate { text } 
+        | element searchPostProcess { text } )?
+    & element earliestTime { text }?
+    & element latestTime { text }?
+    & element fields { text }?
+    & Option*
+)
+
+Chart   = element chart { Panel }
+Table   = element table { Panel }
+Single  = element single { Panel }
+Event   = element event { Panel }
+
+Html = element html { 
+    GlobElement* 
+    & text
+}
+
+
+Option = element option {
+    attribute name { text },
+    text
+}
+
+
+
+##
+## simple dashboard
+##
+
+Dashboard = element dashboard {
+    BaseSimple
+}
+
+
+
+##
+## Simple form
+##
+
+Form = element form {
+    BaseSimple
+    
+    & attribute class { text }?
+
+    & element searchTemplate { text }?
+    & element earliestTime { text }?
+    & element latestTime { text }?
+    & Fieldset?
+}
+
+Fieldset = element fieldset {
+    attribute autoRun { Boolean }?
+    & Input*
+}
+
+BaseInput = (
+    attribute token { text }?
+    & attribute searchWhenChanged { Boolean }?
+    & element label { text }?
+    & element default { text }?
+    & element prefix { text }?
+    & element suffix { text }?
+    & element seed { text }?
+    & (
+        element populatingSearch { 
+            attribute fieldForValue { text }
+            & attribute fieldForLabel { text }
+            & attribute earliest { text }?
+            & attribute latest { text }?
+            & text
+          }
+        | element populatingSavedSearch { 
+            attribute fieldForValue { text }
+            & attribute fieldForLabel { text }
+            & text
+          }
+      )?
+)
+
+Input = element input {
+    (
+        attribute type { "text" }
+        & BaseInput
+    ) | (
+        attribute type { "dropdown" }
+        & BaseInput
+        & Choice*
+    ) | (
+        attribute type { "radio" }
+        & BaseInput
+        & Choice*
+    ) | (
+        attribute type { "time" }
+        & attribute searchWhenChanged { Boolean }?
+        & element default { text }?
+    )
+}
+
+Choice = element choice {
+    attribute value { text },
+    text
+}
+
+
+##
+## Globals
+##
+
+GlobElement = element * {
+    (attribute * { text }
+    | text
+    | GlobElement)*
+}
+
+Boolean = ("true" | "false" | "True" | "False")

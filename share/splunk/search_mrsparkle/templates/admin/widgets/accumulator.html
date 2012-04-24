@@ -1,0 +1,87 @@
+<%page args="element, widgetstyle" />
+<%namespace file="../_helpers.html" import="wireElementEvents"/>
+<%
+from splunk.appserver.mrsparkle.lib import eai
+import splunk.util as util
+
+
+option_map = util.OrderedDict()
+selected_options = []
+
+try:
+    caseSensitive = True if 'caseSensitiveMatch' in element and element['caseSensitiveMatch'].lower() == 'true' else False
+
+    fetch_error = False
+    # Ensure that only valid options can be selected
+    option_values = set([ (caseSensitive and option['value'] or option['value'].lower()) for option in element['options'] ])
+    if element['elementName'] in form_defaults and isinstance(form_defaults[element['elementName']], (tuple, list)): 
+        selected_options = [ val for val in form_defaults[element['elementName']] if (caseSensitive and val or val.lower()) in option_values ]
+
+    for option in element["options"]:
+        option_map[option['value']] = option['label']
+except eai.EAIFetchError, e:
+    fetch_error = e
+
+for selection in selected_options:
+    if selection not in option_map:
+        option_map[selection] = selection
+
+option_list = option_map.items()
+
+if 'sort' in element:
+    method = element.get('sort') .lower() 
+    if method != 'none':
+        option_list.sort(key=(lambda x: x[1].lower()))
+
+available_heading = _("Available %(fields)s") % { 'fields': _(element.get('label', '')) or _(element.get('elementName', ''))}
+selected_heading = _("Selected %(fields)s") % { 'fields': _(element.get('label', '')) or _(element.get('elementName', ''))}
+%>
+## Note: onChange events are wired up by initAccumulators() in admin.js
+
+    <div id="item-${element['elementName']|h}" class="accumulator splClearfix ${'accDisabled' if element.get('disabled') else ''}" ${widgetstyle}>
+        <div>
+            <div class="widgeterror"><form:error name="${element["elementName"]}"/></div>
+            % if fetch_error:
+                <div class="widgeterror widgetinlineerror">${_('Failed to fetch data: ')}${str(fetch_error)|h}</div>
+            % endif
+              
+            <div class="availableOptionsContainer">
+                % if element.get('disabled') is None:
+                    <a href="#" class="addAllLink">${_('add all')} &raquo;</a>
+                % endif
+                <h4 class="availableOptionsHeader">${available_heading|h}</h4>
+                ## This ul contains all options that are NOT currently selected
+                <ul class="availableOptions ${element['class'] if 'class' in element else ''|h}">
+                % for (value, label) in option_list:
+                    <li ${value in selected_options and 'class="selected"' or ''} name="${value|h}"><span class="splIcon splIcon-arrow-e"></span>${label | h}</li>
+                % endfor
+                </ul>
+            </div>
+            
+            <div class="selectedOptionsContainer">
+                % if element.get('disabled') is None:
+                    <a href="#" class="removeAllLink">&laquo; ${_('clear all')}</a>
+                % endif
+                <h4 class="selectedOptionsHeader">${selected_heading|h}</h4>
+                ## This ul contains all options that are ARE currently selected
+                <ul class="selectedOptions ${element['class'] if 'class' in element else ''}">
+                % for (value, label) in option_list:
+                    % if value in selected_options:
+                        <li name="${value|h}"><span class="splIcon splIcon-arrow-w"></span>${label | h}</li>
+                    % endif
+                % endfor
+                </ul>
+            </div>
+            
+            <select multiple="multiple" ${'disabled="disabled"' if element.get('disabled') else ''} class="hiddenSelectedOptions ${element['class'] if 'class' in element else ''|h}" name="${element["elementName"]|h}">
+            % for (value, label) in option_list:
+                % if value in selected_options:
+                    <option value="${value|h}">${label | h}</option>
+                % endif
+            % endfor
+            </select>
+        </div>
+        % if 'exampleText' in element:
+            <p class="exampleText"><em>${_(element['exampleText']) | extract_help_links }</em></p>
+        % endif          
+    </div>

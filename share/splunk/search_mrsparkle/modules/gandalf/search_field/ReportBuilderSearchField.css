@@ -1,0 +1,9 @@
+.ReportBuilderSearchField {
+    padding:0px 10px;   
+}
+.ReportBuilderSearchField div {
+    padding:0 10px 0 0;  
+}
+.ReportBuilderSearchField textarea {
+    width:100%;   
+}

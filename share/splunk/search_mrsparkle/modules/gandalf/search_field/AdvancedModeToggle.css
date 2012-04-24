@@ -1,0 +1,7 @@
+.AdvancedModeToggle label {
+    float: left;
+    margin-right:8px;   
+}
+.AdvancedModeToggle a {
+    margin-left: 5px;
+}

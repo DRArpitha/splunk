@@ -1,0 +1,44 @@
+<%page expression_filter="h" />
+<%inherit file="//layout/view.html" />
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%!
+import math
+
+headerPanels = ["appHeader", "navigationHeader"]
+
+upperPanels = ["viewHeader", "splSearchControls-inline", "mainSearchControls"]
+
+renderingErrors = []
+%>
+
+<%def name="css()">
+    <% parent.css() %>
+    <%lib:stylesheet_tags files="${['/static/app/SplunkDeploymentMonitor/backfill.css']}" />
+</%def>
+
+<%def name="js()">
+    <% parent.js() %>
+</%def>
+
+## build messenger
+% if "messaging" in modules :
+    <%call expr="parent.buildSimplePanelContainer(modules, 'messaging')"></%call>
+% endif
+
+## build header
+<div class="appHeaderWrapper">
+    % for panelName in headerPanels : 
+        <%call expr="parent.buildSimplePanelContainer(modules, panelName)"></%call>
+    % endfor    
+</div>
+
+## build chrome
+<%call expr="parent.buildSimplePanelContainer(modules, 'viewHeader')"></%call>
+
+## base layout
+<div class="backfill_container">
+  <div id="backfill_workflow" class="">
+    <%call expr="parent.buildPanelContents(modules, 'backfill_workflow')"></%call>
+  </div>
+</div>
+

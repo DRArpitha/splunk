@@ -1,0 +1,10 @@
+--id=scheduler__nobody__SplunkDeploymentMonitor_QWxsIGZvcndhcmRlcnMgdGltZWNoYXJ0_at_1335252600_063fd42029c02bf5
+--maxbuckets=0
+--ttl=3600
+--maxout=500000
+--maxtime=0
+--lookups=1
+--reduce_freq=10
+--user=splunk-system-user
+--pro
+--roles=admin:power:user

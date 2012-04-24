@@ -1,0 +1,148 @@
+<view autoCancelInterval="90" onunloadCancelJobs="true" template="dashboard.html">
+  <label>All Indexers</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="TitleBar" layoutPanel="viewHeader">
+    <param name="actionsMenuFilter">dashboard</param>
+  </module>
+
+  <module name="BreadCrumb" layoutPanel="viewHeader">
+    <param name="options">
+      <list>
+        <param name="view">home</param>
+        <param name="label">Home</param>
+      </list>
+      <list>
+        <param name="label">All Indexers</param>
+      </list>
+    </param>
+  </module>
+
+
+      <module name="HiddenSearch" layoutPanel="panel_row1_col1" group="Current Active Searches" autoRun="True">
+          <param name="search">`current_active_searches` | fields total_searches</param>
+ 	<module name="SingleValue">
+            <param name="field">total_searches</param>
+        </module>
+      </module>
+
+ <module name="HiddenSavedSearch" layoutPanel="panel_row2_col1" group="MB Indexed" autoRun="True">
+    <param name="savedSearch">All indexers timechart</param>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">area</param>
+      <param name="charting.chart.nullValueMode">gaps</param>
+      <param name="charting.axisTitleY.text">MB</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">right</param>
+      <param name="charting.chart.stackMode">stacked</param> 
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Today</param>
+      <param name="searchWhenChanged">True</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+	<module name="HiddenSearch">
+              <param name="search">`all_indexers` | fields splunk_server</param>
+              <module name="ConvertToIntention">
+                <param name="intention">
+                  <param name="name">addterm</param>
+                  <param name="arg">
+                    <param name="splunk_server">$click.value$</param>
+                  </param>
+                  <param name="flags"><list>last</list></param>
+                </param>
+                <module name="ViewRedirector">
+                  <param name="viewTarget">indexer_detail</param>
+                </module>
+              </module>
+          </module>
+
+      </module>
+    </module>
+  </module>
+</module> 
+
+
+  <module name="HiddenSavedSearch" layoutPanel="panel_row3_col1" autoRun="True">
+    <param name="savedSearch">All indexers</param>
+
+    <module name="TimeRangePicker">
+      <param name="selected">Last 60 minutes</param>
+      <param name="searchWhenChanged">True</param>
+
+
+      <module name="JobProgressIndicator" />
+
+      <module name="EnablePreview">
+        <param name="enable">True</param>
+        <param name="display">False</param>
+      </module>
+
+      <module name="SimpleResultsHeader">
+        <param name="entityName">results</param>
+        <param name="headerFormat">$count$ indexer(s)</param>
+      </module>
+      <module name="Paginator">
+        <param name="entityName">results</param>
+        <param name="count">50</param>
+        <module name="StaticContentSample">
+          <param name="text"> </param>
+        </module>
+
+        <!-- dont need one yet but we will -->
+        <module name="HiddenPostProcess">
+          <param name="search"> appendcols [search earliest=@d latest=now index="summary_indexers" | rename my_splunk_server as splunk_server | stats sum(kb) as KBToday by splunk_server] | eval GB = round(KBToday/1048576,4) | fields splunk_server status _time GB | rename _time as "Last Collected"  splunk_server as "Splunk Server" status as "Current Status" GB as "Total GB Indexed Today" | fieldformat "Last Collected"=strftime('Last Collected', "%D %H:%M:%S %p")</param>
+          <module name="SimpleResultsTable">
+            <param name="entityName">results</param>
+            <param name="drilldown">row</param>
+              
+            <!-- we turn all this complexity into a SEARCH thats just of splunk-server="10.1.6.244" -->
+
+            <module name="HiddenSearch">
+              <param name="search">index="_internal" source="*metrics.log" group=per_index_thruput series!="_*" $splunk_server$ | stats max(_time) as _time sum(kb) as kb by splunk_server | join type="outer" splunk_server [ search index="_internal" source="*metrics.log" group=queue name=parsingqueue $splunk_server$  | chart perc95(current_size_kb) as p95sz, max(max_size_kb) as maxsz by splunk_server | eval percentage=p95sz*100/maxsz | rename percentage as parseQ_percentage | appendcols [search index="_internal" source="*metrics.log" group=queue name=indexqueue $splunk_server$ | chart perc95(current_size_kb) as p95sz, max(max_size_kb) as maxsz by splunk_server | eval percentage=p95sz*100/maxsz | rename percentage as indexQ_percentage] | appendcols [search index=_internal group=per_sourcetype_thruput series=access_* $splunk_server$  | eval latency=avg_age*ev | stats sum(latency) as latency sum(ev) as events by splunk_server | fillnull latency events | eval avg_age=latency/events | fields avg_age] | fields splunk_server avg_age parseQ_percentage indexQ_percentage | fillnull avg_age] | append [search index="summary_indexers" | rename my_splunk_server as splunk_server | search $splunk_server$  | eval _time = _time + 1800] | stats max(_time) as _time first(kb) as KB first(avg_age) as avg_age first(parseQ_percentage) as parseQ_percentage first(indexQ_percentage) as indexQ_percentage by splunk_server | eval status = if(KB==0, "idle", if(parseQ_percentage>50, "overloaded", if(indexQ_percentage>50,"overloaded","normal")))</param>
+              <param name="earliest">-30m@m</param>
+              <module name="ConvertToIntention">
+                <param name="intention">
+                  <param name="name">stringreplace</param>
+                  <param name="arg">
+                    <param name="splunk_server">
+                      <param name="prefix">splunk_server="</param>
+                      <param name="value">$click.value$</param>
+                      <param name="suffix">"</param>
+                    </param>
+                  </param>
+                </param>
+
+                <module name="ViewRedirector">
+                  <param name="viewTarget">indexer_detail</param>
+                </module>
+                
+              </module>
+            </module>
+          </module>
+        </module>
+      </module>
+
+    </module>
+  </module>
+
+ 
+</view>

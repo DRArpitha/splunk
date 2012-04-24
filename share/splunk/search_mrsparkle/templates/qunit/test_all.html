@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:splunk="http://www.splunk.com/xhtml-extensions/1.0" xml:lang="en">
+<head>
+    <title>splunk&gt;Unit Testing - All Tests</title>
+    
+    <!-- get system files -->
+    <script type="text/javascript" src="${make_url('/static/js/contrib/jquery-1.6.2.js')}"></script>
+    
+    <style>
+    
+        .failed_test {
+            color: red;
+        }
+        
+        .passed_test {
+            color: green;
+        }
+    
+    </style>
+    
+</head>
+
+<body>
+
+    <h1>
+        QUnit Test Summary: &nbsp;&nbsp;&nbsp;
+        <span id="aggregate_results" style="font-size: 16pt">Waiting for tests to finish...</span>
+    </h1>
+
+    % for test in test_info:
+  
+        <div class="test_block" style="border-bottom: 1px solid #cccccc; margin: 25px 0">
+	        <div>
+	            <span style="font-size: 18pt; margin-right: 10px">
+	                ${test['name']} 
+	                (<span class="test_result_holder unfinished_test">Running...</span>)
+	            </span>
+	            <a href="#" class="show_hide_button">Show/Hide Results</a>
+	            <a href="${test['url']}" target=_blank>Open In New Tab</a>
+	        </div>
+	      
+	        <iframe src="${test['url']}" width=75% height=400 style="display: none"></iframe>
+	        
+        </div>
+      
+    % endfor
+    
+    <script type="text/javascript">
+    
+        var numTests = $('.test_block').length,
+            numFinished = 0,
+            numFailures = 0;
+    
+        function observeTest($frame, $resultHolder) {
+            var pollingInterval = 100,
+                poll = function() {
+	                var $summary = $frame.contents().find('#qunit-testresult'),
+	                    $failedHolder = $('.failed', $summary);
+	                
+	                if($failedHolder.length > 0) {
+	                    var numFailed = parseInt($failedHolder.html(), 10);
+	                    $resultHolder.removeClass('unfinished_test');
+	                    if(numFailed > 0) {
+	                        $resultHolder.addClass('failed_test').html('Failed');
+	                    }
+	                    else {
+	                        $resultHolder.addClass('passed_test').html('Passed');
+	                    }
+	                    onTestFinished((numFailed == 0));
+	                }
+	                else {
+	                    setTimeout(poll, pollingInterval);
+	                }
+	            };
+	            
+            poll();
+        }
+        
+        function onTestFinished(isPassing) {
+            numFinished++
+            if(!isPassing) {
+                numFailures++;
+            }
+            if(numFinished == numTests) {
+                $('#aggregate_results').html((numTests - numFailures) + ' of ' + numTests + ' test suites passed');
+                if(numFailures > 0) {
+                    $('#aggregate_results').addClass('failed_test');
+                }
+                else {
+                    $('#aggregate_results').addClass('passed_test');
+                }
+            }
+        }
+    
+        $('.test_block').each(function(i, block) {
+            var $block = $(block),
+                $showHideButton = $('.show_hide_button', $block),
+                $testFrame = $('iframe', $block),
+                $resultHolder = $('.test_result_holder', $block);
+            
+            $showHideButton.click(function() {
+                $testFrame.toggle();
+                return false;
+            });
+            setTimeout(function() {
+                observeTest($testFrame, $resultHolder);
+            }, 3000);
+        });
+    
+    </script>
+
+</body>
+</html>
+
+<%def name="html()"></%def>
+<%def name="title()">splunk&gt;Unit Testing (title not set by test)</%def>

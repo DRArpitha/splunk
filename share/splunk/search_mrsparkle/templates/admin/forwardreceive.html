@@ -1,0 +1,87 @@
+<%!
+    title = 'Splunk Admin Server Control'
+%>
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%namespace name="helpers" file="_helpers.html"/>
+<%inherit file="//layout/admin.html" />
+<%
+import splunk
+from splunk.appserver.mrsparkle.lib import util, i18n
+sessionId = cherrypy.session.id
+from splunk.appserver.mrsparkle.lib.msg_pool import MsgPoolMgr, UI_MSG_POOL
+%>
+<script type="text/javascript">
+    function enableLWF(){
+        doEnable = confirm("${_('CAUTION: This will turn off Splunk Web.\\nYou will have to use the CLI to access this Splunk instance.\\nDo you want to proceed?')}");
+        if (doEnable){
+            document.actionControl.submit();
+        }else{
+            return false;
+        }        
+    }
+</script>
+
+<div class="dataInputsWrapper forwardReceive">
+<!--     <div class="forwardReceiveHelp">${_('Set up forwarding and receiving between two or more Splunk instances.')}</div> -->
+    <div class="">
+    	<h1>${_('Forward data')}</h1>
+    	<div class="dataInputsDesc">${_('Set up forwarding between two or more Splunk instances.')}</div>
+    	
+    	<table class="splTable">
+    		<tr>
+                <th></th>
+                <th>${_('Actions')}</th>
+            </tr>
+            <tr>
+                <td class="input_name">
+                	<a href="${make_url(['manager', namespace, 'data', 'outputs', 'tcp', 'default', 'tcpout'], _qs=dict(action='edit'))}">${_('Forwarding defaults')}</a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input_name">
+                	<a href="${make_url(['manager', namespace, 'data', 'outputs', 'tcp', 'group'])}">${_('Configure forwarding')}</a>
+                </td>
+                <td>
+                	<a href="${make_url(['manager', namespace, 'data', 'outputs', 'tcp', 'group', '_new'], _qs=dict(action='edit'))}">${_('Add new')}</a>
+                </td>
+            </tr> 
+            % if lwfExists:
+            <tr>
+                <td class="input_name">
+                	<a href="#" onclick="enableLWF();">${_('Enable light forwarding')}</a>
+                	<p class="input_description">${_('CAUTION: This will immediately turn off Splunk Web.')}</p>
+                </td>
+                <td>
+		            <form name="actionControl" action="${make_url(['manager', namespace, 'apps', 'local', 'multidelete'])}" method="post">
+                        ${csrf_hidden_input()}
+		                <input type="hidden" name="ctrl" id="ctrl" value="enable"/>
+		                <input type="hidden" name="ctrl_link" id="ctrl_link" value="/servicesNS/-/search/apps/local/SplunkLightForwarder/enable"/>
+		                <input type="hidden" name="ctrl_name" id="ctrl_name" value="SplunkLightForwarder"/>
+		                <input type="hidden" name="redirect_to" id="ctrl_name" value="${make_url(['manager', namespace, 'forwardreceive'], translate=False)}"/>
+		            </form>
+                </td>
+            </tr>
+	        % endif
+    	</table>
+    </div>
+    
+    <div class="fieldsetWrapper">
+    	<h1>${_('Receive data')}</h1>
+    	<div class="dataInputsDesc">${_('Set up receiving between two or more Splunk instances.')}</div>
+    	
+    	<table class="splTable">
+    		<tr>
+                <th></th>
+                <th>${_('Actions')}</th>
+            </tr>
+            <tr>
+                <td class="input_name">
+                	<a href="${make_url(['manager', namespace, 'data', 'inputs', 'tcp', 'cooked'])}">${_('Configure receiving')}</a>
+                </td>
+                <td>
+                	<a href="${make_url(['manager', namespace, 'data', 'inputs', 'tcp', 'cooked', '_new'], _qs=dict(action='edit'))}">${_('Add new')}</a>
+                </td>
+       	</table>
+  	</div>
+</div>        

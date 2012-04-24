@@ -1,0 +1,40 @@
+<endpoint name="data/outputs/tcp/group" showAppContext="1">
+  <header>Forward data</header>
+  <breadcrumb>
+      <parent hidecurrent="False">forwardreceive</parent>
+  </breadcrumb>
+  <elements>
+    <element name="forwarderFields" type="fieldset">
+      <view name="list"/>
+      <view name="edit"/>
+      <view name="create"/>
+      <elements>
+        <element name="outputhelp" type="helpstring">
+            <key name="helpText">Enter a comma-separated list of one or more hosts. Splunk will send all events to each host you enter. For more advanced forwarding settings, use outputs.conf.</key>
+            <view name = "edit"/>
+            <view name = "create"/>
+        </element>
+        <element name="servers" type="textfield" label="Host(s)">
+          <view name="edit"/>
+          <view name="list"/>
+          <view name="create"/>
+          <key name="exampleText">Set as host:port or IP:port. &lt;br /&gt; You must also enable receiving on any hosts listed here.</key>
+          <key name="processValueList">', '.join(value) if isinstance(value, list) else value</key>
+        </element>
+       <element name="method" type="hidden" label="Automatic Load Balancing">
+          <view name="edit"/>
+          <view name="list"/>
+          <view name="create"/>
+          <key name="processValueList">'Enabled' if value=='autobalance' else 'Disabled'</key>
+          <key name="submitValueAdd">'autobalance'</key>
+        </element>
+       <element name="name" type="hidden" label="groupName">
+          <view name="edit"/>
+          <view name="create"/>
+          <key name="processValueAdd">"__default"</key>
+       </element>
+      <key name="legend">Outputs</key>
+      </elements>
+    </element>
+  </elements>
+</endpoint>

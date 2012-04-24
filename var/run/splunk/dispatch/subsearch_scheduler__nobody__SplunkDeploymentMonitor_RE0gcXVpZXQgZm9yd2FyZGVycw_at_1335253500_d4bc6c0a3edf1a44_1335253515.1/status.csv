@@ -1,0 +1,21 @@
+state,user,start,"run_time","disk_usage",count,"scan_count","drop_count","available_count",cursor,keywords,done,finalized,"status_buckets","max_time","max_count","reduce_freq","required_fields","relevant_fields","remote_timeline",resultcount,"result_preview_count","preview_enabled","num_previews",search,error,earliest,latest,"api_et","api_lt","search_et","search_lt",streaming,"events_search","events_streamed","events_sorted","report_search","events_fields_count",servers,"remote_search","events_istruncated","lookups_enabled","search_providers",pid,priority,realtimesearch,"column_order"
+DONE,"splunk-system-user",1335253515,"0.205000",12288,0,0,0,0,0,"earliest::-30m group::tcpin_connections index::_internal latest::now source::*metrics.log",1,0,0,60,50000,10,"*","arch
+build
+connectionType
+guid
+lastReceived
+mystatus
+os
+sourceHost
+version",0,0,0,0,0,subsearch,"","1335251700.000000000","1335253500.000000000","1335114000.000000000","1335253500.000000000","1335251700.000000000","1335253500.000000000",0,"search earliest=-30m latest=now index=""_internal"" source=""*metrics.log"" group=tcpin_connections  | eval sourceHost=if(isnull(hostname), sourceHost,hostname)  | eval connectionType=case(fwdType==""uf"",""universal forwarder"", fwdType==""lwf"", ""lightweight forwarder"",fwdType==""full"", ""heavy forwarder"", connectionType==""cooked"" or connectionType==""cookedSSL"",""Splunk forwarder"", connectionType==""raw"" or connectionType==""rawSSL"",""legacy forwarder"") | eval build=if(isnull(build),""n/a"",build)  | eval version=if(isnull(version),""pre 4.2"",version)  | eval guid=if(isnull(guid),sourceHost,guid)  | eval os=if(isnull(os),""n/a"",os) | eval arch=if(isnull(arch),""n/a"",arch)  | fields connectionType sourceIp sourceHost sourcePort destPort kb tcp_eps tcp_Kprocessed tcp_KBps splunk_server build version os arch guid  | eval lastReceived = if(kb>0, _time, null) ",1,desc,"stats  first(sourceIp) as sourceIp first(connectionType) as connectionType first(sourcePort) as sourcePort first(build) as build first(version) as version first(os) as os first(arch) as arch max(_time) as lastConnected1 max(lastReceived) as lastReceived1 sum(kb) as kb by sourceHost guid   | addinfo  | eval  mystatus = if(lastConnected>(lastReceived+300) or kb==0,""quiet"",""dunno"") ",0,"*","litsearch index=""_internal"" source=""*metrics.log"" group=tcpin_connections _time>=1335251700.000 _time<1335253500.000 | eval  sourceHost=if(isnull(hostname), sourceHost,hostname)  | eval  connectionType=case(fwdType==""uf"",""universal forwarder"", fwdType==""lwf"", ""lightweight forwarder"",fwdType==""full"", ""heavy forwarder"", connectionType==""cooked"" or connectionType==""cookedSSL"",""Splunk forwarder"", connectionType==""raw"" or connectionType==""rawSSL"",""legacy forwarder"") | eval  build=if(isnull(build),""n/a"",build)  | eval  version=if(isnull(version),""pre 4.2"",version)  | eval  guid=if(isnull(guid),sourceHost,guid)  | eval  os=if(isnull(os),""n/a"",os) | eval  arch=if(isnull(arch),""n/a"",arch)  | fields  connectionType sourceIp sourceHost sourcePort destPort kb tcp_eps tcp_Kprocessed tcp_KBps splunk_server build version os arch guid  | eval  lastReceived = if(kb>0, _time, null)  | addinfo  type=count label=prereport_events | fields  keepcolorder=t ""_time"" ""arch"" ""build"" ""connectionType"" ""guid"" ""kb"" ""lastReceived"" ""os"" ""prestats_reserved_*"" ""psrsvd_*"" ""sourceHost"" ""sourceIp"" ""sourcePort"" ""version"" | prestats  first(sourceIp) as sourceIp first(connectionType) as connectionType first(sourcePort) as sourcePort first(build) as build first(version) as version first(os) as os first(arch) as arch max(_time) as lastConnected1 max(lastReceived) as lastReceived1 sum(kb) as kb by sourceHost guid",1,1,"linux-ahv8.site-bigjava",12048,5,0,"sourceHost
+guid
+sourceIp
+connectionType
+sourcePort
+build
+version
+os
+arch
+lastConnected1
+lastReceived1
+kb"

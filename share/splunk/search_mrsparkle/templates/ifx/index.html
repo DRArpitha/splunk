@@ -1,0 +1,463 @@
+<%inherit file="//layout/base.html" />
+<%namespace name="lib" file="//lib.html" import="*" />
+
+<%def name="js()">
+    ${parent.js()}
+
+    ${lib.script_tags(files=[
+        "/static/js/i18n.js",
+        "/static/js/contrib/json2.js",
+        "/static/js/contrib/lowpro_for_jquery.js",
+        "/static/js/contrib/jquery-ui-1.8.5.custom.min.js",
+        "/static/js/util.js",
+        "/static/js/logger.js",
+        "/static/js/contrib/jquery.bgiframe.min.js",
+        "/static/js/popup.js"
+    ])}
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#results').click(handleTermClick);
+
+            // Ignore 'enter' key on #fieldname, per SPL-30419
+            $('#fieldname').keypress(function(e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (code == 13) // Enter key
+                    return false;
+            });
+        });
+        function imposeMaxLength(Object, MaxLen) {
+            if (Object.value.length <= MaxLen) {
+                return true;
+            } else {
+               Object.value = Object.value.slice(0,MaxLen)
+               return false;
+           }
+        }
+
+        String.prototype.trim = function () { return this.replace(/^\s*/, "").replace(/\s*$/, ""); }
+        function handleTermClick(event) {
+            var target = event.target || event.srcElement;
+            if (target.tagName == 'IMG') target = target.parentNode;
+
+            if (target.tagName != 'A') return true;
+
+            var term = target.getAttribute('term');
+
+            switch (target.className) {
+                case 'term':
+                    var excludeList = $('#counterexamples');
+                    var parts = excludeList.text().trim().split(/\s*\n\s*/);
+                    if (parts.length && parts[0] != '' && parts.indexOf(term) == -1)
+                        parts.push(term);
+                    else
+                        parts = [term];
+                    excludeList.text(parts.join('\n'));
+                    break;
+                case 'badterm':
+                    var excludeList = $('#counterexamples');
+                    var parts = excludeList.text().trim().split(/\s*\n\s*/);
+                    if (parts.length && parts[0] != '') {
+                                        parts.splice(parts.indexOf(term), 1); // parts.remove(term);
+                                        $('#counterexamples').text(parts.join('\n'));
+                    }
+                    break;
+                default:
+                    return false;
+            }
+            event.preventDefault()
+            $('#iterate').submit();
+            return false;
+        }
+/*
+        function resize() {
+            var el = $('#ruleset');
+            el.height = ($(window).height - el.offset().top - 15) + 'px';
+            el = $('#eventListing');
+            el.children('tbody').height = ($(window).height - el.offset().top) + 'px';
+        }
+*/
+        function validateForm() {
+            if ($('#regex').text().trim() == '') {
+                alert('No regex to save.');
+                return false;
+            }
+            return true;
+        }
+
+
+        function openSave() {
+           if (!validateForm()) return false;
+           //$('.splOverlay').show();
+           //$('#saveLayer').left = parseInt($(window).width() / 3, 10) + 'px';
+           //$('#saveLayer').show();
+           $('#fieldname').focus();
+           var popup = new Splunk.Popup($('#saveLayer'), {
+               inlineMode : true
+           });
+        }
+
+        function closeSave() {
+            $('.splOverlay').hide();
+            $('#saveLayer').hide();
+        }
+
+        function openEditRule() {
+            $('#editregex').val($('#regex').val());
+            //$('.splOverlay').show();
+            //$('#editRuleLayer').show();
+            //$('#editregex').focus();
+            $('#editRuleLayer').css({position:'absolute', top:0, left:0});
+            var popup = new Splunk.Popup($('#editRuleLayer'), {
+                inlineMode : true
+            });
+
+        }
+        function editRule() {
+            $('#regex').val($('#editregex').val());
+            $('#edited').val("True");
+            closeEdit()
+        }
+        function closeEdit() {
+            $('.splOverlay').hide();
+            $('#editRuleLayer').hide();
+        }
+        function revertEdit() {
+            $('#regex').val("");
+            $('#edited').val("");
+            $('#iterate').submit();
+            return false;
+                }
+//<!-- TESTALERT -->
+        function openTestAlert() {
+            //$('.splOverlay').show();
+            //$('#testAlertLayer').left = parseInt($(window).width() / 3, 10) + 'px';
+            //$('#testAlertLayer').show();
+            var popup = new Splunk.Popup($('#testAlertLayer'), {
+                inlineMode : true
+            });
+        }
+        function testAlert() {
+            closeEdit();
+                    var ptr = window.open('${testingurl | h}', 'Extraction test search', 'toolbar=no, directories=no, location=no, status=yes, menubar=no, resizable=yes, scrollbars=yes, width=1200, height=800');
+                    if(ptr) ptr.focus();
+        }
+        function closeTestAlert() {
+            $('.splOverlay').hide();
+            $('#testAlertLayer').hide();
+        }
+//<!--  -->
+//<!-- saveSuccess -->
+        function openSuccess() {
+            //$('.splOverlay').show();
+            //$('#saveSuccessLayer').left = parseInt($(window).width() / 3, 10) + 'px';
+            //$('#saveSuccessLayer').show();
+            var popup = new Splunk.Popup($('#saveSuccessLayer'), {
+                inlineMode : true
+            });
+        }
+        function saveSuccessClose() {
+            $('.splOverlay').hide();
+            $('#saveSuccessLayer').hide();
+                    self.close()
+        }
+
+                function saveSuccessCloseManagerOpen() {
+                    var url = '${make_url(['manager', namespace, 'data', 'props', 'extractions'])}'
+                    var ptr = window.open(url, 'Manage extractions', 'toolbar=no, directories=no, location=no, status=yes, menubar=no, resizable=yes, scrollbars=yes, width=1200, height=800');
+                    if(ptr) ptr.focus();
+                    saveSuccessClose();
+                }
+
+
+
+<!--  -->
+
+        window.onload = function() {
+
+% if len(successmessage) > 0:
+    openSuccess();
+    return;
+% endif
+
+            // if this is the first time we open the page, then prepopulate
+            // with the main search and execute
+            if (false && window.opener && window.opener.searchController && !$('#search').text().trim()) {
+                $('#search').text(window.opener.searchController.getPendingSearch());
+                $('#iterate').submit();
+            }
+            //resize();
+
+            $('#restrictto').onchange = function() {
+                $('#iterate').submit();
+            }
+
+             $('.splIcon-close').click(function(){
+              window.close();
+              return false;
+          });
+        }
+        //window.onresize = resize;
+
+
+    </script>
+</%def>
+
+<%def name="css()">
+    <%coreCSSFiles = ["/static/css/view.css", "/static/css/skins/default/default.css", '/modules/nav/AccountBar.css', '/static/css/print.css'] %>
+    <%lib:stylesheet_tags files="${coreCSSFiles}" />
+    <%lib:stylesheet_tags files="${['/static/css/ifx.css']}" />
+</%def>
+
+<%def name="body_element_open()">
+    <body>
+</%def>
+
+<div class="appHeaderWrapper">
+    <div class="layoutRow oneColRow splClearfix appHeader">
+        <div class="SplunkModule AccountBar">
+            <a href="#" class="splIcon splIcon-close"></a>
+            <div class="appLogoContainer popupAppLogoContainer">
+                <a href="javascript:void()" class="appLogo notLinked"></a>
+                <h1>${_('Extract fields')}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+% if len(successmessage) == 0:
+    ${message}
+% endif
+
+<form method="POST" id="iterate" class="entityEditForm">
+
+  <textarea class="hidden" id="sid"       name="sid">${sid|h}</textarea>
+  <textarea class="hidden" id="soffset"   name="soffset">${soffset|h}</textarea>
+  <textarea class="hidden" id="regex"     name="regex">${regex|h}</textarea>
+  <textarea class="hidden" id="edited"    name="edited">${edited|h}</textarea>
+  <textarea class="hidden" id="oldsearch" name="oldsearch">${oldsearch|h}</textarea>
+  <textarea class="hidden" id="counterexamples" name="counterexamples">${counterexamples|h}</textarea>
+  ${csrf_hidden_input()}
+  <input type="hidden" name="namespace"   value="${namespace|h}" />
+
+  <div id="control">
+    <div class="fieldsetWrapper">
+        <fieldset>
+            <legend class="hasHelpText">${_('Interactive field extractor')}</legend>
+            <div class="formColumn">
+                <p class="exampleText">${_('Teach Splunk how to extract a field by providing it with example values.')}</p>
+
+                % if sid == "" or soffset == "":
+
+                <div>
+                    <label for="bootStrapSearch">${_('Bootstrap search')}</label>
+                    <input maxlength=100 id="search" name="search" value="${search|h}" id="bootStrapSearch" />
+                    <input type="submit" class="searchButton" value="" name="searchbutton"  />
+                    <p class="exampleText">
+                      ${_('Enter a simple search.  Splunk uses the first search result to populate the selection list below.')}
+                    </p>
+                </div>
+            % endif
+                <!-- <h3>Sample Event</h3><p>This is the event from which you choose to extract fields</p><pre id="sampleEvent">sampleevent|h</pre> -->
+
+
+                <div>
+                    <label for="restrictto">${_('Restrict extraction to:')}</label>
+                  <select name="restrictto" id="restrictto" onchange='this.form.submit()'>
+                       <!-- this is escaped in ifx.py -->
+                       ${eventtypeoptions}
+                  </select>
+                  <!-- <p class="exampleText">Restrict field extraction to a specific host, source, or sourcetype.</p> -->
+                </div>
+
+
+
+                <div>
+                    <label for="examples">${_('Example values for a field:')}</label>
+                    <textarea class="regular" id="examples" name="examples">${examples|h}</textarea>
+                    <p class="exampleText">
+                      ${_('(One example per line. Include multiple examples for best results.)')}
+                    </p>
+                </div>
+
+                <p class="valueInputDiv">
+                    <button type="submit" class="splButton-primary" name="preview"><span><%doc>TRANS: Button to generate a preview</%doc>${_('Generate')}</span></button>
+                </p>
+            </div>
+            <div class="ifxHelpColumn">
+                <div class="advancedHelpText">
+                <h4>Advanced</h4>
+                <p class="exampleText">${_('To extract multiple fields at once, specify a set of field values on each line, separated by a comma:')}<br />
+                <code class="splFont-mono">${_('Jan 4 2010,Warning,404')}</code>
+                </p><p class="exampleText">
+                ${_('If a value example has a comma, define your own separator by making it the first and last character of the line:' )} <br />
+
+                <code class="splFont-mono">#Jan 4, 2010#Warning#404#</code>
+                </p>
+                </div>
+            </div>
+            <br style="clear:both" />
+        </fieldset>
+    </div>
+  </div>
+
+  <div id="results">
+    <div id="ruleset">
+      <h2>${_('Generated pattern (regex)')}</h2>
+      <div id="generatedRules">
+        % if regex != None and len(regex) > 0:
+          <ul class="rulesetList">
+            <span class="m0">${regex|h}</span>
+          </ul>
+    % else:
+          <p class="empty">&lt;none&gt;</p>
+    % endif
+      </div>
+
+
+      <div class="regexButtons">
+            <button class="splButton-secondary" onclick="openEditRule(); return false;"><%doc>TRANS: Button</%doc><span>${_('Edit')}</span></button>
+            <% disabledrevert = disabledsave = '' %>
+            <% if not edited:          disabledrevert = 'disabled="disabled"' %>
+
+            % if regex != None and len(regex)> 0 and testingurl != None:
+                <button class="splButton-secondary" ${disabledsave} onclick="openTestAlert(); return false;"><span><%doc>TRANS: Test Button</%doc>${_('Test')}</span></button>
+                   <button class="splButton-secondary" ${disabledsave} onclick="openSave(); return false;" ><span><%doc>TRANS: Save Button</%doc>${_('Save')}</span></button>
+            % endif
+      </div>
+
+
+      <br style="clear:both" />
+
+      <h3>${_('Sample extractions')}</h3>
+% if not edited and "&lt;none&gt;" not in extractions:
+      <p class="helpText">
+           ${_('Validate the extracted values. To improve results, remove incorrect extractions and add more example values.')}
+      </p>
+% endif
+      <div id="extractedFields">
+        <!-- these should be escaped in ifx.py -->
+           ${extractions}
+      </div>
+    </div>
+
+    <div id="events">
+      <h2>${_('Sample events')}</h2>
+      <p class="info">
+           ${_('This list is based on the event you selected from your search and the field restriction you specified.')}
+      </p>
+      <div id="eventListing">
+
+          <table class="splTable">
+            <tbody>
+                    <!-- this is escaped in ifx.py -->
+                  % for event in events:
+                    <tr>
+                        <td><pre class="splFont-mono">${event}</pre></td>
+                    </tr>
+                  % endfor
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="saveLayer" class="popupContainer">
+    <div class="splHeader splHeader-popup">
+        <h2>${_('Save field extraction')}</h2>
+    </div>
+
+    <div class="popupContent">
+        <div class="entityEditForm">
+            <div class="fieldsetWrapper">
+                <fieldset>
+                        <p class="helpText">${_('<b>Note:</b> To ensure the regex works properly, test before you save it.')}</p>
+                    <label for="fieldname">
+                    <%doc>TRANS: Name to give to field</%doc>
+                    ${_('Field name')}</label>
+                   <div>
+                       <input type="text"  name="fieldname" id="fieldname" maxlength="100" />
+                   </div>
+
+                <p class="exampleText">
+                  ${_('To name multiple fields, specify each name separated by a comma (e.g. "status,url,code".')}
+                </p>
+
+                </fieldset>
+            </div>
+        </div>
+     </div>
+    <div class="popupFooter">
+           <button class="splButton-secondary" type="button" onclick="closeSave(event)" ><span><%doc>TRANS: Cancel form</%doc>${_('Cancel')}</span></button>
+           <button class="splButton-primary" type="submit" name="save" ><%doc>TRANS: Save field</%doc><span>${_('Save')}</span></button>
+    </div>
+  </div>
+
+  <div id="editRuleLayer" class="popupContainer">
+    <div class="splHeader splHeader-popup">
+        <h2>${_('Edit regex')}</h2>
+    </div>
+    <div class="popupContent">
+        <div class="entityEditForm">
+          <div class="fieldsetWrapper">
+            <fieldset>
+              <label for="editregex"><%doc>TRANS: Regular Expression</%doc> ${_('Regular expression pattern')}</label>
+              <div>
+                      <!--input type="text"  name="editregex" id="editregex" size="50" maxlength="100" / ${regex|h} -->
+              <textarea  name="editregex" id="editregex" rows="3" cols="55" onkeypress="return imposeMaxLength(this, 200);"></textarea>
+                    </div>
+                    <p class="helpText">${_('<b>Note:</b> FIELDNAME is a placeholder name that will be replaced when you save the regex. Do not change it.')}</p>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="popupFooter">
+            <button class="splButton-secondary" onclick="closeEdit()" ><span><%doc>TRANS: Cancel form</%doc>${_('Cancel')}</span></button>
+            <button class="splButton-primary" type="submit" name="ok" onclick="editRule()"><span>${_('Apply')}</span></button>
+    </div>
+  </div>
+
+
+  <div id="testAlertLayer" class="popupContainer">
+    <div class="splHeader splHeader-popup">
+        <h2>${_('Test regex')}</h2>
+    </div>
+    <div class="popupContent">
+        <p>
+            ${_('A new Splunk search window will open and allow you to verify that your field is being properly extracted with the values you want.')}
+        </p>
+        <p>
+            ${_('When you are done testing your field, close the search testing window and return to the extract fields window to save your extracting regex or further refine it.')}
+        </p>
+        <p>
+           ${_('<b>Note:</b> The first time you run Test you will need to add the "FIELDNAME" field to the list of fields to display.  If extracting multiple fields at once, you will also need to add FIELDNAME1, FIELDNAME2, etc.')}
+        </p>
+    </div>
+    <div class="popupFooter">
+        <button class="splButton-secondary" onclick="closeTestAlert()" ><span><%doc>TRANS: Cancel form</%doc>${_('Cancel')}</span></button>
+        <button class="splButton-primary" type="submit" name="ok" onclick="testAlert()" ><span>${_('Test...')}</span></button>
+    </div>
+  </div>
+
+
+ <div id="saveSuccessLayer" class="popupContainer">
+    <div class="splHeader splHeader-popup">
+        <h2>${_('Successfully saved regex')}</h2>
+    </div>
+    <div class="popupContent">
+        <p>
+           ${_('Your field extraction has been saved.')}
+        </p>
+    </div>
+    <div class="popupFooter">
+        <button class="splButton-primary" type="submit" name="ok" onclick="saveSuccessClose()" ><span>${_('Close')}</span></button>
+        <button class="splButton-secondary" type="submit" name="ok" onclick="saveSuccessCloseManagerOpen()" ><span>${_('Manage extractions...')}</span></button>
+    </div>
+  </div>
+
+  <div class="splOverlay">&nbsp;</div>
+</form>
+
+

@@ -1,0 +1,270 @@
+input, textarea, select {
+    margin-top: 0px;
+}
+ol {
+    list-style: none outside none;
+    height: auto;
+    margin-left: 0px;
+    max-height: 300px;
+    background-color: #FFFFFF;
+    overflow: auto;
+    *overflow-x: auto;
+    *overflow-y: auto;
+    position: relative;
+}
+ol ul {
+    padding-bottom: 0px;
+}
+ol li {
+    float: left;
+    margin-bottom: 3px;
+    position: relative;
+    width: 420px;
+}
+ul {
+    list-style: none outside none;
+}
+ul li {
+    border-top: none;
+    width: 400px;
+}
+.BackfillMessage {
+    border: 1px solid #CCCCCC;
+    border-radius: 10px 10px 10px 10px;
+    height: 100px;
+    padding: 10px 10px 10px 20px;
+    width: 450px;
+}
+.BackfillContainer {
+    height: 600px;
+    border: 1px solid #CCCCCC;
+    padding: 0 10px 10px;
+    border-radius: 10px;
+    width: 1200px;
+}
+.BackfillSearch {
+    width: 400px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.BackfillTime {
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 200px;
+}
+.BackfillOptions {
+    position: relative;
+    top: 40px;
+}
+.BackfillOptions-spacer {
+    border-top: 1px solid #CCCCCC;
+    position: relative;
+    top: 46px;
+    width: 180px;
+}
+.BackfillControl {
+    left: 25px;
+    position: relative;
+    top: 60px;
+}
+.BackfillJobHeader {
+    margin-left: 20px;
+    margin-top: 10px;
+    float: left;
+    height: 300px;
+    max-width: 500px;
+    min-width: 450px;
+    position: relative;
+    width: auto;
+}
+.BackfillJob {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    height: auto;
+    max-height: 300px;
+    max-width: 500px;
+    min-width: 450px;
+    position: relative;
+    width: auto;
+}
+.JobEarliest, .JobLatest {
+    margin-left: 30px;
+}
+.JobLatest {
+    padding-left: 8px;
+}
+.JobName {
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 5px;
+    overflow: auto;
+}
+.JobDedup {
+    margin-left: 37px;
+}
+.JobReverse {
+    margin-left: 30px;
+}
+.JobMax {
+    margin-left: 30px;
+}
+.JobAllControls {
+    float: left;
+    padding: 15px;
+}
+.JobAllControls span {
+    margin-left: 10px;
+}
+#job_expand_span {
+    margin-left: -10px;
+}
+.BackfillButtons { 
+    float: right;
+    margin-right: 5px;
+    margin-top: 10px;
+    width: 100px;
+}
+.DocLast {
+    padding-bottom: 10px;
+}
+#job_add ,
+#backfill_submit {
+    height: 24px;
+}
+#maxjobs {
+    width: 10px;
+    margin-left: 10px;
+    padding: 2px;
+    border: 1px solid #CCCCCC;
+}
+#backfill_search_select,
+#backfill_template_select {
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+}
+#backfill_search_select {
+    height: 250px;
+    display: none;
+}
+#backfill_template_select {
+    width: 400px;
+}
+#backfill_form_submit {
+    float: left;
+}
+.splButton-primary {
+    border: medium none;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    width: 100px;
+}
+.splButton-tertiary {
+    background: url("/static/img/skins/default/overlay_gloss_17.png") repeat-x scroll left top #79B7CA;
+    border-radius: 3px 3px 3px 3px;
+}
+.splButtonIcon {
+    background-image: url("images/iconic_button_icons.png");
+    background-position: 0 -238px;
+}
+a.splButton-tertiary {
+    margin-right: 2px;
+    padding: 0 4px;
+}
+a.splButton-tertiary:hover, a.splButton-tertiary:focus {
+    background-color: #1A7996;
+}
+.splButton-tertiary span.splButtonIcon {
+    height: 15px;
+    width: 15px;
+    min-width: 15px;
+    margin-top: 2px;
+}
+a.cancel{
+    background-color: #BA180B;
+}
+a.cancel .splButtonIcon {
+    background-position: 0 -68px;
+}
+a.zoomOut .splButtonIcon {
+    background-position: 0 -255px;
+}
+a.zoomIn .splButtonIcon {
+    background-position: 0 -272px;
+}
+.optionsTable {
+    width: 90%;
+    margin-bottom: 10px;
+}
+.errorText {
+    background: #fae7e7 url(images/icon_error.png) 10px 10px no-repeat;
+    padding: 10px 10px 10px 44px;
+}
+.TimeSpinner input {
+	width:14px;
+	padding:0;
+	margin: 0;
+}
+.trpCustomDateTime .earliestDateTime,
+.trpCustomDateTime .latestDateTime {
+    margin-bottom: 10px;
+    clear:left;
+    float: left;
+    border: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+    width: 175px;
+}
+.trpCustomDateTime input.customDate {
+    box-shadow: none;
+    width:64px; 
+    margin: 0;
+    float:left; 
+    padding: 5px;  
+}
+.trpCustomDateTime .earliestTime, .trpCustomDateTime .latestTime {
+    float: left;
+}
+.trpCustomDateTime .dateRangeMode .TimeSpinner {
+     float:left;
+     border: 0;
+     width:80px;
+     padding: 5px;     
+}
+.trpCustomDateTime div.outputString {
+    padding: 5px 7px;
+    width:240px;
+}
+
+.trpCustomDateTime h5 {
+    font-size: 12px;
+    font-weight: normal;
+    margin:0px 0px 5px 0px;
+}
+#ui-datepicker-div {
+    background-color: #CCCCCC;
+    padding: 0 5px 0 5px;
+}
+.ui-datepicker-prev {
+    left: 1px;
+}
+.ui-datepicker-next {
+    left: 120px;
+}
+.trpCustomDateTime input.earliestDate,
+.trpCustomDateTime input.latestDate {
+    width: 72px;
+    border-style: hidden;
+}
+.trpCustomDateTime .colon {
+}
+.TimeSpinner input.tsInput {
+    width: 16px;
+}
+.TimeSpinner input.milliseconds {
+    width:21px;
+}
+

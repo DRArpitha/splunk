@@ -1,0 +1,9 @@
+
+.GenericHeader {
+    min-height:0px;
+    clear:both;
+}
+.GenericHeader h3 {
+    margin:0px;
+    padding:0px;
+}

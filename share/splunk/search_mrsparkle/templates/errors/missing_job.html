@@ -1,0 +1,36 @@
+<%inherit file="//layout/base.html" />
+<%namespace name="lib" file="//lib.html" import="*" />
+
+<%def name="css()">
+    <%lib:stylesheet_tags files="${['/static/css/login.css']}" />
+    <style>
+        #layout {
+            padding: 2em;
+        }
+    </style>
+</%def>
+
+<%def name="js()">
+<script>
+    $('#redirect').click(function(){
+        document.location = $('#url').attr('value');
+    });
+</script>
+</%def>
+
+<div id="layout">
+  <h1>${_(not_found_str) | h}</h1>
+  <p>${_(explanation_str) | h}</p>
+
+  % if url is not None:
+  <p>${_(rerun_str) | h}</p>
+  % endif
+
+  <p>
+      <a href="${make_url("/") | h}">Return to Splunk</a>
+  % if url is not None:
+      <input type="hidden" id="url" value="${url | h}" />
+      <input type="button" id="redirect" value="Rerun search" />
+  % endif
+  </p>
+</div>

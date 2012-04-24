@@ -1,0 +1,22 @@
+.ManagerBar {
+    background-color: #666;
+    padding: 0px 5px;
+    clear: both;
+    overflow: hidden;
+    _float:left;
+}
+.ManagerBar h1 {
+    color: #fff;
+    line-height: 1;
+    margin: 10px 0 10px 5px;
+    *margin-top:12px;
+}
+/* hack for webkit */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .ManagerBar h1 {
+        margin-top: 11px;
+    }
+}
+.ManagerBar h1 a {
+    color: #c0d4da;
+}

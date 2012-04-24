@@ -1,0 +1,2 @@
+access,owner,app,ttl
+"read : [ admin ], write : [ admin ]",nobody,SplunkDeploymentMonitor,1800

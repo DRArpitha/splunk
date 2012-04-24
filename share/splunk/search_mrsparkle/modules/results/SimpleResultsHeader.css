@@ -1,0 +1,9 @@
+.SimpleResultsHeader {
+    min-height:0px;
+    clear:both;
+}
+
+.SimpleResultsHeader h3 {
+    margin:0px;
+    padding:0px;
+}

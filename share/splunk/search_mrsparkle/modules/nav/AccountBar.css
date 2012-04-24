@@ -1,0 +1,103 @@
+/* CSS for the AccountBar */
+
+div.AccountBar {
+    zoom:1;
+    padding: 0 0 0 10px;
+}
+
+div.AccountBar:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.AccountBar .popupAppLogoContainer {
+    height: 37px;
+    line-height: 37px;
+    padding-top:0px;  
+}
+.AccountBar #applicationsMenuActivator .splIcon-triangle-3-s {
+    float: right;
+    margin:10px 0 0 5px;
+    *margin-top:-9px;
+    *float:none;
+    *display:inline-block;
+    _margin-top:10px;
+}
+.AccountBar .appLogo {
+    clear: left;
+    display: block;
+}
+.AccountBar .popupAppLogoContainer .appLogo img {
+    margin-top: 10px;
+}
+.AccountBar a.splIcon-close {
+    display: block;
+    float: right;
+    margin: 14px 10px;
+}
+.AccountBar a.notLinked {
+    cursor:default;
+}
+.AccountBar ul.accountBarItems {
+   float: right;
+   margin: 3px 5px 0 0;
+}
+.AccountBar ul.lite {
+    margin-top:0px;   
+}
+.AccountBar ul.accountBarItems, .AccountBar ul.accountBarItems li {
+    padding: 0;
+    list-style: none none;
+}
+.AccountBar ul.accountBarItems li {
+    margin: 0;
+    float: left;
+    padding-right: 5px;
+    line-height: 22px;
+}
+.AccountBar ul.accountBarItems li.accountDivider {
+    margin:0px 6px 0px 1px;
+    padding: 0;
+}
+.AccountBar ul.accountBarItems li.onState {
+    background: transparent url(/static/img/skins/default/header_onstate.gif) no-repeat 0px -26px;
+    padding-left: 7px;
+}
+.AccountBar ul.accountBarItems li.onState a {
+    background: transparent url(/static/img/skins/default/header_onstate.gif) no-repeat right 4px;
+    color: #FFF;
+    padding-right: 7px;
+    display: block;
+    _display: inline-block;
+    height:22px;
+    line-height: 22px;
+}
+.AccountBar a.returnLink {
+    float: left;
+    margin-top: 5px;
+}
+.AccountBar span.jobsRunningCount {
+    /*display:none;*/
+}
+
+.AccountBar .appList {
+    display:none;
+}
+
+.AccountBar .userFullName {
+    font-weight: bold;
+}
+
+/*-- Applications Menu Styling --*/
+
+/* remove styling from list above */
+.AccountBar .splMenu {
+    margin-top: 5px;
+    text-align: left;
+}
+
+.AccountBar #applicationsMenuActivator {
+    display:inline-block;
+}

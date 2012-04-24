@@ -1,0 +1,42 @@
+# Copyright (C) 2005-2011 Splunk Inc. All Rights Reserved.  Version 4.3.1 
+#
+# This file contains an example configuration for monitoring changes
+# to the Splunk Active Directory monitor for Windows. Refer to 
+# admon.conf.spec for details.
+#
+# To use one or more of these configurations, copy the configuration block into
+# admon.conf in $SPLUNK_HOME/etc/apps/windows/local/. You must restart Splunk to
+# enable configurations.
+#
+# To learn more about configuration files (including precedence) please see 
+# the documentation located at
+# http://docs.splunk.com/Documentation/Splunk/latest/Admin/Aboutconfigurationfiles
+
+
+[default]
+monitorSubtree = 1
+disabled = 0
+
+# Monitor the default domain controller for the domain that the computer
+# running Splunk belongs to.  Start monitoring at the root node of Active
+# Directory.
+[NearestDC]
+targetDc =
+startingNode =
+
+# Monitor a specific DC, with a specific starting node.  Store the events in
+# the "admon" Splunk index.
+[DefaultTargetDC]
+targetDc = pri01.eng.ad.splunk.com
+startingNode = OU=Computers,DC=eng,DC=ad,DC=splunk,DC=com
+index = admon
+
+# Monitor two different DCs with different starting nodes.
+[DefaultTargetDC]
+targetDc = pri01.eng.ad.splunk.com
+startingNode = OU=Computers,DC=eng,DC=ad,DC=splunk,DC=com
+
+[SecondTargetDC]
+targetDc = pri02.eng.ad.splunk.com
+startingNode = OU=Computers,DC=hr,DC=ad,DC=splunk,DC=com
+

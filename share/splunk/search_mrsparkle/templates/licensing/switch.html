@@ -1,0 +1,121 @@
+<%inherit file="//layout/admin_lite_dialog.html"/>
+<%namespace name="lib" file="//lib.html" />
+<%namespace name="formset" file="//formset.html" />
+
+<%def name="title()">${_('Change license group')} - ${parent.title()}</%def>
+<%def name="get_breadcrumbs()">
+    <%
+        return [
+            [_('Manager'), ['manager']],
+            [_('Licensing'), ['manager','system','licensing']],
+            [_('Change license group'), None]
+        ]
+    %>
+</%def>
+
+<%
+
+## in the following: 
+## Pos 0 describes the specific license group
+## Pos 1 is the string used as the header
+## Pos 2 is the string used if the license error occurs
+## Pos 3 is the string used to describe the group
+descriptions = [
+    [
+        'Enterprise',
+        _('Enterprise license'),
+        _('Enterprise licenses'),
+        _('Splunk Enterprise adds capabilities to support multi-user, distributed deployments and includes alerting, role-based security, single sign-on, scheduled PDF delivery and support for unlimited data volumes.')
+    	
+    ],
+    [
+        'Forwarder',
+        _('Forwarder license'),
+        _('Forwarder licenses'),
+        _('Use this group when configuring Splunk as a forwarder.') + ('<a class="spl-icon-external-link-xsm" href="%s" target="_blank">' % generateSelfHelpLink('licensing.forwarderlicense')) + _("Learn more") + '</a>'
+    ],
+    [
+        'Free',
+        _('Free license'),
+        _('Free licenses'),
+        _('Use this group when you are running Splunk Free. This license has a 500MB/day daily indexing volume. ') + ('<a class="spl-icon-external-link-xsm" href="%s" target="_blank">' % generateSelfHelpLink('licensing.freelicense')) + _("Learn more") + '</a>'
+    ],
+    [
+        'Trial',
+        _('Enterprise Trial license'),
+        _('Enterprise Trial licenses'),
+        _('This is your included download trial. IMPORTANT: If you switch to another license, you cannot return to the Trial. You must install an Enterprise license or switch to Splunk Free.')    
+    ]
+]
+
+## try to get current friendly title
+current_title = license_group
+for i, row in enumerate(descriptions):
+    if row[0] == license_group:
+        current_title = row[1]
+        break
+%> 
+
+
+% if controller_exception:
+    <div class="error">
+        <%lib:render_exception e="${controller_exception}" />
+    </div>
+% endif
+
+
+% if is_success:
+
+    <div class="message_block_success">${_('Change successful')}</div>
+    <p>
+        ${_('The licensing group has been set to <strong>%s</strong>. You must restart Splunk in order for changes to take effect.') % h(current_title)}
+    </p>
+
+% else:
+
+    <h1>${_('Change license group')}</h1>
+
+	<p>${_('The type of license group determines what sorts of licenses can be used in the pools on this license server.')} <a class="spl-icon-external-link-xsm" href="${generateSelfHelpLink('licensing.chnglicgrp')}" target="_blank">${_('Learn more')}</a> </p>
+	
+    <table>
+        % for i, row in enumerate(descriptions):
+            % if row[0] in available_groups:
+                <tr>
+                    <td>
+                        <input type="radio" name="license_group" value="${row[0]|h}" id="license_type_${i}" ${'checked="checked"' if license_group == row[0] else ''}/>
+                    </td>
+                    <td>
+                        <label class="big" for="license_type_${i}">${row[1]|h}</label>
+                        <p>${row[3]}</p>
+                        % if len(license_map[row[0]]) == 0:
+                            <p style="color:#800;">
+                                ${_('There are no valid Splunk <em>%s</em> installed. You will be prompted to install a license if you choose this option.') % h(row[2])}
+                            </p>
+                        % endif
+                    </td>
+                </tr>
+            % endif 
+        % endfor
+
+    </table>
+% endif
+
+
+##
+## buttons
+##
+
+<%def name="gutter()">
+    <div class="admin-dialog-tray">
+    % if is_success:
+        <%
+        qs = {'auto_restart':'1'}
+        %>
+        ${formset.button(_('Restart later'), href=return_to)}
+        ${formset.button(_('Restart now'), is_primary=True, href=make_url(['manager','search','control'], _qs=qs) )}
+    % else:
+        ${formset.button(_('Cancel'), href=return_to)}
+        ${formset.button(_('Save'), is_primary=True, is_submit=True)}
+    % endif
+    </div>
+</%def>

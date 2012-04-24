@@ -1,0 +1,74 @@
+/* CSS for the AppBar */
+div.AppBar {
+    padding: 0px;
+}
+ul.appBarNav {
+    list-style: none none;
+    margin: 0px;
+}
+ul.appBarNav li {
+    list-style: none none;
+    float: left;
+}
+ul.appBarNav li a {
+    display: block;
+    _display: inline-block;
+    padding: 0px 10px;
+}
+ul.appBarNav li a:hover {
+    text-decoration: none;
+}
+ul.appBarNav li.hasMenu {
+}
+ul.appBarNav li.hasMenu a {
+   padding-right: 23px;
+   position: relative;
+   *zoom:1;
+   outline: none;
+}
+ul.appBarNav li.hasMenu a span.splIcon {
+    position: absolute;
+    right:10px;
+    top:13px;
+}
+
+
+/* white menu overrides */
+.AppBar .splMenu-primary a {
+    width: 180px;
+    padding: 5px 15px;
+    *width:auto;
+}
+.AppBar .splMenu-primary ul div.innerMenuWrapper {
+    width: 210px;
+}
+.AppBar .splMenu-primary ul li {
+    width:210px;
+    _width:auto;
+}
+
+/* auxiliary links (help, prefs, about) */
+
+.AppBar .auxLinks {
+    float: right;
+    margin-right: 10px;
+    font-size: 11px;
+}
+.AppBar .auxLinks span {
+    padding: 0px 6px;
+}
+
+.AppBar .unitTestListing {
+    display:none;
+}
+
+/* styling for about dialog */
+.aboutPopupContainer {
+    display:none;
+    padding: 10px;
+}
+.aboutPopupContainer .aboutPopupSplunkLogo {
+    background: transparent url(/static/img/skins/default/logo_splunkServer_white_low.png) no-repeat scroll 0 0;
+    height: 45px;
+    width: 120px;
+}

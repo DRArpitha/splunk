@@ -1,0 +1,16 @@
+#backfill_workflow {
+    padding: 20px;
+}
+#backfill_workflow h3,
+#backfill_results h3 {
+    margin: 0 0 10px;
+    padding-bottom: 2px;
+    font-size: 18px;
+}
+#backfill_results {
+    padding: 20px;
+}
+.cancel {
+    color: #CCCCCC;
+}
+

@@ -1,0 +1,6 @@
+div.EnablePreview div.hidden {
+    display: none;
+}
+.EnablePreview label { 
+    display:inline;
+}

@@ -1,0 +1,97 @@
+<%namespace name="lib" file="//lib.html" import="*" />\
+<%!
+import time, string
+from splunk.util import safeURLQuote
+title = None
+use_html5 = False
+%>\
+<%self:render/>
+
+<%def name="render()" filter="string.strip">
+    % if is_xhr():
+        <%self:xhrdoc/>
+    % else:
+        <%self:pagedoc/>
+    % endif
+</%def>
+
+<%def name="xhrdoc()">
+    <%next:body/>
+</%def>
+
+
+##
+## define main HTML wrapper
+##
+
+<%def name="pagedoc()">
+% if self.attr.use_html5:
+<!DOCTYPE html>
+<html lang="${i18n.current_lang()[0] | h}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+% else:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.splunk.com/xhtml-extensions/1.0" xml:lang="${i18n.current_lang()[0] | h}" lang="${i18n.current_lang()[0] | h}">
+<!-- live to code, code to live... -->
+
+% endif
+    <head>
+    % if not self.attr.use_html5:
+        <meta http-equiv="X-UA-Compatible" content="IE=7, IE=9, chrome=IE8" />
+    % endif
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-language" content="${i18n.current_lang(as_string=True) | h}" />
+        <meta http-equiv="imagetoolbar" content="no" />
+        <meta name="author" content="Splunk Inc." />
+        <link rel="apple-touch-icon" href="${make_url('/static/img/iosicon.png')}" />
+        <link rel="shortcut icon" href="${make_url('/static/img/favicon.ico')}" />
+        <title><%self:title/></title>
+        ## Every page requires these core js files to be loaded first, and in the correct order -->
+        % if namespace:
+            ## manager passes namespace
+            <%lib:script_tags files="${['/config?autoload=1&namespace='+safeURLQuote(namespace)]}" />
+        % elif APP and APP.get('id'):
+            ## views pass APP
+            <%lib:script_tags files="${['/config?autoload=1&namespace='+safeURLQuote(APP['id'])]}" />
+        % else:            
+            <%lib:script_tags files="${['/config?autoload=1']}" />
+        % endif
+        <%lib:script_tags files="${['/static/js/contrib/jquery-1.6.2.js', '/static/js/i18n.js', '/static/js/splunk.js', '/static/js/util.js']}" />
+        <%self:css/>
+        <%self:custom_css/>
+        <%self:head/>
+    </head>
+    <%self:body_element_open/>
+        <%next:body/>
+        <%self:js/>
+        <%self:js_initialization/>
+        <div class="splClearfix"></div>
+    </body>
+</html>
+</%def>
+
+
+##
+## define core page components
+##
+
+<%def name="title()">
+    % if self.attr.title:
+        ${self.attr.title|h} - \
+    % endif:
+    
+    ${_('Splunk') | h}\
+</%def>
+
+<%def name="css()"></%def>
+<%def name="custom_css()"></%def>
+<%def name="head()"></%def>
+<%def name="js()"></%def>
+<%def name="js_initialization()">
+<%doc>
+    <!-- No additional js_initialization content defined. -->
+    <!-- (used to ensure that init.js is after all js files) -->
+    <!-- TODO: There may be a cleaner way to do this without an additional def.  -->
+</%doc>
+</%def>
+<%def name="body_element_open()"><body></%def>

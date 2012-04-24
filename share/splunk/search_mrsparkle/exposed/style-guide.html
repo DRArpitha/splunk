@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>splunk > UI Style Guide</title>
+	<meta name="description" content="UI style guide" />
+	<meta name="author" content="Pete Khalil <pkhalil@splunk.com>" />
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<style type="text/css" media="screen">
+		/* style guide specific layout */
+		.wrapper{width:90%;margin:auto;}
+		.header {background-color:#000;color:#fff; padding:1em;margin-bottom:1em;}
+		.content {position:relative;overflow:hidden;}
+		.footer {clear:both;}
+		.clear {clear:both;}
+		.section {clear:both;overflow:hidden;border:1px solid #ccc;margin-bottom:1em;}
+		.nav {list-style:none;margin:0;padding:0;}
+		.nav li {display:inline;margin-left:1em;padding-right:1em; border-right:1px solid #fff;}
+		.nav li:last-child {border-right:none;}
+		.nav.controls{float:right;}
+
+
+		/* consider adding these rules to default */
+		pre {white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
+        
+        /*OOCSS grids - http://oocss.org/ */
+        .line,.lastUnit{overflow:hidden; *overflow:visible;*zoom:1;}
+        .unit{float:left;}
+        .unitRight{float:right;}
+        .size1of1{float:none;}
+        .size1of2{width:50%;}
+        .size1of3{width:33.33333%;}
+        .size2of3{width:66.66666%;}
+        .size1of4{width:25%;}
+        .size3of4{width:75%;}
+        .size1of5{width:20%;}
+        .size2of5{width:40%;}
+        .size3of5{width:60%;}
+        .size4of5{width:80%;}
+        .lastUnit{float:none;width:auto;_position:relative;_left:-3px;_margin-right:-3px;}
+        
+	</style>
+
+	<!-- standard splunk styles -->
+	<link rel="stylesheet" href="css/view.css" />
+	<link rel="stylesheet" href="css/skins/default/default.css"	 />
+    <!-- modules -->
+    <link rel="stylesheet" href="../modules/results/page_controls/Count.css" />
+    <link rel="stylesheet" href="../modules/paginator/paginator.css" />
+    
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<h1>splunk > UI Style Guide</h1>
+			<p>preview of basic elements, classes, &amp; UI elements used in splunk</p>
+			<!-- includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more. -->
+			<ul class="nav page-nav">
+				<li><a href="#basic" title="jump to section on this page">Basics</a></li>
+				<li><a href="#type" title="jump to section on this page">Typography</a></li>
+				<li><a href="#buttons" title="jump to section on this page">Buttons</a></li>
+				<li><a href="#tables" title="jump to section on this page">Tables</a></li>
+				<li><a href="#links" title="jump to section on this page">Links</a></li>
+				<li><a href="#forms" title="jump to section on this page">Forms</a></li>
+				<li><a href="#modules" title="jump to section on this page">Modules</a></li>
+				<li><a href="#grids" title="jump to section on this page">Grids</a></li>
+			</ul>
+		</div><!-- /.header -->
+
+		<div class="content">
+
+			<div class="section" id="basic">
+				<!-- Sample Content to Plugin to Template -->
+				<h1>CSS Basic Elements</h1>
+
+				<p>The purpose of this HTML is to help determine what default
+				settings are with CSS and to make sure that all possible HTML
+				Elements are included in this HTML so as to not miss any
+				possible Elements when designing a site.</p>
+
+				<hr />
+
+				<h1>Headings</h1>
+
+				<h1>Heading 1</h1>
+				<h2>Heading 2</h2>
+				<h3>Heading 3</h3>
+				<h4>Heading 4</h4>
+				<h5>Heading 5</h5>
+				<h6>Heading 6</h6>
+
+				<small><a href="#wrapper">[top]</a></small>
+				<hr />
+
+
+				<h1>Paragraph</h1>
+
+				<img style="float:right" src="/static/img/skins/default/pony.png" alt="example" />
+				<p>Lorem ipsum dolor sit amet, <a href="#" title="test link">test link</a> adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p>
+
+				<p>Lorem ipsum dolor sit amet, <em>emphasis</em> consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p>
+
+				<small><a href="#wrapper">[top]</a></small>
+				<hr />
+
+				<h1>List Types</h1>
+
+				<h3>Definition List</h3>
+				<dl>
+					<dt>Definition List Title</dt>
+					<dd>This is a definition list division.</dd>
+				</dl>
+
+				<h3>Ordered List</h3>
+				<ol>
+					<li>List Item 1</li>
+					<li>List Item 2</li>
+					<li>List Item 3</li>
+				</ol>
+
+				<h3>Unordered List</h3>
+				<ul>
+					<li>List Item 1</li>
+					<li>List Item 2</li>
+					<li>List Item 3</li>
+				</ul>
+
+				<small><a href="#wrapper">[top]</a></small>
+				<hr />
+
+				<h1>Fieldsets, Legends, and Form Elements</h1>
+
+				<form action="?" method="get">
+				<fieldset>
+					<legend>Legend</legend>
+
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.</p>
+
+						<h2>Form Element</h2>
+
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui.</p>
+
+						<p><label for="text_field">Text Field:</label><br />
+						<input type="text" id="text_field" /></p>
+
+						<p><label for="text_area">Text Area:</label><br />
+						<textarea id="text_area"></textarea></p>
+
+						<p><label for="select_element">Select Element:</label><br />
+							<select name="select_element" id="select_element">
+							<optgroup label="Option Group 1">
+								<option value="1">Option 1</option>
+								<option value="2">Option 2</option>
+								<option value="3">Option 3</option>
+							</optgroup>
+							<optgroup label="Option Group 2">
+								<option value="1">Option 1</option>
+								<option value="2">Option 2</option>
+								<option value="3">Option 3</option>
+							</optgroup>
+						</select></p>
+
+						<p><label>Radio Buttons:</label><br />
+							<input type="radio" class="radio" name="radio_button" value="radio_1" /> Radio 1<br/>
+								<input type="radio" class="radio" name="radio_button" value="radio_2" /> Radio 2<br/>
+								<input type="radio" class="radio" name="radio_button" value="radio_3" /> Radio 3<br/>
+						</p>
+
+						<p><label>Checkboxes:</label><br />
+							<input type="checkbox" class="checkbox" name="checkboxes" value="check_1" /> Radio 1<br/>
+								<input type="checkbox" class="checkbox" name="checkboxes" value="check_2" /> Radio 2<br/>
+								<input type="checkbox" class="checkbox" name="checkboxes" value="check_3" /> Radio 3<br/>
+						</p>
+
+						<p><label for="password">Password:</label><br />
+							<input type="password" class="password" name="password" id="password" />
+						</p>
+
+						<p><label for="file">File Input:</label><br />
+							<input type="file" class="file" name="file" id="file"/>
+						</p>
+
+
+						<p><input class="button" type="reset" value="Clear" /> <input class="button" type="submit" value="Submit" />
+						</p>
+					</fieldset>
+
+						<fieldset>
+							<legend>html5 form elements</legend>
+
+							<p>input text</p>
+							<input type="text" name="text" value="text" />
+							<p>input with label</p>
+							<label for="label">label</label><input type="text" name="label" value="label" id="label" />
+							<p>submit</p>
+							<input type="submit" name="submit" value="submit">
+							<p>reset</p>
+							<input type="reset" name="reset" value="reset">
+							<p>input button</p>
+							<input type="button" name="button" value="button">
+							<p>checkbox</p>
+							<input type="checkbox" name="checkbox" value="checkbox">
+							<p>radio</p>
+							<input type="radio" name="radio" value="radio">
+							<p>file</p>
+							<input type="file" name="file">
+							<p>image</p>
+							<input type="image" name="image" alt="image">
+							<p>password</p>
+							<input type="password" name="password" value="password">
+							<p>search</p>
+							<input type="search" name="search" value="search" placeholder="placeholder">
+							<p>email</p>
+							<input type="email" name="email" value="email@example.com">
+							<p>url</p>
+							<input type="url" name="url" value="http://example.com">
+							<p>tel</p>
+							<input type="tel" name="tel" value="415-555-1212">
+							<p>date</p>
+							<input type="date" name="date" value="2010-10-20">
+							<p>month</p>
+							<input type="month" name="month" value="2010-10">
+							<p>week</p>
+							<input type="week" name="week" value="2010-W42">
+							<p>time</p>
+							<input type="time" name="time" value="23:59:00">
+							<p>datetime</p>
+							<input type="datetime" name="datetime" value="1996-01-01T12:05:25-02:00">
+							<p>datetime-local</p>
+							<input type="datetime-local" name="datetime_local" value="1996-01-01T12:05">
+							<p>number</p>
+							<input type="number" name="number" value="1234567890">
+							<p>range</p>
+							<input type="range" name="range" value="10">
+							<p>color</p>
+							<input type="color" name="color" value="#BADA55">
+
+							<p>button</p>
+							<button type="submit">button submit</button>
+							<button type="reset">button reset</button>
+							<button type="button">button button</button>
+
+						</fieldset>
+
+					</form>
+
+
+				<small><a href="#wrapper">[top]</a></small>
+				<hr />
+
+				<h1>Tables</h1>
+
+				<table>
+					<caption>caption</caption>
+					<thead>
+						<tr>
+							<th>Table Header 1</th><th>Table Header 2</th><th>Table Header 3</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td>Table Footer 1</td><td>Table Footer 2</td><td>Table Footer 3</td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr>
+							<td>Division 1</td><td>Division 2</td><td>Division 3</td>
+						</tr>
+						<tr class="even">
+							<td>Division 1</td><td>Division 2</td><td>Division 3</td>
+						</tr>
+						<tr>
+							<td>Division 1</td><td>Division 2</td><td>Division 3</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<small><a href="#wrapper">[top]</a></small>
+				<hr />
+
+				<h1>Misc Stuff - abbr, pre, code, sub, sup, etc.</h1>
+
+				<p>Lorem <sup>superscript</sup> dolor <sub>subscript</sub> amet,
+			consectetuer adipiscing elit. Nullam dignissim convallis est.
+			Quisque aliquam. <cite>cite</cite>. Nunc iaculis suscipit dui. Nam
+			sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec,
+			gravida vehicula, nisl. Praesent mattis, massa quis luctus
+			fermentum, turpis mi volutpat justo, eu volutpat enim diam eget
+			metus. Maecenas ornare tortor. Donec sed tellus eget sapien
+			fringilla nonummy. Mauris a ante. Suspendisse quam sem,
+			consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue
+			quis tellus. <abbr title="Avenue">AVE</abbr></p>
+
+				<pre>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.	 <abbr title="Avenue">AVE</abbr></pre>
+
+				<blockquote>
+					"This stylesheet is going to help so freaking much." <br />-Blockquote
+				</blockquote>
+
+				<small><a href="#wrapper">[top]</a></small>
+				<!-- End of Sample Content -->
+			</div><!--/.section-->
+
+            <div id="type" class="section">
+                <h2>typography</h2>
+
+            </div>
+
+            <div id="tables" class="section">
+                <h2>tables</h2>
+
+            </div>
+
+			<div class="section" id="buttons">
+				<h2>link buttons</h2>
+
+				<a href="#" class="splButton-primary" title="primary">primary</a>
+				<a href="#" class="splButton-secondary" title="secondary">secondary</a>
+				<a href="#" class="splButton-tertiary" title="tertiary">tertiary</a>
+
+				<h3 class="clear">disabled</h3>
+				<a href="#" class="splButton-primary splButton-disabled" title="primary">primary</a>
+				<a href="#" class="splButton-secondary splButton-disabled" title="secondary">secondary</a>
+				<a href="#" class="splButton-tertiary splButton-disabled" title="tertiary">tertiary</a>
+
+				<h2 class="clear">button with child span</h2>
+				<button class="splButton-primary"><span>primary</span></button>
+				<button class="splButton-secondary"><span>secondary</span></button>
+				<button class="splButton-tertiary"><span>primary</span></button>
+
+				<h3 class="clear">disabled</h3>
+				<button class="splButton-primary splButton-disabled"><span>primary</span></button>
+				<button class="splButton-secondary splButton-disabled"><span>secondary</span></button>
+				<button class="splButton-tertiary splButton-disabled"><span>primary</span></button>
+
+
+				<h2 class="clear">button groups</h2>
+
+				<div class="jobActions splButtonGroup">
+					<a title="Send to background" class="splButton-tertiary	 background" href="#">
+						<span class="splButtonIcon"></span></a>
+					<a title="Pause" class="splButton-tertiary	pause" href="#">
+						<span class="splButtonIcon"></span></a>
+					<a title="Finalize" class="splButton-tertiary  finalize" href="#">
+						<span class="splButtonIcon"></span></a>
+					<a title="Cancel" class="splButton-tertiary	 cancel" href="#">
+						<span class="splButtonIcon"></span></a>
+				</div>
+
+				<h2 class="clear">buttons groups disabled</h2>
+				<div class="jobActions splButtonGroup">
+					<a title="Send to background" class="splButton-tertiary splButton-disabled background" href="#">
+						<span class="splButtonIcon"></span></a>
+					<a title="Pause" class="splButton-tertiary splButton-disabled pause" href="#">
+						<span class="splButtonIcon"></span></a>
+					<a title="Finalize" class="splButton-tertiary splButton-disabled finalize" href="#">
+						<span class="splButtonIcon"></span></a>
+					<a title="Cancel" class="splButton-tertiary splButton-disabled cancel" href="#">
+						<span class="splButtonIcon"></span></a>
+				</div>
+
+
+				<h2 class="clear">buttons with icons</h2>
+				<a class="actions splIconicButton splButton-tertiary" href="#">
+					<span class="splButtonIcon splIconicButtonIcon">»</span></a>
+				<a title="Job Inpector" class="splButton-tertiary splButton-Disabled inspector" href="#">
+					<span class="splButtonIcon">info</span></a>
+				<a title="Print" class="splButton-tertiary splButton-Disabled print" href="#">
+					<span class="splButtonIcon">print</span></a>
+				<a title="Save" class="splButton-primary splButton-Disabled save" href="#">
+					<span class="splButtonIcon"></span>
+					<span>Save</span>
+					<span class="splMenuIcon"></span></a>
+				<a title="Create" class="splButton-primary splButton-Disabled create" href="#">
+					<span class="splButtonIcon"></span>
+					<span>Create</span>
+					<span class="splMenuIcon"></span></a>
+
+			</div><!--/.section-->
+
+			<div class="section" id="links">
+				<h2 class="clear">links</h2>
+				<p>external links</p>
+				<a class="spl-external-link spl-icon-external-link-sm" href="http://example.com/">external link</a>
+				<a class="spl-external-link spl-icon-external-link-xsm" href="http://example.com/">external link</a>
+				<p>help link</p>
+				<a title="Splunk help" target="_blank" href="/en-US/help?" class="help">Help</a>
+
+			</div><!--/.section-->
+
+			<div class="section" id="forms">
+				<h2 class="clear">Form controls</h2>
+
+				<form action="#forms" method="get" accept-charset="utf-8">
+
+					<fieldset>
+						<legend>rich radios</legend>
+
+						<h3>labels using for</h3>
+						<div class="splRadio splRadio-group">
+							<span class="splRadio-control text l-first">
+								<input type="radio" name="mode" value="view" id="view-xxx" checked="checked"/>
+								<label for="view-xxx" title="Switch to view mode">View</label>
+							</span>
+							<!-- <span class="editor-icons text">
+								<input type="radio" name="mode" value="other" id="other-xxx"/>
+								<label for="other-xxx" title="Switch to other mode">Other</label>
+							</span> -->
+							<span class="splRadio-control text l-last">
+								<input type="radio" name="mode" value="edit" id="edit-xxx"/>
+								<label for="edit-xxx" title="Switch to edit mode">Edit</label>
+							</span>
+						</div>
+
+						<h3>wrapped labels</h3>
+						<!-- wrapped labels? -->
+						<div class="splRadio splRadio-group">
+							<span class="splRadio-control text l-first">
+								<label title="Switch to view mode">
+									<input type="radio" name="mode2" value="view" checked="checked"/>View</label>
+							</span>
+							<!-- <span class="editor-icons text">
+								<input type="radio" name="mode" value="other" id="other-xxx"/>
+								<label for="other-xxx" title="Switch to other mode">Other</label>
+							</span> -->
+							<span class="splRadio-control text l-last">
+								<label title="Switch to edit mode">
+									<input type="radio" name="mode2" value="edit"/>Edit</label>
+							</span>
+						</div>
+
+						<h3>wrapped labels with icons</h3>
+						<!-- wrapped labels with icons -->
+						<div class="splRadio splRadio-group">
+							<span class="splRadio-control l-first">
+								<label title="Switch to view mode">
+									<input type="radio" name="mode3" value="view" checked="checked"/>View</label>
+							</span>
+							<span class="splRadio-control splRadio-icon">
+								<label title="Switch to other mode" class="icon-foo">
+									<input type="radio" name="mode3" value="other" id="other-xxx"/>Other</label>
+							</span>
+							<span class="splRadio-control l-last">
+								<label title="Switch to edit mode">
+									<input type="radio" name="mode3" value="edit"/>Edit</label>
+							</span>
+						</div>
+
+					</fieldset>
+
+					<p><input type="submit" value="Submit" /></p>
+				</form>
+
+			</div><!--/.section-->
+
+			<div class="section" id="modules">
+				<h2>modules</h2>
+
+				<p>pager</p>
+				<div class="SplunkModule Paginator">
+					<div class="ResultsContainer">
+						<ul>
+							<li class="previous"><a class="disabled" href="#">« prev</a></li>
+							<li class="page active"><a href="#offset=0">1</a></li>
+							<li class="page"><a href="#offset=10">2</a></li>
+							<li class="page"><a href="#offset=20">3</a></li>
+							<li class="page"><a href="#offset=30">4</a></li>
+							<li class="page"><a href="#offset=40">5</a></li>
+							<li class="page"><a href="#offset=50">6</a></li>
+							<li class="page"><a href="#offset=60">7</a></li>
+							<li class="page"><a href="#offset=70">8</a></li>
+							<li class="page"><a href="#offset=80">9</a></li>
+							<li class="page"><a href="#offset=90">10</a></li>
+							<li class="next"><a href="#offset=10">next »</a></li>
+						</ul>
+					</div>
+				</div><!--/.SplunkModule.Paginator-->
+
+				<p>per page count</p>
+				<div class="SplunkModule Count">
+					<a class="perPageLabel" href="#">
+						<span class="perPagePlaceholder">10</span>
+						<span class="perPageQualifier">per page</span>
+						<span class="splIcon splIcon-triangle-4-s dropDown">Dropdown</span>
+					</a>
+				</div>
+
+				<p>more ...</p>
+
+			</div><!--/.section-->
+
+			<div class="section" id="grids">
+				<h2>grids ... </h2>
+                <div class="line">
+                    <div class="unit size1of2"> 1 of 2 </div>
+                    <div class="unit size1of2 lastUnit"> 1 of 2 </div>
+                <div class="line">
+                    <div class="unit size1of3"> 1 of 3 </div>
+                    <div class="unit size1of3"> 1 of 3 </div>
+                    <div class="unit size1of3 lastUnit"> 1 of 3 </div>
+                </div>
+                <div class="line">
+                    <div class="unit size1of4"> 1 of 4 </div>
+                    <div class="unit size2of4"> 2 of 4 </div>
+                    <div class="unit size1of4 lastUnit"> 1 of 4 </div>
+                </div>
+                <div class="line">
+                    <div class="unit size1of5"> 1 of 5 </div>
+                    <div class="unit size2of5"> 2 of 5 </div>
+                    <div class="unit size1of5"> 1 of 5 </div>
+                    <div class="unit size1of5 lastUnit"> 1 of 5 </div>
+                </div>
+			</div><!--/.section-->
+
+		</div><!-- /.content -->
+
+		<div class="footer">
+			<p class="copyright">&copy; 2011 Splunk. All rights reserved</p>
+		</div><!-- /.footer -->
+	</div><!-- /.wrapper -->
+
+	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> -->
+	<script src="//code.jquery.com/jquery-latest.js"></script>
+	<script>window.jQuery || document.write('<script src="js/contrib/jquery-1.6.2.min.js"><\/script>');</script>
+
+	<script src="js/i18n.js"></script>
+	<script src="js/splunk.jquery.radio.js"></script>
+
+	<script>
+		$(function(){
+			// splRadio
+			$('.splRadio-group').splRadioInit().splRadioSet('edit');
+
+			// style guide section toggling
+			$('.section').hide();
+			$(document.location.hash).show();
+			$('.nav a').click(function(e){
+				$(this.hash).slideToggle();
+			});
+			// generate controls to show hide all
+			$controls = $('<ul class="nav controls"/>');
+			$controls.append( $('<li><a href="#">show all</a></li>').click(function(){
+				$('.section').slideDown();
+			}) );
+			$controls.append( $('<li><a href="#">hide all</a></li>').click(function(){
+				$('.section').slideUp();
+			}) );
+			$controls.insertBefore('.nav.page-nav');
+		});
+	</script>
+</body>
+</html>

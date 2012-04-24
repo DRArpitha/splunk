@@ -1,0 +1,124 @@
+<%!
+    title = 'Splunk Admin Authentication Control'
+%>
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%namespace name="helpers" file="_helpers.html"/>
+<%inherit file="//layout/admin.html"/>
+<%
+import splunk
+from splunk.appserver.mrsparkle.lib import util, i18n
+sessionId = cherrypy.session.id
+%>
+<style>
+    h1 {
+        margin-bottom:15px;
+        margin-top:15px;   
+    }
+    p {
+        font-size:12px;   
+    }
+    .licenseWrapper {
+        width: 600px;
+    }   
+    .adminTab {
+        display:none;  
+        margin-top:20px; 
+    }
+    #adminIndexRadios {
+        list-style: none;
+    }
+</style>
+
+<script type="text/javascript">
+    function handleEditFormSubmit(frm) {
+        //var switchAuth = confirm(  );
+        var answer = confirm(_("Are you sure you want to switch authentication systems?"))
+        if (answer){
+            var eai = Splunk.EAI.getInstance();
+            if (!eai)
+                return false; // page not yet loaded?
+            eai.saveForm($(frm));
+            return false;
+        }else{
+            return false;
+        }
+    }
+</script>
+
+<div class="entityEditForm">
+	<div class="licenseWrapper">
+	            
+	    <h1>${_('Authentication management')}</h1>
+	    
+        <p>${_('Splunk can use multiple authentication methods for access. The default Splunk auth is always on.')}
+        </p>
+	    <p>${_('Current auth system is:  ')}<b>${authmode == "LDAP" and _('LDAP and Splunk') or _('Splunk')}</b>.</p>
+	
+	    <ul id="adminIndexRadios">
+            <li> <input type="checkbox" id="SplunkCheckbox" tabToShow="Splunk" class="authCheckbox" name="authMethod" checked="checked" disabled="disabled" />  <label for="SplunkCheckbox">Splunk</label>  </li>
+	        <li> <input type="checkbox" id="LDAPCheckbox" tabToShow="LDAP" class="authCheckbox" name="authMethod"  ${' checked="checked"' if authmode=='LDAP' else ''} />  <label for="LDAPRadio">LDAP </label>  </li>
+	    </ul>
+	
+	    <div id="LDAP" class="adminTab">
+	
+	        <p>${_("To switch your Splunk server to use your LDAP authentication system, click <b>Configure Splunk to use LDAP and map groups</b>. When you have successfully saved and enabled an LDAP configuration, you can authorize groups on that LDAP server to login by mapping them to Splunk roles.")}</p>
+	        <p><a href="${make_url(['manager', namespace, 'authentication', 'providers', 'LDAP'])}">${_('Configure Splunk to use LDAP and map groups')}</a></p>
+	        
+	    </div>
+	    
+	    <div id="Splunk" class="adminTab">
+	        % if authmode == "LDAP":
+	            <p>${_("To switch to the default splunk authentication system, click the big green button.")}</p>
+	        % else:
+	            <p> ${_("You are currently using the Splunk authentication system. To switch to LDAP, select LDAP above.")}
+	        % endif
+	            <form name="authentication/providers/Splunk" class="entityEditForm" method="post" action="${make_url(["manager", namespace, "/authentication/providers/Splunk", "Splunk"])}" onsubmit="return(handleEditFormSubmit(this))" id="eaiform">
+	                <input type="hidden" name="__ns" value="search">
+	                <input type="hidden" name="__redirect" value="">
+	                <input type="hidden" name="authType" id="item-authType" value="Splunk" />
+                    ${csrf_hidden_input()}
+	                <input type="hidden" name="spl-ctrl_redirectionPath" id="item-spl-ctrl_redirectionPath" value="authoverview" />
+	                <input type="hidden" name="__uri" value="/services/authentication/providers/Splunk/Splunk">
+	                % if authmode == "LDAP":
+	                    <button type="submit" class="splButton-primary"><span>${_('Switch to Splunk authentication')}</span></button>
+	                % endif
+	            </form>
+	            <script type="text/javascript">
+	            function initEAIForm() {
+	                var eai = Splunk.EAI.getInstance(
+	                    {"authType": {"elementName": "authType", "showInView": ["list", "create", "edit"], "type": "hidden", "value": "Splunk", "label": "Auth Type"}, "helptext": {"helpText": "${_('Click the Save button to enable Splunk authentication.')}", "elementName": "helptext", "showInView": ["create", "edit"], "type": "helpstring", "value": null}}, // eaicfg
+	                    "authentication/providers/Splunk", // endpoint_base
+	                    {"optionalFields": ["authType"], "requiredFields": []} // eai_attributes
+	                );
+	                eai.handleAdminReady("search", "Splunk");
+	            }
+	    
+	            // Make sure the form is initialized at page load for /manager
+	            // initEAIForm() is called explicitly if loaded as a popup
+	            $(initEAIForm);
+	            </script>
+	    </div>    
+	    
+	    <script type="text/javascript">
+	        function setupAuthSwitching(authmode) {
+	            $("#" + authmode).show(); //hide whichever tab isn't the current authmode
+	            $('#' + authmode + "Checkbox").prop('checked', true); //assure the right checkbox is checked
+	            
+	            $('.authCheckbox').click(function(){
+	                $('.adminTab').toggle();    
+	            });
+	        }
+	    
+	        $(function(){
+	            setupAuthSwitching("${authmode}");    
+	        });
+	    </script>
+	</div>
+	
+	<div class="splButtonWrapper">
+	    <a class="splButton-secondary" href="#" onclick="resync_auth()">
+	        <span><%doc>TRANS: Clicked to reload authentication configuration</%doc>${_('Reload authentication configuration')}</span>
+	    </a>
+	    <div class="clear"></div>
+	</div>
+</div>

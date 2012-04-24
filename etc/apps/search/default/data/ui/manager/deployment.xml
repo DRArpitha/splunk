@@ -1,0 +1,1 @@
+<endpoint name="deployment">  <header></header>  <menu name="deployment_configurations">    <label>Deployment</label>    <url>/manager/%(namespace)s/deployment</url>    <description>View deployment client and server status.</description>    <order>100</order>    <id>deploymentclient</id>  </menu></endpoint>

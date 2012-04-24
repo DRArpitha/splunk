@@ -1,0 +1,18 @@
+<quickstart>
+
+    <title>OPSEC LEA</title>
+    <optiongroup>
+        <option>
+            <title>Get an app to help you collect logs from Checkpoint and other LEA-compliant firewalls</title>
+            <summary>Technology-specific apps help you get your data in, as well as provide reports and dashboards. Browse and choose from the available apps on Splunkbase.</summary>
+            <doctarget>[learnmore.recipes.app.opseclea]</doctarget>
+            <action type="href">
+                <label>Visit Splunkbase</label>
+                <target>http://splunkbase.splunk.com/apps/?tag=opsec-lea</target>
+            </action>
+        </option>
+        
+
+    </optiongroup>
+
+</quickstart>

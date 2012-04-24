@@ -1,0 +1,330 @@
+<view autoCancelInterval="90" isVisible="true" onunloadCancelJobs="true" template="dashboard.html">
+  <label>Home</label>
+  <module name="AccountBar" layoutPanel="appHeader"/>
+  <module name="AppBar" layoutPanel="navigationHeader"/>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">*</param>
+    <param name="clearOnJobDispatch">False</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="Message" layoutPanel="messaging">
+    <param name="filter">splunk.search.job</param>
+    <param name="clearOnJobDispatch">True</param>
+    <param name="maxSize">1</param>
+  </module>
+  <module name="TitleBar" layoutPanel="viewHeader">
+    <param name="actionsMenuFilter">dashboard</param>
+  </module>
+
+
+
+
+  <module name="HiddenSavedSearch" layoutPanel="panel_row1_col1_grp1" group="Index Throughput" autoRun="True">
+    <param name="savedSearch">DM indexthru today vs last week</param>
+    <module name="GenericHeader">
+      <param name="label">Today vs the same day a week ago</param>
+    </module>
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">line</param>
+      <param name="charting.axisTitleY.text">KBps</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">bottom</param>
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+        <module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+      </module>
+      <module name="ViewRedirectorLink">
+        <param name="viewTarget">flashtimeline</param>
+      </module>
+    </module>
+  </module>
+
+  <module name="HiddenSavedSearch" layoutPanel="panel_row1_col1_grp2" autoRun="True">
+    <param name="savedSearch">DM indexthru week over week</param>
+    <module name="GenericHeader">
+      <param name="label">This week vs last week</param>
+    </module>
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">line</param>
+      <param name="charting.axisTitleY.text">KBps</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">bottom</param>
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+        <module name="ConvertToDrilldownSearch">
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+      </module>
+      <module name="ViewRedirectorLink">
+        <param name="viewTarget">flashtimeline</param>
+      </module>
+    </module>
+  </module>
+
+  <module name="HiddenSavedSearch" layoutPanel="panel_row2_col1" group="Forwarder Connections" autoRun="True">
+    <param name="savedSearch">DM tcpin today vs last week</param>
+    
+    <module name="GenericHeader">
+      <param name="label">Today vs the same day a week ago</param>
+    </module>
+
+    <module name="HiddenChartFormatter">
+      <param name="charting.chart">line</param>
+      <param name="charting.axisTitleY.text">Connections</param>
+      <param name="charting.axisTitleX.text"></param>
+      <param name="charting.axisTitleX.visibility">collapsed</param>
+      <param name="charting.legend.placement">bottom</param>
+      <!-- The two lines below are a hack for removing the date from the X axis-->
+      <param name="charting.axisLabelsX.majorLabelStyle.clip">true</param>
+      <param name="charting.axisLabelsX.majorLabelStyle.height">16</param>
+
+      <module name="JobProgressIndicator"/>
+      <module name="FlashChart">
+        <param name="width">100%</param>
+        <param name="enableResize">False</param>
+        <module name="ConvertToIntention">
+          <param name="intention">
+            <param name="name">addterm</param>
+            <param name="flags"><list>commando</list></param>
+          </param>
+          <module name="ViewRedirector">
+            <param name="viewTarget">flashtimeline</param>
+          </module>
+        </module>
+      </module>
+      <module name="ViewRedirectorLink">
+        <param name="viewTarget">flashtimeline</param>
+      </module>
+    </module>
+  </module>
+ 
+  
+  
+
+  <module name="HiddenSavedSearch" layoutPanel="panel_row3_col1" group="Indexer Warnings" autoRun="True">
+    <param name="savedSearch">DM idle indexers</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 severe=1-1000000 default=low</param>
+      <module name="SingleValue">
+        <param name="afterLabel">Idle Indexer(s)</param>
+        <param name="classField">range</param>
+      </module>
+    </module>  
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">indexer_list</param>
+        <param name="uriParam.pageTitle">Idle Indexers</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_idle_indexer.html</param>
+    </module>
+  </module>
+
+  
+  <module name="HiddenSavedSearch" layoutPanel="panel_row3_col1" autoRun="True">
+    <param name="savedSearch">DM loaded indexers</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 severe=1-1000000 default=low</param>
+      <module name="SingleValue">
+        <param name="afterLabel">Overloaded Indexer(s)</param>
+        <param name="classField">range</param>
+      </module>
+    </module>
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">indexer_list</param>
+        <param name="uriParam.pageTitle">Overloaded Indexers</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_backed_up_indexer.html</param>
+    </module>
+  </module>
+
+  
+  
+
+  <module name="HiddenSavedSearch" layoutPanel="panel_row4_col1" group="Forwarder Warnings" autoRun="True">
+    <param name="savedSearch">DM missing forwarders</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 severe=1-1000000 default=low</param>
+      <module name="SingleValue">
+        <param name="afterLabel">Missing Forwarder(s)</param>
+        <param name="classField">range</param>
+      </module>
+    </module>
+
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">forwarder_list</param>
+        <param name="uriParam.pageTitle">Missing Forwarders</param>
+      </module>
+    </module>
+  </module>
+  <module name="ServerSideInclude" layoutPanel="panel_row4_col1">
+    <param name="src">text/description_missing_forwarder.html</param>
+  </module>
+ 
+  
+  <module name="HiddenSavedSearch" layoutPanel="panel_row4_col1" autoRun="True">
+    <param name="savedSearch">DM quiet forwarders</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 high=1-1000000 default=low</param>
+      <module name="SingleValue">
+	<param name="field">count</param>
+        <param name="afterLabel">Quiet Forwarder(s)</param>
+        <param name="classField">range</param>
+      </module>
+    </module>
+
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">forwarder_list</param>
+        <param name="uriParam.pageTitle">Quiet Forwarders</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_quiet_forwarder.html</param>
+    </module>
+  </module>
+
+  
+  
+  <module name="HiddenSavedSearch" layoutPanel="panel_row4_col1" autoRun="True">
+    <param name="savedSearch">DM forwarders too little data</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 elevated=1-1000000 default=low</param>
+      <module name="SingleValue">
+	<param name="field">count</param>
+        <param name="afterLabel">Forwarder(s) Sending Less Than Expected</param>
+        <param name="classField">range</param>
+      </module>
+    </module>
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">forwarder_list</param>
+        <param name="uriParam.pageTitle">Forwarders Sending Less Data Than Expected</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_low_data_forwarder.html</param>
+    </module>
+
+  </module>
+
+  
+  <module name="HiddenSavedSearch" layoutPanel="panel_row4_col1" autoRun="True">
+    <param name="savedSearch">DM forwarders too much data</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 elevated=1-1000000 default=low</param>
+      <module name="SingleValue">
+	<param name="field">count</param>
+        <param name="afterLabel">Forwarder(s) Sending More Than Expected</param>
+        <param name="classField">range</param>
+      </module>
+    </module>
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">forwarder_list</param>
+        <param name="uriParam.pageTitle">Forwarders Sending More Data Than Expected</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_high_data_forwarder.html</param>
+    </module>
+  </module>
+
+  
+  <module name="HiddenSavedSearch" layoutPanel="panel_row5_col1" group="Sourcetype Warnings" autoRun="True">
+    <param name="savedSearch">DM missing sourcetypes</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 severe=1-1000000 default=low</param>
+      <module name="SingleValue">
+        <param name="afterLabel">Missing Sourcetype(s)</param>
+        <param name="classField">range</param>
+      </module>
+    </module>  
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">sourcetype_list</param>
+        <param name="uriParam.pageTitle">Missing Sourcetypes</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_missing_sourcetype.html</param>
+    </module>
+  </module>
+
+
+  <module name="HiddenSavedSearch" layoutPanel="panel_row5_col1" autoRun="True">
+    <param name="savedSearch">DM sourcetypes too little data</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 elevated=1-1000000 default=low</param>
+      <module name="SingleValue">
+	<param name="field">count</param>
+        <param name="afterLabel">Sourcetype(s) Sending Less Than Expected</param>
+        <param name="classField">range</param>
+      </module>
+    </module>
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">sourcetype_list</param>
+        <param name="uriParam.pageTitle">Sourcetypes Sending Less Data Than Expected</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_low_data_sourcetype.html</param>
+    </module>
+
+  </module>
+
+  
+  <module name="HiddenSavedSearch" layoutPanel="panel_row5_col1" autoRun="True">
+    <param name="savedSearch">DM sourcetypes too much data</param>
+    <module name="JobProgressIndicator" />
+    <module name="HiddenPostProcess">
+      <param name="search">stats count | rangemap field=count low=0-0 elevated=1-1000000 default=low</param>
+      <module name="SingleValue">
+	<param name="field">count</param>
+        <param name="afterLabel">Sourcetype(s) Sending More Than Expected</param>
+        <param name="classField">range</param>
+      </module>
+    </module>
+    <module name="SubmitButton">
+      <module name="ViewRedirector">
+        <param name="viewTarget">sourcetype_list</param>
+        <param name="uriParam.pageTitle">Sourcetypes Sending More Data Than Expected</param>
+      </module>
+    </module>
+    <module name="ServerSideInclude">
+      <param name="src">text/description_high_data_sourcetype.html</param>
+    </module>
+  </module>
+
+
+</view>

@@ -1,0 +1,28 @@
+<%page expression_filter="h" />
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%inherit file="//layout/base.html" />
+
+<%def name="css()">
+    <%coreCSSFiles = [
+        "/static/css/view.css", 
+        "/static/css/skins/default/default.css"
+    ] %>
+    <%lib:stylesheet_tags files="${coreCSSFiles}" />
+</%def>
+
+<%def name="custom_css()">
+  <%lib:stylesheet_tags files="${['/static/app/%s/backfill_select.css' % app]}" /> 
+</%def>
+
+<div id="BackfillMessage">
+
+  <h2>Backfill Authorization Failure</h2>
+  <p>Your backfill settings could not be loaded successfully.  You might not have permission to create backfill jobs in this app.  Click "OK" to go to the app's home page.</p>
+  
+  <div class="ConfirmButtons">
+    <a class="splButton-secondary" target="_parent" href="${make_url(['app', app])}">OK</a>
+  </div>
+
+</div>
+
+

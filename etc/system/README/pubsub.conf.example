@@ -1,0 +1,10 @@
+# Copyright (C) 2005-2011 Splunk Inc. All Rights Reserved.  Version 4.3.1 
+
+[pubsub-server:deploymentServer]
+disabled=false
+targetUri=somehost:8089
+
+[pubsub-server:internalbroker]
+disabled=false
+targetUri=direct
+

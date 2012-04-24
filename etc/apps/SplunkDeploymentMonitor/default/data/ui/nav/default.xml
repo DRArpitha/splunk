@@ -1,0 +1,24 @@
+<nav>
+    <view name="home" default="true" />
+    <view name="all_forwarders" />
+    <view name="all_indexers" />
+    <view name="all_sourcetypes" />
+    <view name="license_info" />
+    <view name="license_report" />
+    <view name="backfill_add" />
+
+    
+    <!--  commenting out until there's some way to filter out global foo -->
+    <!--  from other apps from coming in here as noise -->
+    <!-- 
+    <collection label="Other">
+      <collection label="My Searches &amp; Reports">
+        <saved match="unclassified"/>
+      </collection>
+      <collection label="My Dashboards">
+        <view source="unclassified" />
+      </collection>
+    </collection>
+    -->
+    
+</nav>

@@ -1,0 +1,30 @@
+<%!
+    title = 'Deployment'
+%>
+<%namespace name="lib" file="//lib.html" import="*"/>
+<%inherit file="//layout/admin.html" />
+<%
+import splunk
+from splunk.appserver.mrsparkle.lib import util, i18n
+
+%>
+
+<div class="dataInputsWrapper">
+    <h1>${_('Deployment')}</h1>
+    <div class="dataInputsDesc">${_('View deployment client and server status')}</div>
+
+    <table class="splTable">
+            <tr>
+                <th>${_('')}</th>
+                <th>${_('Actions')}</th>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'deployment', 'client'])}">${_('Deployment client')}</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input_name"><a href="${make_url(['manager', namespace, 'deployment', 'serverclass'])}">${_('Deployment server')}</a></td>
+                <td><a href="${make_url(['manager', namespace, 'deployment', 'serverclass', '_new'], _qs=dict(action='edit'))}">${_('Add new')}</a></td>
+            </tr>
+    </table>
+</div>

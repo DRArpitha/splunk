@@ -1,0 +1,244 @@
+<%doc>
+    This page displays detailed technical about search jobs.
+    
+    Variables available to this template are:
+    
+        jobObject: the splunk.search.SearchJob object
+        jobProperties: a static dict of all the properties from splunkd
+</%doc>
+<%inherit file="/layout/message.html" />
+<%namespace name="lib" file="/lib.html" import="*" />
+
+<%!
+    import splunk.appserver.mrsparkle.lib.i18n as i18n
+    import splunk.util
+
+    title = 'Search job inspector'
+%>
+<%
+    # determine CSS class
+    explanationClass = 'ok'
+    if jobProperties['isZombie']: explanationClass = 'zombie'
+    elif jobProperties['isFailed']: explanationClass = 'failed'
+    elif jobProperties['isPaused']: explanationClass = 'paused'
+    elif jobProperties['isDone']: 
+        if jobProperties['resultCount'] == 0:
+            explanationClass = 'noresults'
+        elif len(jobProperties['messages']) > 0:
+            explanationClass = 'messaged'
+        else:
+            explanationClass = 'ok'
+            
+    # determine date time formatting
+    
+    earliestTime = splunk.util.parseISO(jobProperties['earliestTime'])
+    if splunk.util.dt2epoch(earliestTime) == 0:
+        earliestTime = _('(earliest indexed event)')
+    else:
+        earliestTime = i18n.format_datetime_microseconds(earliestTime)
+        
+    latestTime = splunk.util.parseISO(jobProperties['latestTime'])
+    if splunk.util.dt2epoch(latestTime) == 0:
+        latestTime = _('(latest indexed event)')
+    else:
+        latestTime = i18n.format_datetime_microseconds(latestTime)
+%>
+
+<%def name="renderJobMessages()">
+    % if len(jobProperties['messages']) > 0:
+        <div id="messages">
+            <p>${_('The following messages were returned by the search subsystem:')}</p>
+            <ul>
+            % for level in jobProperties['messages']:
+                % for msg in jobProperties['messages'][level]:
+                    <li>${level.upper() | h}: <span class="text">${msg | h}</span></li>
+                % endfor
+            % endfor
+            </ul>
+        </div>
+    %endif
+</%def>
+
+<%def name="css()">
+    <% parent.css() %>
+    <%lib:stylesheet_tags files="${['/static/css/inspector.css']}" />
+</%def>
+
+
+<%def name="header()">
+    <h1>${_('Search job inspector')}</h1>
+</%def>
+
+<div id="summary">
+
+    <div id="explanation" class="${explanationClass}">
+        % if jobProperties['isZombie']:
+            <p>${_('This search has encountered a fatal error and has been marked as zombied.')}</p>
+
+        % elif jobProperties['isFailed']:
+            <p>${_('This search did not successfully execute.  Any results returned from this job are not consistent and should not be used.')}</p>
+            <pre class="splFont-mono">${jobProperties['search'] | h}</pre>
+
+        % elif jobProperties['isPaused']:
+            <p>${_('This search is currently paused and must be unpaused before continuing.')}</p>
+
+        % elif not jobProperties['isDone']:
+            <p>${_('This search is still running and is approximately %s complete.') % i18n.format_percent(jobProperties['doneProgress']) | h}</p>
+
+        % elif jobProperties['isDone']:
+            % if jobProperties['resultCount'] == 0:
+                % if jobProperties['eventCount'] == 0:
+                    <p>
+                        ${_('This search has completed, but did not match any events.  The terms specified in the highlighted portion of the search:')}
+                    </p>
+                    <pre class="searchString splFont-mono"><span class="highlighted">${jobProperties['eventSearch'] | h}</span> <span class="muted">${'| ' + jobProperties['reportSearch'] if jobProperties['reportSearch'] else '' | h}</pre>
+                    <p>
+                        ${_('over the time range:')}
+                    </p>
+                    <pre class="splFont-mono">${earliestTime | h} &#8211; ${latestTime | h}</pre>
+                    <p>
+                        ${_('did not return any data.  Possible solutions are to:')}
+                    </p>
+                    <ul>
+                        <li>${_('relax the primary search criteria')}</li>
+                        <li>${_('widen the time range of the search')}</li>
+                        <li>${_('check that the default search indexes for your account include the desired indexes')}</li>
+                    </ul>
+                        
+        
+                % elif len(jobProperties['reportSearch']) > 0:
+                    <p>
+                        <% 
+                            s = _('This search has completed and found <strong>%(eventCount)s</strong> matching %(entityName)s. \
+                                However, the transforming commands in the highlighted portion of the following search:') % {
+                                    'eventCount': i18n.format_number(jobProperties['eventCount']),
+                                    'entityName': i18n.ungettext('event', 'events', jobProperties['eventCount'])
+                                }
+                        %>
+                        ${s}
+                    </p>
+                    <pre class="searchString splFont-mono"><span class="muted">${jobProperties['eventSearch'] or '' | h} |</span> <span class="highlighted">${jobProperties['reportSearch'] | h}</span></pre>
+                    <p>
+                        ${_('over the time range:')}
+                    </p>
+                    <pre class="splFont-mono">${earliestTime | h} &#8211; ${latestTime | h}</pre>
+                    <p>
+                        ${_('generated no results.  Possible solutions are to:')}
+                    </p>
+                    <ul>
+                        <li>${_('check the syntax of the commands')}</li>
+                        <li>${_('verify that the fields expected by the report commands are present in the events')}</li>
+                    </ul>
+            
+                % else:
+                    <p>
+                        ${_('This search has completed, but did not return any results.')}
+                    </p>
+            
+                % endif
+                
+                % if savedSearchObject:
+                    <p>
+                        ${_('This search is an instance of the saved search: <strong>%s</strong>.') % jobProperties['label']}
+                    </p>
+                % endif
+
+                ${renderJobMessages()}
+                
+                <p>
+                    <em>${_('Learn more about troubleshooting empty search results at <a href="%s" target="_blank" class="spl-icon-external-link-xsm">Splunk Documentation</a>.') %  generateSelfHelpLink('inspector.noresults')}</em>
+                </p>
+    
+            % else:
+                <p>
+                    <%
+                        s = _('This search has completed and has returned <strong>%(resultCount)s</strong> %(resultEntity)s by \
+                            scanning <strong>%(scanCount)s</strong> %(eventEntity)s in <strong>%(runDuration)s</strong> seconds.') % {
+                                'resultCount': i18n.format_number(jobProperties['resultCount']),
+                                'resultEntity': i18n.ungettext('result', 'results', jobProperties['resultCount']),
+                                'scanCount': i18n.format_number(jobProperties['scanCount']),
+                                'eventEntity': i18n.ungettext('event', 'events', jobProperties['eventCount']),
+                                'runDuration': i18n.format_number(jobProperties['runDuration'])
+                            }
+                    %>
+                    ${s}
+                </p>
+                % if savedSearchObject:
+                    <p>${_('It is an instance of the saved search: <strong>%s</strong>.') % jobProperties['label']}</p>
+                % endif
+
+                ${renderJobMessages()}
+
+            % endif
+    
+        % endif  
+        
+    </div>
+    
+
+
+</div>
+
+<p id="sid">(SID: ${jobProperties['sid'] | h})</p>
+
+<%def name="footer()">
+
+    <div id="perf">
+        <h2>${_('Execution costs')}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>${_('Duration (seconds)')}</th>
+                    <th></th>
+                    <th>Component</th>
+                    <th class="numeric">${_('Invocations')}</th>
+                    <th class="numeric">${_('Input count')}</th>
+                    <th class="numeric">${_('Output count')}</th>
+                </tr>
+            </thead>
+            <tbody>
+                % for row in perfData:
+                    <tr class="${'sub' if row['displayLevel'] else ''}">
+                        <td>
+                            <img src="${make_url('/static/img/skins/default/a.gif')}" width="${row['displayLevel'] * 15}px" /><img src="${make_url('/static/img/skins/default/a.gif')}" class="durationBar" width="${max(1, int(row['displayDuration'] * 150))}px" />
+                        </td>
+                        <td class="numeric">${i18n.format_number(row['duration']) | h}</td>
+                        <td><img src="${make_url('/static/img/skins/default/a.gif')}" style="height:1px;width:${row['displayLevel'] * 15}px" />${row['component'] | h}</td>
+                        <td class="numeric">${i18n.format_number(row['invocationCount']) if row['invocationCount'] else '-'  | h}</td>
+                        <td class="numeric">${i18n.format_number(row['inputCount']) if row['inputCount'] else '-' | h}</td>
+                        <td class="numeric">${i18n.format_number(row['outputCount']) if row['outputCount'] else '-' | h}</td>
+                    </tr>
+                % endfor
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="details">
+        % if savedSearchObject:
+            <h2>${_('Saved search properties')}</h2>
+            <table>
+            % for key in savedSearchObject:
+               <tr><td class="k">${key | h}</td><td class="v splFont-mono">${savedSearchObject[key] | h}</td></tr>
+            % endfor
+            </table>
+        
+        % endif
+
+        <h2>${_('Search job properties')}</h2>
+        <table>
+        % for key in sorted(jobProperties):
+            <tr><td class="k">${key | h}</td><td class="v splFont-mono">${jobProperties[key] | h}</td></tr>
+        % endfor
+            <tr>
+                <td class="k">Additional info</td>
+                <td class="v splFont-mono">
+                    <a href="${make_url(['api','search','jobs',jobProperties['sid'],'timeline'], _qs=dict(outputMode='xml')) | h}">${_('timeline')}</a>
+                    <a href="${make_url(['api','search','jobs',jobProperties['sid'],'summary'], _qs=dict(outputMode='xml')) | h}">${_('field summary')}</a>
+                    <a href="${make_url(['api','search','jobs',jobProperties['sid'],'search.log'], _qs=dict(outputMode='raw')) | h}">${_('search.log')}</a>
+                    <br />
+                    <span class="comment">${_('(links not always available)')}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</%def>

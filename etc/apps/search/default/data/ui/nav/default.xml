@@ -1,0 +1,52 @@
+<nav>
+  <view name="dashboard_live" default='true' />
+  <view name="flashtimeline" />
+  <collection label="Status">
+    <collection label="Search activity">
+      <view name="search_status" />
+      <view name="search_detail_activity" />
+      <view name="search_user_activity" />
+      <view name="search_ui_activity" />
+    </collection>
+    <collection label="Index activity">
+      <view name="index_status" />
+      <view name="index_status_health" />
+      <view name="indexing_volume" />
+    </collection>
+    <collection label="Server activity">
+      <view name="splunkd_status" />
+      <view name="splunkweb_status" />
+    </collection>
+    <view name="inputs_status" />
+    <collection label="Scheduler activity">
+      <view name="scheduler_status" />
+      <view name="scheduler_user_app" />
+      <view name="scheduler_savedsearch" />
+      <view name="scheduler_status_errors" />
+      <view name="pdf_activity" />
+    </collection>
+  </collection>
+  <collection label="Dashboards &amp; Views">
+    <view name="charting" />
+    <divider />
+    <view source="unclassified" />
+    <divider />
+    <a href="/manager/search/data/ui/views">Manage Views</a>
+    <divider />
+    <a href="javascript:Splunk.Globals.Viewmaster.openDashCreateForm();">Create dashboard...</a>
+  </collection>
+  <collection label="Searches &amp; Reports">
+    <collection label="Errors">
+      <saved source="unclassified" match="error" />
+    </collection>
+    <collection label="Admin">
+      <saved source="unclassified" match="Admin" />
+    </collection>
+    <collection label="Inputs">
+      <saved source="unclassified" match="Inputs" />
+    </collection>
+    <saved source="unclassified" />
+    <divider />
+    <a href="/manager/search/saved/searches">Manage Searches &amp; Reports</a>
+  </collection>
+</nav>
