@@ -1,0 +1,3 @@
+04-24-2012 16:30:15.170 +0700 INFO  LicenseUsage - type=Usage s="/var/log/messages" st="syslog" h="linux-ahv8" o="" i="AE7C28AE-DB29-41C8-9480-4EBC75C88412" pool="auto_generated_pool_download-trial" b=15254403 poolsz=524288000
+04-24-2012 16:31:15.872 +0700 INFO  LicenseUsage - type=Usage s="/var/log/messages" st="syslog" h="linux-ahv8" o="" i="AE7C28AE-DB29-41C8-9480-4EBC75C88412" pool="auto_generated_pool_download-trial" b=9754734 poolsz=524288000
+04-24-2012 16:32:16.577 +0700 INFO  LicenseUsage - type=Usage s="/var/log/messages" st="syslog" h="linux-ahv8" o="" i="AE7C28AE-DB29-41C8-9480-4EBC75C88412" pool="auto_generated_pool_download-trial" b=1627973 poolsz=524288000

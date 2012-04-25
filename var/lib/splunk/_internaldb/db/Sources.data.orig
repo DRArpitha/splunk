@@ -1,0 +1,8 @@
+0	10	 49091	1330646502	1335244492	1335262103	
+1	source::/opt/splunk/etc/splunk.version	  1	1330646502	1330646502	1335243548	
+2	source::/opt/splunk/var/log/splunk/first_install.log	  4	1335243138	1335243138	1335243548	
+3	source::/opt/splunk/var/log/splunk/metrics.log	 20342	1335196558	1335244471	1335261668	
+4	source::/opt/splunk/var/log/splunk/splunkd_access.log	  2794	1335243139	1335260262	1335260265	source::/opt/splunk/var/log/splunk/splunkd.log	 19760	1335196559	1335244492	1335262103	260284	
+6	source::/opt/splunk/var/log/splunk/splunkd.log	141991	1335243098	1335260282	1335260287	source::/opt/splunk/var/log/splunk/splunkd_access.log	  4481	1335196657	1335244457	1335261177	source::/opt/splunk/var/log/splunk/web_access.log	  2126	1335243567	1335260262	1335260263	19	source::/opt/splunk/var/log/splunk/scheduler.log	239	1335245420	1335259898	1335259898	
+10	source::/opt/splunk/var/log/splunk/searches.log	 14	1335245515	1335259774	1335259837	
+11	source::/opt/splunk/var/log/splunk/license_usage.log	                   3	1335259815	1335259936	1335259937	

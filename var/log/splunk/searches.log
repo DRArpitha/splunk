@@ -9,3 +9,6 @@
 2012-04-24 12:47:22,931 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
 2012-04-24 12:47:22,953 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
 2012-04-24 12:47:22,972 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-24 16:29:34,594 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-24 16:29:34,695 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-04-24 16:29:34,704 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")

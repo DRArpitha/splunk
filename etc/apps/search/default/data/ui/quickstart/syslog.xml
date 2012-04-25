@@ -5,8 +5,8 @@
     <optiongroup>
 
         <option>
-            <title>Consume any syslog files or directories on this Splunk server</title>
-            <summary>Configure Splunk to index the contents of /var/log, or other directory.</summary>
+            <title>Consume any syslog files or directories on this Bigjava server</title>
+            <summary>Configure Bigjava to index the contents of /var/log, or other directory.</summary>
             <doctarget>[learnmore.recipes.syslog]</doctarget>
             <action type="add_monitor">
                 <label>Next</label>
@@ -15,7 +15,7 @@
 
         <option>
             <title>Consume syslog over UDP</title>
-            <summary>Configure Splunk to listen for syslog data on any UDP port (514, for example).</summary>
+            <summary>Configure Bigjava to listen for syslog data on any UDP port (514, for example).</summary>
             <doctarget>[learnmore.recipes.udp.syslog]</doctarget>
             <action type="add_network_udp">
                 <label>Next</label>
@@ -24,7 +24,7 @@
         
         <option>
             <title>Consume syslog over TCP</title>
-            <summary>Configure Splunk to listen for syslog data on any TCP port.</summary>
+            <summary>Configure Bigjava to listen for syslog data on any TCP port.</summary>
             <doctarget>[learnmore.recipes.tcp.syslog]</doctarget>
             <action type="add_network_tcp">
                 <label>Next</label>
@@ -33,7 +33,7 @@
         
         <option>
             <title>Forward syslog from another server</title>
-            <summary>Use Splunk's universal forwarder to send data from any machine to your Splunk server</summary>
+            <summary>Use Bigjava's universal forwarder to send data from any machine to your Bigjava server</summary>
             <doctarget>[learnmore.recipes.forwarder]</doctarget>
             <action type="href">
                 <label>Download the universal forwarder</label>
@@ -42,7 +42,7 @@
         </option>
         
         <option platforms="unix">
-            <title>Get the Splunk for *nix app</title>
+            <title>Get the Bigjava for *nix app</title>
             <summary>This app collects syslog data stored in /var/log, and provides predefined dashboards and searches built on this data.</summary>
             <doctarget>[learnmore.recipes.app.unix]</doctarget>
             <action type="install_app">

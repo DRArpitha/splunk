@@ -1,0 +1,10 @@
+key,value,count,ncount,complete,min,max,sum,sumsq
+,,55,,,,,,
+host,,55,,1,,,,
+,"linux-ahv8",55,,1,,,,
+linecount,,55,55,1,1,1,55.000000,55.000000
+,1,55,,1,,,,
+source,,55,,1,,,,
+,"/var/log/messages",55,,1,,,,
+sourcetype,,55,,1,,,,
+,syslog,55,,1,,,,
