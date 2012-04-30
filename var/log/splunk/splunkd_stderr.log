@@ -5,3 +5,15 @@
 2012-04-24 13:11:06.254 +0700 splunkd started (build 119532)
 2012-04-24 16:38:03.917 +0700 Interrupt signal received
 2012-04-25 11:10:04.147 +0700 splunkd started (build 119532)
+2012-04-25 11:37:31.515 +0700 Interrupt signal received
+2012-04-26 16:16:29.685 +0700 splunkd started (build 119532)
+2012-04-26 17:43:20.584 +0700 Interrupt signal received
+2012-04-27 14:56:11.837 +0700 splunkd started (build 119532)
+Dying on signal #15 (si_code=0), sent by PID 10814 (UID 0)
+2012-04-27 17:24:55.423 +0700 splunkd started (build 119532)
+Dying on signal #15 (si_code=0), sent by PID 15265 (UID 0)
+2012-04-28 00:36:52.308 +0700 splunkd started (build 119532)
+Dying on signal #15 (si_code=0), sent by PID 4065 (UID 0)
+2012-04-30 10:02:28.920 +0700 splunkd started (build 119532)
+2012-04-30 10:23:58.546 +0700 Interrupt signal received
+2012-04-30 10:24:11.068 +0700 splunkd started (build 119532)

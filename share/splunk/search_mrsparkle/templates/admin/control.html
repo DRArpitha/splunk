@@ -22,25 +22,25 @@ msg_obj = MsgPoolMgr.get_poolmgr_instance()[UI_MSG_POOL].pop(msgid)
     <%helpers:message content="${msg_obj.text}" level="${msg_obj.severity}"/>
 % endif
 <div id="restartstatus">
-    <h1>${_('Bigjava is restarting.  Please wait. This may take a few minutes.')}</h1>
+    <h1>${_('Genorks is restarting.  Please wait. This may take a few minutes.')}</h1>
     <div id="restart_loader"></div>
 </div>
 <div id="restartsslwarn">
-    <h1>${_('Bigjava is restarting.  Please wait. This may take a few minutes.')}</h1>
+    <h1>${_('Genorks is restarting.  Please wait. This may take a few minutes.')}</h1>
     <p>
-    ${_('Check the web_service.log file to determine when Bigjava has restarted and then <a href="">click here to continue</a>.')}
+    ${_('Check the web_service.log file to determine when Genorks has restarted and then <a href="">click here to continue</a>.')}
     </p>
 </div>
 
 <div class="splOverlay"></div>
 <div class="dataInputsWrapper">
 	<div class="first fieldsetWrapper splClearfix">
-		<h1>${_('Restart Bigjava')}</h1>
+		<h1>${_('Restart Genorks')}</h1>
 		
 		% if displayRestartButton:
             % if canRestartSplunkweb:
                 <div class="dataInputsDesc">
-                    ${_('Click the button below to restart Bigjava.')}
+                    ${_('Click the button below to restart Genorks.')}
                 </div>
                 <%helpers:displayrestartbutton displayRestartButton="${displayRestartButton}" />
             % else:
@@ -49,7 +49,7 @@ msg_obj = MsgPoolMgr.get_poolmgr_instance()[UI_MSG_POOL].pop(msgid)
                 </div>
             % endif
 	    % else:
-	        <div class="dataInputsDesc">${_('You do not have permission to restart bigjava.')}</div>
+	        <div class="dataInputsDesc">${_('You do not have permission to restart Genorks.')}</div>
 	    % endif
 	    
 	</div>

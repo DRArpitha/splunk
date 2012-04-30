@@ -3,9 +3,9 @@
      <div id="gs-intro" class="splClearfix">
           
           <div class="gs-Wrapper">
-               <h1>Getting started with Bigjava</h1>
+               <h1>Getting started with Genorks</h1>
                <p>
-               Bigjava lets you index, search, alert and report on any IT data, in real time, for application management, IT operations, security and compliance, and more. Bigjava consumes any data: log files, system metrics, applications, configurations...feed any data you want into Bigjava.
+               Genorks lets you index, search, alert and report on any IT data, in real time, for application management, IT operations, security and compliance, and more. Bigjava consumes any data: log files, system metrics, applications, configurations...feed any data you want into Bigjava.
                </p>
                <p>
                Click on a topic below to get started.
@@ -27,15 +27,15 @@
           
           <div class="gsDetails" id="gettingTab" style="display: block;">
                 <h2>Getting around</h2>
-                <p>Bigjava's UI is packed with features. Read through the following topics to get a better sense of how to navigate and use your Bigjava installation.</p>
+                <p>Genorks's UI is packed with features. Read through the following topics to get a better sense of how to navigate and use your Genorks installation.</p>
                 <ul class="gs-subnav">
                     <li><a href="#" class="gsExpandLink gsExpandLinkHighlighted" divToShow="#whereapps">Where am I right now?</a></li>
-                    <li><a href="#" class="gsExpandLink" divToShow="#usemanager">Manage your Bigjava install</a></li>
+                    <li><a href="#" class="gsExpandLink" divToShow="#usemanager">Manage your Genorks install</a></li>
                 </ul>
                
                 <div id="whereapps" class="gsExpandDetails" style="display: block;">
                     <h2>Where am I right now?</h2>
-                    <p>Bigjava is made up of apps. Apps create different contexts for your data out of sets of views, dashboards, and configurations. Right now, you're in the Getting Started app. You also have the search app, which is where you can create searches, and the default app Splunk Home, which lets you launch other apps. You can also add new apps from Splunkbase, or create your own.</p>
+                    <p>Genorks is made up of apps. Apps create different contexts for your data out of sets of views, dashboards, and configurations. Right now, you're in the Getting Started app. You also have the search app, which is where you can create searches, and the default app Splunk Home, which lets you launch other apps. You can also add new apps from Splunkbase, or create your own.</p>
                     <p><b>Navigate between apps</b></p>
                     <p>To navigate to another app, use the <b>App</b> drop-down in the upper right hand corner:</p>
                     <img class="gs-screenshot splShadow" src="${make_url('/static/app/gettingstarted/appmenu.png')}" alt="screenshow_uploadLocal" />
@@ -45,8 +45,8 @@
                 </div>
                
                 <div id="usemanager" class="gsExpandDetails">
-                    <h2>Manage your Bigjava install</h2>
-                    <p>Most of Bigjava's management options are available through Bigjava Web (Bigjava's user interface).  Note that some configurations are only available to Splunk users with admin privileges.  If you can't access some of the configurations discussed in this app, you may not have permission to access them.</p>
+                    <h2>Manage your Genorks install</h2>
+                    <p>Most of Genorks's management options are available through Genorks Web (Genorks's user interface).  Note that some configurations are only available to Splunk users with admin privileges.  If you can't access some of the configurations discussed in this app, you may not have permission to access them.</p>
                     <p><b>Use Splunk Manager</b></p>
                     <p>Manage your configurations and apps with Splunk Manager.  Almost every configuration change can be set through Splunk Manager.  Get to Manager by clicking on the <b>Manager</b> link in the upper right hand corner:</p>
                     <img class="gs-screenshot splShadow" src="${make_url('/static/app/gettingstarted/managernav.png')}" alt="screenshow_uploadLocal" />
@@ -62,7 +62,7 @@
  
           <div class="gsDetails" id="indexTab">
                <h2>Index data</h2>
-               <p>If a machine generates it, Splunk can index it. Yep, that's right -- Splunk can index any data, structured or unstructured, without custom parsers, connectors, or adapters. Feed Splunk anything from syslog from Unix servers and network devices, to Event Logs on Windows, to custom application logs and even configurations and system metrics -- you'll get visibility into your entire operation.<p>
+               <p>If a machine generates it, Genorks can index it. Yep, that's right -- Genorks can index any data, structured or unstructured, without custom parsers, connectors, or adapters. Feed Genorks anything from syslog from Unix servers and network devices, to Event Logs on Windows, to custom application logs and even configurations and system metrics -- you'll get visibility into your entire operation.<p>
                <p>You can use Splunk's getting data in workflows to find out all the different types of data you can add to Splunk, and your different options for getting this type of data in. There are lots of ways to get your data into Splunk, depending on where it's located.</p>
                <ul class="gs-subnav">
                     <li><a href="#" class="gsExpandLink gsExpandLinkHighlighted" divToShow="#localdata">On this Splunk server</a></li>
@@ -73,33 +73,33 @@
                </ul>
                
                <div id="localdata" class="gsExpandDetails" style="display: block;">
-                    <h2>On this Splunk server</h2>
-                    <p>Splunk can index any local data, either continuously or just once. Configure Splunk to index a file or directory through Splunk Manager. You can also preview your data before you index it and create custom rules for how Splunk should handle your data.</p>
+                    <h2>On this Genorks server</h2>
+                    <p>Splunk can index any local data, either continuously or just once. Configure Genorks to index a file or directory through Genorks Manager. You can also preview your data before you index it and create custom rules for how Genorks should handle your data.</p>
                     <ol>
                          <li>Click Manager &raquo; Data inputs &raquo; Files & Directories.</li>
                          <li>Click New.</li>
                           <div class="controlButtonWrapper">
                              <a class="splButton-primary" href="/manager/search/data/inputs/monitor/_new?action=edit" target="_blank"><span>Take me there...</span></a>
                           </div>
-                         <li>This will take you to Data Preview and let you create a sourcetype -- rules for how Splunk should parse and extract index time data from your files and directories.</li>
+                         <li>This will take you to Data Preview and let you create a sourcetype -- rules for how Genorks should parse and extract index time data from your files and directories.</li>
                          <li>Once you've finished previewing your data, you can add a single file or a directory and Splunk will index the data immediately.</li>
                          <li>Choose ''Monitor a file or directory'' to continously index data.</li>
-                         <li>Choose ''Index a file on the Splunk server'' to index a file once.</li>
+                         <li>Choose ''Index a file on the Genorks server'' to index a file once.</li>
                          <li>Choose ''Upload a local file'' to upload a file on your client machine.</li>
-                         <li>Set more options by following the rest of the directions on the page. For example, set a host name, sourcetype or index.  Or you can leave most of these options to the defaults and Splunk will assign them for you.</li>
+                         <li>Set more options by following the rest of the directions on the page. For example, set a host name, sourcetype or index.  Or you can leave most of these options to the defaults and Genorks will assign them for you.</li>
                     </ol>
                </div>
                
                <div id="windowsdata" class="gsExpandDetails">
                     <h2>On a remote Windows machine</h2>
-                    <p>Use Splunk to gather Windows data from other machines in your network.  You have a few options, depending on how your network is set up:</p>
+                    <p>Use Genorks to gather Windows data from other machines in your network.  You have a few options, depending on how your network is set up:</p>
                     <ol>
-                         <li>If you're running Splunk on Windows, you can use WMI to collect Windows event logs, as well as Event Log collection, registry monitoring and Active Directory monitoring.  All your options are listed in Manager &raquo; Data inputs.</li>
+                         <li>If you're running Genorks on Windows, you can use WMI to collect Windows event logs, as well as Event Log collection, registry monitoring and Active Directory monitoring.  All your options are listed in Manager &raquo; Data inputs.</li>
                          <div class="controlButtonWrapper">
                              <a class="splButton-primary" href="/manager/launcher/datainputstats" target="_blank"><span>Take me there...</span></a>
                           </div>
-                         <li>If you're running Splunk on a non-Windows machine, you can use an agent to send the data from your Windows machine to Splunk.  Install a universal forwarder on the remote machine.  For more information about forwarders, check out the <a href="${generateSelfHelpLink('gettingstarted.forwarders')}" target="_blank" title="Splunk help">Universal forwarder</a> topic in the documentation.</li>
-                         <li>Or, you can always index data from directories that are shared on your network.  Just navigate to Splunk Manager Data Inputs page and choose ''Monitor a file or directory''. Type in the full path to the file or directory. For example, on Windows you can enter: c:\apache\apache.error.log to monitor a local file, or \\hostname\apache\apache.error.log to monitor a file on a remote Windows machine.</li>
+                         <li>If you're running Genorks on a non-Windows machine, you can use an agent to send the data from your Windows machine to Genorks.  Install a universal forwarder on the remote machine.  For more information about forwarders, check out the <a href="${generateSelfHelpLink('gettingstarted.forwarders')}" target="_blank" title="Splunk help">Universal forwarder</a> topic in the documentation.</li>
+                         <li>Or, you can always index data from directories that are shared on your network.  Just navigate to Genorks Manager Data Inputs page and choose ''Monitor a file or directory''. Type in the full path to the file or directory. For example, on Windows you can enter: c:\apache\apache.error.log to monitor a local file, or \\hostname\apache\apache.error.log to monitor a file on a remote Windows machine.</li>
                          <div class="controlButtonWrapper">
                              <a class="splButton-primary" href="/manager/search/data/inputs/monitor/_new?action=edit" target="_blank"><span>Take me there...</span></a>
                          </div>
@@ -108,13 +108,13 @@
                
                <div id="unixdata" class="gsExpandDetails">
                     <h2>On a remote non-Windows machine</h2>
-                    <p>Use Splunk to gather data from other non-Windows machines in your network.  You have a few options, depending on how your network is set up:</p>
+                    <p>Use Genorks to gather data from other non-Windows machines in your network.  You have a few options, depending on how your network is set up:</p>
                     <ol>
                          <li>You can always index data from directories that are shared on your network.  Just navigate to Splunk Manager Data Inputs page and choose ''Monitor a file or directory''. Type in the full path to the file or directory. On Unix, use the form /var/log to monitor a local file, or /mnt/www01/var/log to monitor a remote directory. </li>
                          <div class="controlButtonWrapper">
                              <a class="splButton-primary" href="/manager/search/data/inputs/monitor/_new?action=edit" target="_blank"><span>Take me there...</span></a>
                          </div>
-                         <li>You can also use Splunk's universal forwarder to send the data from any other machine to Splunk.  Install the forwarder as an agent on the remote machine, and set it up to send data to your Splunk server. For more information about forwarders, check out the <a href="${generateSelfHelpLink('gettingstarted.forwarders')}" target="_blank" title="Splunk help">Universal forwarder</a> topic in the documentation.</li>
+                         <li>You can also use Genorks's universal forwarder to send the data from any other machine to Genorks.  Install the forwarder as an agent on the remote machine, and set it up to send data to your Genorks server. For more information about forwarders, check out the <a href="${generateSelfHelpLink('gettingstarted.forwarders')}" target="_blank" title="Splunk help">Universal forwarder</a> topic in the documentation.</li>
                     </ol>
                </div>
         
@@ -122,7 +122,7 @@
                     <h2>On your network</h2>
                     <p>Use this method to capture data sent over a TCP or UDP port. For example, set up Splunk to listen on UDP 514 to capture syslog data.</p>
                     <ol>
-                         <li>Navigate to the Data Inputs page within Splunk Manager.</li>
+                         <li>Navigate to the Data Inputs page within Genorks Manager.</li>
                          <div class="controlButtonWrapper">
                          <a class="splButton-primary" href="/manager/search/datainputstats" target="_blank">
                              <span>Take me there...</span>
@@ -139,7 +139,7 @@
                     <h2>More input methods</h2>
                     <p>There are other ways to get your data into Splunk.  Here are a few popular options:</p>
                     <p><b>Collect data from several machines in a distributed environment</b></p>
-                    <p>Wonder how you'll get data to Splunk from a distributed environment, such as a farm of app or web servers logging locally? Splunk's universal forwarder is a lightweight agent that can be deployed to dozens or even hundreds or thousands of servers to capture data in real time and send to to a central Splunk indexer. Use <a href="${generateSelfHelpLink('gettingstarted.forwarders')}" target="_blank" title="Splunk help">Universal forwarders</a> to send data to Splunk from other systems. Set up Forwarding from Splunk Manager.</p>
+                    <p>Wonder how you'll get data to Genorks from a distributed environment, such as a farm of app or web servers logging locally? Splunk's universal forwarder is a lightweight agent that can be deployed to dozens or even hundreds or thousands of servers to capture data in real time and send to to a central Splunk indexer. Use <a href="${generateSelfHelpLink('gettingstarted.forwarders')}" target="_blank" title="Splunk help">Universal forwarders</a> to send data to Splunk from other systems. Set up Forwarding from Genorks Manager.</p>
                     <p><b>Script your own inputs</b></p>
                     <p>Create a <a href="${generateSelfHelpLink('gettingstarted.scripted')}" target="_blank" title="Splunk help">scripted input</a> for your custom data source. Scripted input are useful for command-line tools such as vmstat, iostat, netstat, top, etc. Get data from APIs and other remote data interfaces and message queues and generate metrics and status data from exercising system and app status commands like vmstat, iostat, etc. Lots of apps on SplunkBase provide scripted inputs for specific applications. Set up scripted inputs from Splunk Manager.</p>         
                     <p><b>Monitor file system changes</b></p>

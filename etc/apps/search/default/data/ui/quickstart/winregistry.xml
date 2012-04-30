@@ -14,7 +14,7 @@
         
         <option>
             <title>Forward Windows Registry data from another machine</title>
-            <summary>Use Splunk's universal forwarder to forward data from any machine to this Splunk server.</summary>
+            <summary>Use Genorks's universal forwarder to forward data from any machine to this Genorks server.</summary>
             <doctarget>[learnmore.recipes.forwarder]</doctarget>
             <action type="href">
                 <label>Download the universal forwarder</label>

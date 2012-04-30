@@ -12,3 +12,13 @@ modtime = 1335243548.815242000
 owner = nobody
 version = 4.3.1
 modtime = 1335247880.400176000
+
+[props/cek-too_small]
+owner = admin
+version = 4.3.1
+modtime = 1335513481.521406000
+
+[props/kaskus-too_small]
+owner = admin
+version = 4.3.1
+modtime = 1335513815.639452000

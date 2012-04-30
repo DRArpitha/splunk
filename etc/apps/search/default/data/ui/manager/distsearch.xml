@@ -3,7 +3,7 @@
   <menu name="deployment_configurations">
     <label>Distributed search</label>
     <url>/manager/%(namespace)s/distsearch</url>
-    <description>Set up distributed search across multiple Bigjava instances.</description>
+    <description>Set up distributed search across multiple Genorks instances.</description>
     <order>90</order>
     <id>dist-search</id>
   </menu>

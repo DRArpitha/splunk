@@ -1,0 +1,460 @@
+04-30-2012 10:30:29.779 INFO  ApplicationManager - Initializing applications: /opt/splunk/etc/apps
+04-30-2012 10:30:29.779 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkForwarder
+04-30-2012 10:30:29.779 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/gettingstarted
+04-30-2012 10:30:29.779 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkDeploymentMonitor
+04-30-2012 10:30:29.779 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/legacy
+04-30-2012 10:30:29.779 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/launcher
+04-30-2012 10:30:29.779 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkLightForwarder
+04-30-2012 10:30:29.780 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/user-prefs
+04-30-2012 10:30:29.780 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/splunk_datapreview
+04-30-2012 10:30:29.780 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/learned
+04-30-2012 10:30:29.780 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/sample_app
+04-30-2012 10:30:29.780 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/search
+04-30-2012 10:30:29.788 INFO  ApplicationManager - Initialized 11 application(s): /opt/splunk/etc/apps
+04-30-2012 10:30:29.788 INFO  ApplicationManager - Found 4 application(s) that might have global exports
+04-30-2012 10:30:29.828 INFO  dispatchRunner - initing LicenseMgr in search process: nonPro=0
+04-30-2012 10:30:29.832 INFO  LicenseMgr - Initing LicenseMgr
+04-30-2012 10:30:29.840 INFO  ServerConfig - My GUID is "AE7C28AE-DB29-41C8-9480-4EBC75C88412".
+04-30-2012 10:30:29.840 INFO  ServerConfig - My server name is "linux-ahv8.site-bigjava".
+04-30-2012 10:30:29.840 INFO  ServerConfig - My hostname is "linux-ahv8.site".
+04-30-2012 10:30:29.853 INFO  SSLCommon - added zlib compression
+04-30-2012 10:30:29.854 INFO  ServerConfig - Setting HTTP server compression state=on
+04-30-2012 10:30:29.854 INFO  ServerConfig - Setting HTTP client compression state=0 (false)
+04-30-2012 10:30:29.854 INFO  ServerConfig - Default output queue for file-based input: parsingQueue.
+04-30-2012 10:30:29.854 INFO  LMConfig - serverName=linux-ahv8.site-bigjava guid=AE7C28AE-DB29-41C8-9480-4EBC75C88412 
+04-30-2012 10:30:29.854 INFO  LMConfig - connection_timeout=30
+04-30-2012 10:30:29.854 INFO  LMConfig - send_timeout=30
+04-30-2012 10:30:29.854 INFO  LMConfig - receive_timeout=30
+04-30-2012 10:30:29.854 INFO  LMConfig - squash_threshold=1000
+04-30-2012 10:30:29.854 INFO  LicenseMgr - Initing LicenseMgr is_splunkd=false
+04-30-2012 10:30:29.854 INFO  LMStackMgr - closing stack mgr
+04-30-2012 10:30:29.854 INFO  LMSlaveInfo - all slaves cleared
+04-30-2012 10:30:29.865 INFO  LMStackMgr - created stack='download-trial'
+04-30-2012 10:30:29.865 INFO  LMStackMgr - have to auto-set active stack group='Trial' reason='invalid/missing group id' gidStr='' oldGid=Invalid
+04-30-2012 10:30:29.865 INFO  LMStackMgr - added pool auto_generated_pool_download-trial to stack download-trial
+04-30-2012 10:30:29.865 INFO  LMStackMgr - added pool auto_generated_pool_forwarder to stack forwarder
+04-30-2012 10:30:29.865 INFO  LMStackMgr - added pool auto_generated_pool_free to stack free
+04-30-2012 10:30:29.866 INFO  LMStackMgr - init completed [AE7C28AE-DB29-41C8-9480-4EBC75C88412,Trial,0]
+04-30-2012 10:30:29.867 INFO  LicenseMgr - StackMgr init complete...
+04-30-2012 10:30:29.867 INFO  LMTracker - this is not splunkd, will perform partial init
+04-30-2012 10:30:29.867 INFO  LMTracker - setting feature=Auth state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=FwdData state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=RcvData state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=DistSearch state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=RcvSearch state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=ScheduledSearch state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=Alerting state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=DeployClient state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=DeployServer state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=SplunkWeb state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=SyslogOutputProcessor state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=SigningProcessor state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LMTracker - setting feature=LocalSearch state=ENABLED (fs=1)
+04-30-2012 10:30:29.868 INFO  LicenseMgr - Tracker init complete...
+04-30-2012 10:30:29.878 INFO  AdminManager - added factory for admin handler: 'licenses'
+04-30-2012 10:30:29.883 INFO  AdminManager - added factory for admin handler: 'pools'
+04-30-2012 10:30:29.883 INFO  AdminManager - added factory for admin handler: 'stacks'
+04-30-2012 10:30:29.883 INFO  AdminManager - added factory for admin handler: 'groups'
+04-30-2012 10:30:29.883 INFO  AdminManager - added factory for admin handler: 'slaves'
+04-30-2012 10:30:29.883 INFO  AdminManager - added factory for admin handler: 'localslave'
+04-30-2012 10:30:29.883 INFO  AdminManager - added factory for admin handler: 'licensermessages'
+04-30-2012 10:30:29.886 INFO  loader - Splunkd starting (build 119532).
+04-30-2012 10:30:29.887 INFO  loader - System info: Linux, linux-ahv8.site, 3.1.10-1.9-default, #1 SMP Thu Apr 5 18:48:38 UTC 2012 (4a97ec8), i686.
+04-30-2012 10:30:29.892 INFO  loader - Detected 1 (virtual) CPUs and 2929MB RAM
+04-30-2012 10:30:29.892 INFO  loader - Arguments are: "splunkd" "search" "--id=scheduler__nobody__SplunkDeploymentMonitor_RE0gaWRsZSBpbmRleGVycw_at_1335756600_42a36b65506d3512" "--maxbuckets=0" "--ttl=3600" "--maxout=500000" "--maxtime=0" "--lookups=1" "--reduce_freq=10" "--user=splunk-system-user" "--pro" "--roles=admin:power:user"
+04-30-2012 10:30:29.893 INFO  loader - Getting configuration data from: /opt/splunk/etc/myinstall/splunkd.xml
+04-30-2012 10:30:29.893 INFO  loader - SPLUNK_MODULE_PATH environment variable not found - defaulting to /opt/splunk/etc/modules
+04-30-2012 10:30:29.895 INFO  loader - loading modules from /opt/splunk/etc/modules
+04-30-2012 10:30:29.896 INFO  splunklogger - Module /opt/splunk/etc/modules/parsing loaded
+04-30-2012 10:30:29.896 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment/classes/deployable loaded
+04-30-2012 10:30:29.896 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment/classes/deploymentserver loaded
+04-30-2012 10:30:29.896 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment/classes loaded
+04-30-2012 10:30:29.896 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment loaded
+04-30-2012 10:30:29.897 INFO  splunklogger - Module /opt/splunk/etc/modules/input/FIFO loaded
+04-30-2012 10:30:29.897 INFO  splunklogger - Module /opt/splunk/etc/modules/input/UDP loaded
+04-30-2012 10:30:29.897 INFO  splunklogger - Module /opt/splunk/etc/modules/input/exec loaded
+04-30-2012 10:30:29.897 INFO  splunklogger - Module /opt/splunk/etc/modules/input/tailfile loaded
+04-30-2012 10:30:29.898 INFO  splunklogger - Module /opt/splunk/etc/modules/input/TCP loaded
+04-30-2012 10:30:29.898 INFO  splunklogger - Module /opt/splunk/etc/modules/input/fschangemanager loaded
+04-30-2012 10:30:29.898 INFO  splunklogger - Module /opt/splunk/etc/modules/input/stashparsing loaded
+04-30-2012 10:30:29.898 INFO  splunklogger - Module /opt/splunk/etc/modules/input loaded
+04-30-2012 10:30:29.899 INFO  splunklogger - Module /opt/splunk/etc/modules/internal/scheduler loaded
+04-30-2012 10:30:29.899 INFO  splunklogger - Module /opt/splunk/etc/modules/internal loaded
+04-30-2012 10:30:29.899 INFO  loader - Writing out composite configuration file: /opt/splunk/var/run/splunk/composite.xml
+04-30-2012 10:30:29.942 INFO  UserManagerPro - Load authentication: forcing roles="admin, power, user"
+04-30-2012 10:30:29.961 INFO  IndexProcessor - setting process pool max groups=20
+04-30-2012 10:30:29.966 INFO  IndexProcessor - setting process pool max groups low priority=1
+04-30-2012 10:30:29.967 INFO  IndexProcessor - initializing with fullInit=0, reloading=0
+04-30-2012 10:30:29.967 INFO  HotDBManager - index=_audit Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.967 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.970 INFO  databasePartitionPolicy - index _audit initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.970 INFO  HotDBManager - index=_blocksignature Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=1048576000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.970 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.970 INFO  databasePartitionPolicy - index _blocksignature initialized with [300,60,0,,,,1048576000,20,true,0,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.970 INFO  HotDBManager - index=_internal Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=104857600 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.970 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.970 INFO  databasePartitionPolicy - index _internal initialized with [300,60,2419200,,,,104857600,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.970 INFO  HotDBManager - index=_thefishbucket Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=10485760 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.970 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.970 INFO  databasePartitionPolicy - index _thefishbucket initialized with [300,60,2419200,,,,10485760,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.970 INFO  HotDBManager - index=history Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=10485760 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.970 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.970 INFO  databasePartitionPolicy - index history initialized with [300,60,604800,,,,10485760,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.970 INFO  HotDBManager - index=main Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=10 maxDataSizeBytes=1073741824 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.971 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.971 INFO  databasePartitionPolicy - index main initialized with [300,60,188697600,,,,1073741824,20,true,500000,20,5,true,6,0,_blocksignature,7776000,1000000,86400,10,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.971 INFO  HotDBManager - index=summary Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.971 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.971 INFO  databasePartitionPolicy - index summary initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.971 INFO  HotDBManager - index=summary_forwarders Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.971 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.971 INFO  databasePartitionPolicy - index summary_forwarders initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.971 INFO  HotDBManager - index=summary_hosts Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.971 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.971 INFO  databasePartitionPolicy - index summary_hosts initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.971 INFO  HotDBManager - index=summary_indexers Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.971 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.971 INFO  databasePartitionPolicy - index summary_indexers initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.971 INFO  HotDBManager - index=summary_pools Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.971 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.971 INFO  databasePartitionPolicy - index summary_pools initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.972 INFO  HotDBManager - index=summary_sources Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.972 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.972 INFO  databasePartitionPolicy - index summary_sources initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.972 INFO  HotDBManager - index=summary_sourcetypes Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+04-30-2012 10:30:29.972 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+04-30-2012 10:30:29.972 INFO  databasePartitionPolicy - index summary_sourcetypes initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+04-30-2012 10:30:29.972 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:29.972 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:29.974 INFO  dispatchRunner - search context: user="splunk-system-user", app="SplunkDeploymentMonitor", bs-pathname="/opt/splunk/etc"
+04-30-2012 10:30:29.974 INFO  SearchParser - PARSING: search `all_indexers` | search status = "idle" | fields splunk_server KB status | rename splunk_server as "Splunk Server" KB as "Total KB" status as "Current Status"
+04-30-2012 10:30:29.981 INFO  SearchParser - AFTER EXPANDING MACROS: search index="summary_indexers" | eval _time = _time + 1800 | stats max(_time) as _time sum(kb) as KB first(avg_age) as avg_age first(parseQ_percentage) as parseQ_percentage first(indexQ_percentage) as indexQ_percentage by my_splunk_server |rename my_splunk_server as splunk_server | join type=outer splunk_server [search earliest=-30m latest=now index="_internal" source="*metrics.log" group=per_index_thruput series!="_*" | stats max(_time) as time1 sum(kb) as kb by splunk_server | join type="outer" splunk_server [ search earliest=-30m latest=now  index="_internal" source="*metrics.log" group=queue name=parsingqueue | chart perc95(current_size_kb) as p95sz, max(max_size_kb) as maxsz by splunk_server | eval percentage=p95sz*100/maxsz | rename percentage as parseQ_percentage | appendcols [search index="_internal" source="*metrics.log" group=queue name=indexqueue | chart perc95(current_size_kb) as p95sz, max(max_size_kb) as maxsz by splunk_server | eval percentage=p95sz*100/maxsz | rename percentage as indexQ_percentage] | appendcols [search index=_internal group=per_sourcetype_thruput series=access_* | eval latency=avg_age*ev | stats sum(latency) as latency sum(ev) as events by splunk_server | fillnull latency events | eval avg_age=latency/events | fields avg_age] | fields splunk_server avg_age parseQ_percentage indexQ_percentage | fillnull avg_age] | addinfo |eval mystatus = if(kb==0, "idle", if(parseQ_percentage>50, "overloaded", if(indexQ_percentage>50,"overloaded","normal")))] | eval _time = if(time1>_time, time1, _time) | addinfo | eval status = if(isnull(mystatus), "dead",mystatus) | search status = "idle" | fields splunk_server KB status | rename splunk_server as "Splunk Server" KB as "Total KB" status as "Current Status"
+04-30-2012 10:30:29.987 INFO  DispatchCommand - Not running in splunkd. Bundle replication not triggered.
+04-30-2012 10:30:30.029 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:30.029 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:30.165 INFO  PropertiesMapConfig - Expanded file pattern (?i)source::....zip(.\d+)? into (?i)source::.*\.zip(\.\d+)?
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::...((.(bak|old))|,v|~|#) into source::.*((\.(bak|old))|,v|~|#)
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....(0t|a|ali|asa|au|bmp|cg|cgi|class|d|dat|deb|del|dot|dvi|dylib|elc|eps|exe|ftn|gif|hlp|hqx|hs|icns|ico|inc|iso|jame|jin|jpeg|jpg|kml|la|lhs|lib|lo|lock|mcp|mid|mp3|mpg|msf|nib|o|obj|odt|ogg|ook|opt|os|pal|pbm|pdf|pem|pgm|plo|png|po|pod|pp|ppd|ppm|ppt|prc|ps|psd|psym|pyc|pyd|rast|rb|rde|rdf|rdr|rgb|ro|rpm|rsrc|so|ss|stg|strings|tdt|tif|tiff|tk|uue|vhd|xbm|xlb|xls|xlw) into source::.*\.(0t|a|ali|asa|au|bmp|cg|cgi|class|d|dat|deb|del|dot|dvi|dylib|elc|eps|exe|ftn|gif|hlp|hqx|hs|icns|ico|inc|iso|jame|jin|jpeg|jpg|kml|la|lhs|lib|lo|lock|mcp|mid|mp3|mpg|msf|nib|o|obj|odt|ogg|ook|opt|os|pal|pbm|pdf|pem|pgm|plo|png|po|pod|pp|ppd|ppm|ppt|prc|ps|psd|psym|pyc|pyd|rast|rb|rde|rdf|rdr|rgb|ro|rpm|rsrc|so|ss|stg|strings|tdt|tif|tiff|tk|uue|vhd|xbm|xlb|xls|xlw)
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....(?<!tar.)gz(.\d+)? into source::.*\.(?<!tar\.)gz(\.\d+)?
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....(cache|class|cxx|dylib|jar|lo|xslt|md5|rpm|deb|iso|vim) into source::.*\.(cache|class|cxx|dylib|jar|lo|xslt|md5|rpm|deb|iso|vim)
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....(css|htm|html|sgml|shtml|template) into source::.*\.(css|htm|html|sgml|shtml|template)
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....(jar)(.\d+)? into source::.*\.(jar)(\.\d+)?
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....(tar.gz|tgz)(.\d+)? into source::.*\.(tar\.gz|tgz)(\.\d+)?
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....(tbz|tbz2)(.\d+)? into source::.*\.(tbz|tbz2)(\.\d+)?
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....Z(.\d+)? into source::.*\.Z(\.\d+)?
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....bz2?(.\d+)? into source::.*\.bz2?(\.\d+)?
+04-30-2012 10:30:30.167 INFO  PropertiesMapConfig - Expanded file pattern source::....crash.log(.\d+)? into source::.*\.crash\.log(\.\d+)?
+04-30-2012 10:30:30.168 INFO  PropertiesMapConfig - Expanded file pattern source::....csv into source::.*\.csv
+04-30-2012 10:30:30.168 INFO  PropertiesMapConfig - Expanded file pattern source::....tar(.\d+)? into source::.*\.tar(\.\d+)?
+04-30-2012 10:30:30.168 INFO  PropertiesMapConfig - Expanded file pattern source::.../(apache|httpd).../error* into source::.*/(apache|httpd).*/error[^/]*
+04-30-2012 10:30:30.168 INFO  PropertiesMapConfig - Expanded file pattern source::.../(ex|in|nc)(\d{4,8})*?.log into source::.*/(ex|in|nc)(\d{4,8})[^/]*?\.log
+04-30-2012 10:30:30.168 INFO  PropertiesMapConfig - Expanded file pattern source::.../(readme|README)... into source::.*/(readme|README).*
+04-30-2012 10:30:30.168 INFO  PropertiesMapConfig - Expanded file pattern source::.../man/man\d+/*.\d+ into source::.*/man/man\d+/[^/]*\.\d+
+04-30-2012 10:30:30.169 INFO  PropertiesMapConfig - Expanded file pattern source::.../messages(.\d+)? into source::.*/messages(\.\d+)?
+04-30-2012 10:30:30.169 INFO  PropertiesMapConfig - Expanded file pattern source::.../mysql.log(.\d+)? into source::.*/mysql\.log(\.\d+)?
+04-30-2012 10:30:30.172 INFO  PropertiesMapConfig - Expanded file pattern source::.../private/var/log/mail.log(.\d+)? into source::.*/private/var/log/mail\.log(\.\d+)?
+04-30-2012 10:30:30.172 INFO  PropertiesMapConfig - Expanded file pattern source::.../private/var/log/system.log(.\d+)? into source::.*/private/var/log/system\.log(\.\d+)?
+04-30-2012 10:30:30.172 INFO  PropertiesMapConfig - Expanded file pattern source::.../private/var/log/windowserver.log(.\d+)? into source::.*/private/var/log/windowserver\.log(\.\d+)?
+04-30-2012 10:30:30.172 INFO  PropertiesMapConfig - Expanded file pattern source::.../procmail(_|.)log into source::.*/procmail(_|\.)log
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../splunkd.log(.\d+)? into source::.*/splunkd\.log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../splunkd_access.log(.\d+)? into source::.*/splunkd_access\.log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../syslog(.\d+)? into source::.*/syslog(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/anaconda.log(.\d+)? into source::.*/var/log/anaconda\.log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/anaconda.syslog(.\d+)? into source::.*/var/log/anaconda\.syslog(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/asl.log(.\d+)? into source::.*/var/log/asl\.log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/audit/audit.log(.\d+)? into source::.*/var/log/audit/audit\.log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/boot.log(.\d+)? into source::.*/var/log/boot\.log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/crashreporter.log(.\d+)? into source::.*/var/log/crashreporter\.log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/cups/access_log(.\d+)? into source::.*/var/log/cups/access_log(\.\d+)?
+04-30-2012 10:30:30.173 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/cups/error_log(.\d+)? into source::.*/var/log/cups/error_log(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/daily.out(.\d+)? into source::.*/var/log/daily\.out(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/dmesg(.\d+)? into source::.*/var/log/dmesg(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/ftp.log(.\d+)? into source::.*/var/log/ftp\.log(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/httpd/error_log(.\d+)? into source::.*/var/log/httpd/error_log(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/httpd/httpd/ssl_error_log(.\d+)? into source::.*/var/log/httpd/httpd/ssl_error_log(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/install.log(.\d+)? into source::.*/var/log/install\.log(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/lastlog(.\d+)? into source::.*/var/log/lastlog(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/monthly.out(.\d+)? into source::.*/var/log/monthly\.out(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/rpmpkgs(.\d+)? into source::.*/var/log/rpmpkgs(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/sa/sar\d+ into source::.*/var/log/sa/sar\d+
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/secure(.\d+)? into source::.*/var/log/secure(\.\d+)?
+04-30-2012 10:30:30.174 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/secure.log(.\d+)? into source::.*/var/log/secure\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/(license_usage).log(.\d+)? into source::.*/var/log/splunk/(license_usage)\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/(web|report)_access.log into source::.*/var/log/splunk/(web|report)_access\.log
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/(web|report)_service.log into source::.*/var/log/splunk/(web|report)_service\.log
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/*crash-*.log into source::.*/var/log/splunk/[^/]*crash-[^/]*\.log
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/audit.log(.\d+)? into source::.*/var/log/splunk/audit\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/btool.log(.\d+)? into source::.*/var/log/splunk/btool\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/intentions.log(.\d+)? into source::.*/var/log/splunk/intentions\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/license_audit.log(.\d+)? into source::.*/var/log/splunk/license_audit\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/metrics.log(.\d+)? into source::.*/var/log/splunk/metrics\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/python.log(.\d+)? into source::.*/var/log/splunk/python\.log(\.\d+)?
+04-30-2012 10:30:30.175 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/scheduler.log(.\d+)? into source::.*/var/log/splunk/scheduler\.log(\.\d+)?
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/searches.log into source::.*/var/log/splunk/searches\.log
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/searchhistory.log(.\d+)? into source::.*/var/log/splunk/searchhistory\.log(\.\d+)?
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/splunk_stdout.log into source::.*/var/log/splunk/splunk_stdout\.log
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/splunkd_stderr.log into source::.*/var/log/splunk/splunkd_stderr\.log
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/spooler(.\d+)? into source::.*/var/log/spooler(\.\d+)?
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/weekly.out(.\d+)? into source::.*/var/log/weekly\.out(\.\d+)?
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/wtmp(.\d+)? into source::.*/var/log/wtmp(\.\d+)?
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::...stash into source::.*stash
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::...stash_new into source::.*stash_new
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::WMI... into source::WMI.*
+04-30-2012 10:30:30.176 INFO  PropertiesMapConfig - Expanded file pattern source::WinEventLog... into source::WinEventLog.*
+04-30-2012 10:30:30.268 INFO  UnifiedSearch - base lispy: [ AND index::summary_indexers ]
+04-30-2012 10:30:30.272 INFO  IndexProcessor - lazy loading index summary_indexers
+04-30-2012 10:30:30.273 INFO  BucketMover - initiatializing BucketMoverExecutor
+04-30-2012 10:30:30.273 INFO  IndexScopedSearch - LISPY for index=summary_indexers is lispy='[ AND ]' ct=1335756600 et=1335114000 lt=1335756600 dbsize=3
+04-30-2012 10:30:30.273 INFO  SearchParser - PARSING: prestats max(_time) as _time sum(kb) as KB first(avg_age) as avg_age first(parseQ_percentage) as parseQ_percentage first(indexQ_percentage) as indexQ_percentage by my_splunk_server
+04-30-2012 10:30:30.274 INFO  SearchParser - PARSING: addinfo type=count label=prereport_events
+04-30-2012 10:30:30.280 INFO  DispatchCommand - Not running in splunkd. Bundle replication not triggered.
+04-30-2012 10:30:30.281 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:30.281 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:30.516 INFO  UnifiedSearch - base lispy: [ AND index index::_internal per source::*metrics.log thruput ]
+04-30-2012 10:30:30.528 INFO  IndexProcessor - lazy loading index _internal
+04-30-2012 10:30:30.528 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND index per source::*metrics.log thruput ]' ct=1335756600 et=1335754800 lt=1335756600 dbsize=2
+04-30-2012 10:30:30.530 INFO  SearchParser - PARSING: prestats max(_time) as time1 sum(kb) as kb by splunk_server
+04-30-2012 10:30:30.530 INFO  SearchParser - PARSING: addinfo type=count label=prereport_events
+04-30-2012 10:30:30.531 INFO  DispatchCommand - Not running in splunkd. Bundle replication not triggered.
+04-30-2012 10:30:30.543 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:30.543 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:30.723 INFO  UnifiedSearch - base lispy: [ AND index::_internal parsingqueue queue source::*metrics.log ]
+04-30-2012 10:30:30.727 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND parsingqueue queue source::*metrics.log ]' ct=1335756600 et=1335754800 lt=1335756600 dbsize=2
+04-30-2012 10:30:30.737 INFO  SearchParser - PARSING: convert num("current_size_kb") num("max_size_kb") | prestats perc95(current_size_kb) AS "p95sz" max(max_size_kb) AS "maxsz" by splunk_server
+04-30-2012 10:30:30.737 INFO  SearchParser - PARSING: addinfo type=count label=prereport_events
+04-30-2012 10:30:30.738 INFO  DispatchCommand - Not running in splunkd. Bundle replication not triggered.
+04-30-2012 10:30:30.741 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:30.741 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:31.056 INFO  UnifiedSearch - base lispy: [ AND index::_internal indexqueue queue source::*metrics.log ]
+04-30-2012 10:30:31.061 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND indexqueue queue source::*metrics.log ]' ct=1335756600 et=1335114000 lt=1335756600 dbsize=10
+04-30-2012 10:30:31.061 INFO  SearchParser - PARSING: convert num("current_size_kb") num("max_size_kb") | prestats perc95(current_size_kb) AS "p95sz" max(max_size_kb) AS "maxsz" by splunk_server
+04-30-2012 10:30:31.061 INFO  SearchParser - PARSING: addinfo type=count label=prereport_events
+04-30-2012 10:30:31.062 INFO  SearchParser - PARSING: fields keepcolorder=t "current_size_kb" "max_size_kb" "prestats_reserved_*" "psrsvd_*" "splunk_server"
+04-30-2012 10:30:31.062 INFO  DispatchCommand - using single thread to setup ResultProviders
+04-30-2012 10:30:31.064 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:31.064 INFO  UserManager - Done setting user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:31.064 INFO  DispatchCommand - Creating result provider for peer: local
+04-30-2012 10:30:31.064 INFO  SearchParser - PARSING: litsearch index="_internal" source="*metrics.log" group=queue name=indexqueue | addinfo  type=count label=prereport_events | fields  keepcolorder=t "current_size_kb" "max_size_kb" "prestats_reserved_*" "psrsvd_*" "splunk_server" | convert  num("current_size_kb") num("max_size_kb")  | prestats  perc95(current_size_kb) AS "p95sz" max(max_size_kb) AS "maxsz" by splunk_server
+04-30-2012 10:30:31.153 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND indexqueue queue source::*metrics.log ]' ct=1335756600 et=1335114000 lt=1335756600 dbsize=10
+04-30-2012 10:30:31.154 INFO  SearchParser - PARSING: typer | tags
+04-30-2012 10:30:31.161 INFO  FastTyper - found nodes count: comparisons=6, unique_comparisons=5, terms=4, unique_terms=4, phrases=12, unique_phrases=12, total leaves=22
+04-30-2012 10:30:31.212 INFO  DispatchCommand - Successfully created result provider for peer: local in 0.148000 seconds
+04-30-2012 10:30:31.216 INFO  UserManager - Unwound user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:31.218 INFO  DispatchCommand - Disk quota = 10485760000
+04-30-2012 10:30:31.220 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.220 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/hot_v1_9/bloomfilter
+04-30-2012 10:30:31.220 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 9
+04-30-2012 10:30:31.225 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.225 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335756238_1335550134_8/bloomfilter
+04-30-2012 10:30:31.225 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 8
+04-30-2012 10:30:31.226 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.228 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335550102_1335534330_7/bloomfilter
+04-30-2012 10:30:31.228 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 7
+04-30-2012 10:30:31.228 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.233 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335534307_1335516243_6/bloomfilter
+04-30-2012 10:30:31.233 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 6
+04-30-2012 10:30:31.236 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.239 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335516185_1335437002_5/bloomfilter
+04-30-2012 10:30:31.239 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 5
+04-30-2012 10:30:31.240 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.241 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335437000_1335328651_4/bloomfilter
+04-30-2012 10:30:31.241 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 4
+04-30-2012 10:30:31.242 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.243 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335328651_1335260282_3/bloomfilter
+04-30-2012 10:30:31.243 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 3
+04-30-2012 10:30:31.244 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.244 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335260283_1335247850_2/bloomfilter
+04-30-2012 10:30:31.244 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 2
+04-30-2012 10:30:31.280 INFO  SearchOperator:kv - Trying to disable extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)"
+04-30-2012 10:30:31.280 INFO  SearchOperator:kv - Disabling extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)" - it does not extract any of the required fields
+04-30-2012 10:30:31.281 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:31.281 WARN  SearchOperator:kv - host is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:31.281 WARN  SearchOperator:kv - index is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:31.281 WARN  SearchOperator:kv - source is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:31.282 WARN  SearchOperator:kv - sourcetype is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:31.282 WARN  SearchOperator:kv - splunk_server is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:31.661 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:31.731 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.731 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335247850_1335243611_1/bloomfilter
+04-30-2012 10:30:31.731 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 1
+04-30-2012 10:30:31.733 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:31.735 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335243611_1330646502_0/bloomfilter
+04-30-2012 10:30:31.736 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 0
+04-30-2012 10:30:31.938 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:32.007 INFO  IndexScopedSearch - PREAD_HISTOGRAM: usec_1_8=1376 usec_8_64=29 usec_64_512=0 usec_512_4096=1 usec_4096_32768=0 usec_32768_262144=0 usec_262144_INF=0  index=_internal
+04-30-2012 10:30:32.063 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:32.067 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:32.067 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:32.067 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:32.067 INFO  DispatchCommand - DispatchManager::dispatchHasFinished(id='subsearch_subsearch_subsearch_scheduler__nobody__SplunkDeploymentMonitor_RE0gaWRsZSBpbmRleGVycw_at_1335756600_42a36b65506d3512_1335756630.1_1335756630.2_1335756630.3', username='splunk-system-user')
+04-30-2012 10:30:32.069 INFO  DispatchCommand - Not running in splunkd. Bundle replication not triggered.
+04-30-2012 10:30:32.077 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:32.077 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:32.297 INFO  UnifiedSearch - base lispy: [ AND access index::_internal per sourcetype thruput ]
+04-30-2012 10:30:32.300 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND access per sourcetype thruput ]' ct=1335756600 et=1335114000 lt=1335756600 dbsize=10
+04-30-2012 10:30:32.300 INFO  SearchParser - PARSING: prestats sum(latency) as latency sum(ev) as events by splunk_server
+04-30-2012 10:30:32.300 INFO  SearchParser - PARSING: addinfo type=count label=prereport_events
+04-30-2012 10:30:32.301 INFO  SearchParser - PARSING: fields keepcolorder=t "ev" "latency" "prestats_reserved_*" "psrsvd_*" "splunk_server"
+04-30-2012 10:30:32.301 INFO  DispatchCommand - using single thread to setup ResultProviders
+04-30-2012 10:30:32.301 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:32.301 INFO  UserManager - Done setting user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:32.302 INFO  DispatchCommand - Creating result provider for peer: local
+04-30-2012 10:30:32.302 INFO  SearchParser - PARSING: litsearch index=_internal group=per_sourcetype_thruput series=access_* | eval  latency=avg_age*ev  | addinfo  type=count label=prereport_events | fields  keepcolorder=t "ev" "latency" "prestats_reserved_*" "psrsvd_*" "splunk_server" | prestats  sum(latency) as latency sum(ev) as events by splunk_server
+04-30-2012 10:30:32.416 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND access per sourcetype thruput ]' ct=1335756600 et=1335114000 lt=1335756600 dbsize=10
+04-30-2012 10:30:32.416 INFO  SearchParser - PARSING: typer | tags
+04-30-2012 10:30:32.419 INFO  FastTyper - found nodes count: comparisons=6, unique_comparisons=5, terms=4, unique_terms=4, phrases=12, unique_phrases=12, total leaves=22
+04-30-2012 10:30:32.464 INFO  DispatchCommand - Successfully created result provider for peer: local in 0.163000 seconds
+04-30-2012 10:30:32.472 INFO  UserManager - Unwound user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:32.474 INFO  DispatchCommand - Disk quota = 10485760000
+04-30-2012 10:30:32.475 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.476 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/hot_v1_9/bloomfilter
+04-30-2012 10:30:32.476 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 9
+04-30-2012 10:30:32.479 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.481 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335756238_1335550134_8/bloomfilter
+04-30-2012 10:30:32.482 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 8
+04-30-2012 10:30:32.487 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.487 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335550102_1335534330_7/bloomfilter
+04-30-2012 10:30:32.487 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 7
+04-30-2012 10:30:32.488 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.488 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335534307_1335516243_6/bloomfilter
+04-30-2012 10:30:32.488 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 6
+04-30-2012 10:30:32.490 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.490 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335516185_1335437002_5/bloomfilter
+04-30-2012 10:30:32.490 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 5
+04-30-2012 10:30:32.491 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.494 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335437000_1335328651_4/bloomfilter
+04-30-2012 10:30:32.494 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 4
+04-30-2012 10:30:32.495 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.495 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335328651_1335260282_3/bloomfilter
+04-30-2012 10:30:32.495 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 3
+04-30-2012 10:30:32.497 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.500 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335260283_1335247850_2/bloomfilter
+04-30-2012 10:30:32.500 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 2
+04-30-2012 10:30:32.507 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.507 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335247850_1335243611_1/bloomfilter
+04-30-2012 10:30:32.507 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 1
+04-30-2012 10:30:32.508 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:32.512 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335243611_1330646502_0/bloomfilter
+04-30-2012 10:30:32.512 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 0
+04-30-2012 10:30:32.525 INFO  SearchOperator:kv - Trying to disable extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)"
+04-30-2012 10:30:32.525 INFO  SearchOperator:kv - Disabling extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)" - it does not extract any of the required fields
+04-30-2012 10:30:32.526 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:32.526 WARN  SearchOperator:kv - host is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:32.526 WARN  SearchOperator:kv - index is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:32.526 WARN  SearchOperator:kv - source is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:32.526 WARN  SearchOperator:kv - sourcetype is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:32.526 WARN  SearchOperator:kv - splunk_server is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:32.818 INFO  SearchOperator:kv - Trying to disable extractor name="splunk-service-extractions"
+04-30-2012 10:30:32.818 INFO  SearchOperator:kv - Disabling extractor name="splunk-service-extractions" - it does not extract any of the required fields
+04-30-2012 10:30:32.818 INFO  SearchOperator:kv - Trying to disable extractor name="userAgent=(?P<browser>[^ (]+)"
+04-30-2012 10:30:32.818 INFO  SearchOperator:kv - Disabling extractor name="userAgent=(?P<browser>[^ (]+)" - it does not extract any of the required fields
+04-30-2012 10:30:32.818 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:32.997 INFO  IndexScopedSearch - PREAD_HISTOGRAM: usec_1_8=1369 usec_8_64=23 usec_64_512=3 usec_512_4096=0 usec_4096_32768=0 usec_32768_262144=0 usec_262144_INF=0  index=_internal
+04-30-2012 10:30:33.011 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.012 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:33.012 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:33.012 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.013 INFO  DispatchCommand - DispatchManager::dispatchHasFinished(id='subsearch_subsearch_subsearch_scheduler__nobody__SplunkDeploymentMonitor_RE0gaWRsZSBpbmRleGVycw_at_1335756600_42a36b65506d3512_1335756630.1_1335756630.2_1335756632.4', username='splunk-system-user')
+04-30-2012 10:30:33.013 INFO  SearchParser - PARSING: fields keepcolorder=t "current_size_kb" "max_size_kb" "prestats_reserved_*" "psrsvd_*" "splunk_server"
+04-30-2012 10:30:33.013 INFO  DispatchCommand - using single thread to setup ResultProviders
+04-30-2012 10:30:33.013 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:33.014 INFO  UserManager - Done setting user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:33.014 INFO  DispatchCommand - Creating result provider for peer: local
+04-30-2012 10:30:33.014 INFO  SearchParser - PARSING: litsearch index="_internal" source="*metrics.log" group=queue name=parsingqueue _time>=1335754800.000 _time<1335756600.000 | addinfo  type=count label=prereport_events | fields  keepcolorder=t "current_size_kb" "max_size_kb" "prestats_reserved_*" "psrsvd_*" "splunk_server" | convert  num("current_size_kb") num("max_size_kb")  | prestats  perc95(current_size_kb) AS "p95sz" max(max_size_kb) AS "maxsz" by splunk_server
+04-30-2012 10:30:33.056 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND parsingqueue queue source::*metrics.log ]' ct=1335756600 et=1335754800 lt=1335756600 dbsize=2
+04-30-2012 10:30:33.057 INFO  SearchParser - PARSING: typer | tags
+04-30-2012 10:30:33.062 INFO  FastTyper - found nodes count: comparisons=6, unique_comparisons=5, terms=4, unique_terms=4, phrases=12, unique_phrases=12, total leaves=22
+04-30-2012 10:30:33.085 INFO  DispatchCommand - Successfully created result provider for peer: local in 0.072000 seconds
+04-30-2012 10:30:33.085 INFO  UserManager - Unwound user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:33.087 INFO  DispatchCommand - Disk quota = 10485760000
+04-30-2012 10:30:33.088 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:33.089 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/hot_v1_9/bloomfilter
+04-30-2012 10:30:33.089 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 9
+04-30-2012 10:30:33.091 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:33.091 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335756238_1335550134_8/bloomfilter
+04-30-2012 10:30:33.091 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 8
+04-30-2012 10:30:33.100 INFO  SearchOperator:kv - Trying to disable extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)"
+04-30-2012 10:30:33.100 INFO  SearchOperator:kv - Disabling extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)" - it does not extract any of the required fields
+04-30-2012 10:30:33.101 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:33.101 WARN  SearchOperator:kv - host is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.101 WARN  SearchOperator:kv - index is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.102 WARN  SearchOperator:kv - source is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.102 WARN  SearchOperator:kv - sourcetype is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.102 WARN  SearchOperator:kv - splunk_server is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.121 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:33.133 INFO  IndexScopedSearch - PREAD_HISTOGRAM: usec_1_8=327 usec_8_64=1 usec_64_512=0 usec_512_4096=0 usec_4096_32768=0 usec_32768_262144=0 usec_262144_INF=0  index=_internal
+04-30-2012 10:30:33.147 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.149 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:33.149 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:33.149 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.149 INFO  DispatchCommand - DispatchManager::dispatchHasFinished(id='subsearch_subsearch_scheduler__nobody__SplunkDeploymentMonitor_RE0gaWRsZSBpbmRleGVycw_at_1335756600_42a36b65506d3512_1335756630.1_1335756630.2', username='splunk-system-user')
+04-30-2012 10:30:33.150 INFO  SearchParser - PARSING: fields keepcolorder=t "_time" "kb" "prestats_reserved_*" "psrsvd_*" "splunk_server"
+04-30-2012 10:30:33.151 INFO  DispatchCommand - using single thread to setup ResultProviders
+04-30-2012 10:30:33.151 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:33.151 INFO  UserManager - Done setting user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:33.151 INFO  DispatchCommand - Creating result provider for peer: local
+04-30-2012 10:30:33.151 INFO  SearchParser - PARSING: litsearch index="_internal" source="*metrics.log" group=per_index_thruput series!="_*" _time>=1335754800.000 _time<1335756600.000 | addinfo  type=count label=prereport_events | fields  keepcolorder=t "_time" "kb" "prestats_reserved_*" "psrsvd_*" "splunk_server" | prestats  max(_time) as time1 sum(kb) as kb by splunk_server
+04-30-2012 10:30:33.193 INFO  IndexScopedSearch - LISPY for index=_internal is lispy='[ AND index per source::*metrics.log thruput ]' ct=1335756600 et=1335754800 lt=1335756600 dbsize=2
+04-30-2012 10:30:33.193 INFO  SearchParser - PARSING: typer | tags
+04-30-2012 10:30:33.195 INFO  FastTyper - found nodes count: comparisons=6, unique_comparisons=5, terms=4, unique_terms=4, phrases=12, unique_phrases=12, total leaves=22
+04-30-2012 10:30:33.222 INFO  DispatchCommand - Successfully created result provider for peer: local in 0.072000 seconds
+04-30-2012 10:30:33.223 INFO  UserManager - Unwound user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:33.224 INFO  DispatchCommand - Disk quota = 10485760000
+04-30-2012 10:30:33.226 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:33.226 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/hot_v1_9/bloomfilter
+04-30-2012 10:30:33.226 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 9
+04-30-2012 10:30:33.229 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:33.229 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/_internaldb/db/db_1335756238_1335550134_8/bloomfilter
+04-30-2012 10:30:33.229 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 8
+04-30-2012 10:30:33.236 INFO  SearchOperator:kv - Trying to disable extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)"
+04-30-2012 10:30:33.236 INFO  SearchOperator:kv - Disabling extractor name="(?i)^(?:[^ ]* ){2}(?:[+\-]\d+ )?(?P<log_level>[^ ]*)\s+(?P<component>[^ ]+) - (?P<message>.+)" - it does not extract any of the required fields
+04-30-2012 10:30:33.238 INFO  SearchOperator:kv - Trying to disable extractor name="(?<spent>\d+)ms$"
+04-30-2012 10:30:33.238 INFO  SearchOperator:kv - Disabling extractor name="(?<spent>\d+)ms$" - it does not extract any of the required fields
+04-30-2012 10:30:33.238 INFO  SearchOperator:kv - Trying to disable extractor name="access-extractions"
+04-30-2012 10:30:33.238 INFO  SearchOperator:kv - Disabling extractor name="access-extractions" - it does not extract any of the required fields
+04-30-2012 10:30:33.239 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:33.239 WARN  SearchOperator:kv - host is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.239 WARN  SearchOperator:kv - index is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.239 WARN  SearchOperator:kv - source is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.239 WARN  SearchOperator:kv - sourcetype is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.239 WARN  SearchOperator:kv - splunk_server is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.250 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:33.256 INFO  IndexScopedSearch - PREAD_HISTOGRAM: usec_1_8=371 usec_8_64=3 usec_64_512=0 usec_512_4096=0 usec_4096_32768=0 usec_32768_262144=0 usec_262144_INF=0  index=_internal
+04-30-2012 10:30:33.266 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.267 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:33.267 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:33.267 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.267 INFO  DispatchCommand - DispatchManager::dispatchHasFinished(id='subsearch_scheduler__nobody__SplunkDeploymentMonitor_RE0gaWRsZSBpbmRleGVycw_at_1335756600_42a36b65506d3512_1335756630.1', username='splunk-system-user')
+04-30-2012 10:30:33.268 INFO  SearchParser - PARSING: fields keepcolorder=t "_time" "avg_age" "indexQ_percentage" "kb" "my_splunk_server" "parseQ_percentage" "prestats_reserved_*" "psrsvd_*"
+04-30-2012 10:30:33.269 INFO  DispatchCommand - using single thread to setup ResultProviders
+04-30-2012 10:30:33.269 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:33.269 INFO  UserManager - Done setting user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:33.269 INFO  DispatchCommand - Creating result provider for peer: local
+04-30-2012 10:30:33.269 INFO  SearchParser - PARSING: litsearch index="summary_indexers" | eval  _time = _time + 1800  | addinfo  type=count label=prereport_events | fields  keepcolorder=t "_time" "avg_age" "indexQ_percentage" "kb" "my_splunk_server" "parseQ_percentage" "prestats_reserved_*" "psrsvd_*" | prestats  max(_time) as _time sum(kb) as KB first(avg_age) as avg_age first(parseQ_percentage) as parseQ_percentage first(indexQ_percentage) as indexQ_percentage by my_splunk_server
+04-30-2012 10:30:33.312 INFO  IndexScopedSearch - LISPY for index=summary_indexers is lispy='[ AND ]' ct=1335756600 et=1335114000 lt=1335756600 dbsize=3
+04-30-2012 10:30:33.313 INFO  SearchParser - PARSING: typer | tags
+04-30-2012 10:30:33.315 INFO  FastTyper - found nodes count: comparisons=6, unique_comparisons=5, terms=4, unique_terms=4, phrases=12, unique_phrases=12, total leaves=22
+04-30-2012 10:30:33.344 INFO  DispatchCommand - Successfully created result provider for peer: local in 0.075000 seconds
+04-30-2012 10:30:33.344 INFO  UserManager - Unwound user context: splunk-system-user -> splunk-system-user
+04-30-2012 10:30:33.346 INFO  DispatchCommand - Disk quota = 10485760000
+04-30-2012 10:30:33.347 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:33.347 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/summary_indexers/db/db_1335531600_1335520800_2/bloomfilter
+04-30-2012 10:30:33.347 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 2
+04-30-2012 10:30:33.348 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:33.348 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/summary_indexers/db/db_1335513600_1335511800_1/bloomfilter
+04-30-2012 10:30:33.348 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 1
+04-30-2012 10:30:33.348 INFO  DatabaseDirectoryManager::Bucket - use_bloomfilter = true
+04-30-2012 10:30:33.348 INFO  DatabaseDirectoryManager - bloomfilterpath = /opt/splunk/var/lib/splunk/summary_indexers/db/db_1335258000_1335258000_0/bloomfilter
+04-30-2012 10:30:33.348 INFO  DatabaseDirectoryManager::Bucket - bloomfilter does not eliminate bucket 0
+04-30-2012 10:30:33.354 INFO  SearchOperator:kv - 0 field name was modified. The first 0 is (format 'old'='new'):
+04-30-2012 10:30:33.355 WARN  SearchOperator:kv - host is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.355 WARN  SearchOperator:kv - index is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.355 WARN  SearchOperator:kv - source is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.355 WARN  SearchOperator:kv - sourcetype is an indexed field, ignoring TOKENIZER
+04-30-2012 10:30:33.363 INFO  IndexScopedSearch - PREAD_HISTOGRAM: usec_1_8=3 usec_8_64=0 usec_64_512=0 usec_512_4096=0 usec_4096_32768=0 usec_32768_262144=0 usec_262144_INF=0  index=summary_indexers
+04-30-2012 10:30:33.374 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.376 INFO  UserManager - Setting user context: splunk-system-user
+04-30-2012 10:30:33.376 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+04-30-2012 10:30:33.386 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+04-30-2012 10:30:33.386 INFO  DispatchCommand - DispatchManager::dispatchHasFinished(id='scheduler__nobody__SplunkDeploymentMonitor_RE0gaWRsZSBpbmRleGVycw_at_1335756600_42a36b65506d3512', username='splunk-system-user')
+04-30-2012 10:30:33.386 INFO  UserManager - Unwound user context: splunk-system-user -> NULL

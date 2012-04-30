@@ -3,7 +3,7 @@
     <title>Cisco SDEE</title>
     <optiongroup>
         <option>
-            <title>Splunk for Cisco SDEE add-on</title>
+            <title>Genorks for Cisco SDEE add-on</title>
             <summary>This add-on collects logs from Cisco SDEE-compliant IDS over the network in real time.</summary>
             <doctarget>[learnmore.recipes.app.ciscosdee]</doctarget>
             <action type="install_app">

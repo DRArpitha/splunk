@@ -1,9 +1,9 @@
 <quickstart>
 
     <title>Any other type of data</title>
-    <header>Including files, databases, data stored on remote machines, or any other type of data you'd like to put in Splunk.</header>
+    <header>Including files, databases, data stored on remote machines, or any other type of data you'd like to put in Genorks.</header>
     <optiongroup>
-        <title>Use one of the following standard Splunk data inputs to add your data to Splunk:</title>
+        <title>Use one of the following standard Genorks data inputs to add your data to Genorks:</title>
         <option>
             <title>Files and directories</title>
             <summary>Configure Splunk to continously index a directory of files, or upload an archived directory. </summary>

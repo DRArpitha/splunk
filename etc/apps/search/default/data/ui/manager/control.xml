@@ -3,7 +3,7 @@
   <menu name="system_configurations">
     <label>Server controls</label>
     <url>/manager/%(namespace)s/control</url>
-    <description>Restart Bigjava.</description>
+    <description>Restart Genorks.</description>
     <order>20</order>
     <id>server-controls</id>
   </menu>

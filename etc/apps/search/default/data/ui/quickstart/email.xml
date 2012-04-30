@@ -3,8 +3,8 @@
     <title>email data</title>
     <optiongroup>
         <option>
-            <title>E-mail data your Splunk server can access</title>
-            <summary>Configure Splunk to index the contents of /var/log.</summary>
+            <title>E-mail data your Genorks server can access</title>
+            <summary>Configure Genorks to index the contents of /var/log.</summary>
             <action type="add_monitor">
                 <label>Next</label>
             </action>

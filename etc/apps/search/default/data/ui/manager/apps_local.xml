@@ -3,7 +3,7 @@
   <menu name="app_configurations">
     <label>Apps</label>
     <url>/manager/%(namespace)s/apps/local</url>
-    <description>Edit permissions for installed apps. Create a new app, or browse Bigjavabase for apps created by the community.</description>
+    <description>Edit permissions for installed apps. Create a new app, or browse Genorksbase for apps created by the community.</description>
     <id>apps</id>
     <order>10</order>
   </menu>

@@ -12,7 +12,7 @@
 <xsl:template match="/">
     <html>
     	<head>
-    		<title><xsl:value-of select="//atom:title" /><xsl:text> - Splunk</xsl:text></title>
+    		<title><xsl:value-of select="//atom:title" /><xsl:text> - Genorks</xsl:text></title>
     		<style>
     			* 			{ margin: 0; padding: 0; }
     			body 		{ font-family: Helvetica, Arial, sans-serif; }
