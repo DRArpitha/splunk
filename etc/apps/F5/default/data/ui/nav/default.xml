@@ -1,0 +1,10 @@
+<nav>
+    <collection label="Genorks for F5">
+	<a href="mailto:f5@splunk.com">Send Feedback..</a>
+  		<divider />
+		<view name="about" default="true" />
+</collection>
+
+</nav>
+
+

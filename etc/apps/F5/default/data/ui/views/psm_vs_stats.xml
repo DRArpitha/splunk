@@ -1,0 +1,44 @@
+<form class="formsearch">
+  <label>Virtual Server Stats</label>
+
+  <fieldset>
+       <input type="dropdown" token="unit_hostname" searchWhenChanged="true">
+          <label>BIG-IP Hostname:</label>
+          <default>*</default>
+          <populatingSearch fieldForValue="unit_hostname" fieldForLabel="unit_hostname"> sourcetype = psm_log protocol=HTTP OR protocol = HTTPS | stats max(violations) by unit_hostname</populatingSearch>
+                  <choice value="*">all</choice>
+       </input>
+        <input type="time" searchWhenChanged="true"/>
+  </fieldset>
+
+
+  <row>
+    <html><center><h1>Virtual Server Statistics - PSM HTTP</h1></center></html>
+  </row>
+
+  <row>
+      <chart>
+          <title>Events Time Distribution by Virtual Server</title>
+          <searchTemplate> sourcetype="psm_log" protocol=HTTP OR protocol=HTTPS `Events_distribution_by_vs($unit_hostname$)`</searchTemplate>
+          <option name="charting.chart">column</option>
+          <option name="charting.chart.stackMode">stacked</option>
+
+          <option name="charting.secondaryAxisTitle.text">Count</option>
+      </chart>
+  </row>
+  <row>
+      <chart>
+          <title>Top Attacked Virtual Servers (alarmed)</title>
+          <searchTemplate> sourcetype="psm_log" protocol=HTTP OR protocol=HTTPS `Top_attacked_vs_alarmed($unit_hostname$)`</searchTemplate>
+          <option name="charting.chart">pie</option>
+      </chart>
+      <chart>
+          <title>Top Attacked Virtual Servers (blocked)</title>
+          <searchTemplate> sourcetype="psm_log" protocol=HTTP OR protocol=HTTPS `Top_attacked_vs_blocked($unit_hostname$)`</searchTemplate>
+          <option name="charting.chart">pie</option>
+      </chart>
+  </row>
+</form>
+
+
+

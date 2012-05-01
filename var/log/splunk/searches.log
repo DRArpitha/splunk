@@ -87,3 +87,25 @@
 2012-04-30 10:17:19,948 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
 2012-04-30 10:17:19,970 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
 2012-04-30 10:17:20,000 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:04:32,248 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:04:32,270 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-04-30 11:04:32,307 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:04:40,743 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-04-30 11:05:08,489 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:05:08,510 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-04-30 11:05:08,542 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:05:16,562 - admin	search source="/home/bigjava/My Work/log/cek.log"
+2012-04-30 11:18:41,258 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:18:41,290 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-04-30 11:18:41,322 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:18:53,503 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-04-30 11:19:14,611 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:19:14,642 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-04-30 11:19:14,661 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:29:16,470 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:29:16,489 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-04-30 11:29:16,500 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:29:21,818 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-04-30 11:29:43,647 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-04-30 11:29:43,670 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-04-30 11:29:43,716 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")

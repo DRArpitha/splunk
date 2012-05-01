@@ -1,6 +1,0 @@
-key,value,"__mv_key","__mv_value"
-"__source","/var/log/messages",,
-"__autoSourcetype",syslog,,
-"__autoCharset","UTF-8",,
-"__isEofReal",1,,
-"NO_BINARY_CHECK",1,,

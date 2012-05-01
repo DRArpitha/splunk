@@ -1,0 +1,10 @@
+0	9	 14721	1335758065	1335767541	1335767541	
+1	source::/opt/splunk/var/log/splunk/metrics.log	 12654	1335758631	1335767528	1335767528	
+2	source::/opt/splunk/var/log/splunk/web_service.log	174	1335758065	1335767538	1335767541	
+3	source::/opt/splunk/var/log/splunk/splunkd_stderr.log	  2	1335758630	1335767540	1335767541	
+4	source::/opt/splunk/var/log/splunk/splunkd.log	456	1335758066	1335767541	1335767541	
+5	source::/opt/splunk/var/log/splunk/splunkd_access.log	845	1335758644	1335767496	1335767496	
+6	source::/opt/splunk/var/log/splunk/web_access.log	430	1335758655	1335760188	1335760189	
+7	source::/opt/splunk/var/log/splunk/searches.log	 22	1335758672	1335760183	1335760184	
+8	source::/opt/splunk/var/log/splunk/intentions.log	  4	1335758677	1335760159	1335760160	
+9	source::/opt/splunk/var/log/splunk/scheduler.log	134	1335759327	1335767496	1335767496	

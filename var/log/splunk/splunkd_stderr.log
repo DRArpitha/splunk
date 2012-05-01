@@ -17,3 +17,7 @@ Dying on signal #15 (si_code=0), sent by PID 4065 (UID 0)
 2012-04-30 10:02:28.920 +0700 splunkd started (build 119532)
 2012-04-30 10:23:58.546 +0700 Interrupt signal received
 2012-04-30 10:24:11.068 +0700 splunkd started (build 119532)
+2012-04-30 10:54:26.068 +0700 Interrupt signal received
+2012-04-30 11:03:50.961 +0700 splunkd started (build 119532)
+2012-04-30 13:32:20.984 +0700 Interrupt signal received
+2012-05-01 15:02:33.702 +0700 splunkd started (build 119532)
