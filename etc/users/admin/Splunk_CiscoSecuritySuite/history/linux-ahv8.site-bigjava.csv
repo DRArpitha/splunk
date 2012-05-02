@@ -1,0 +1,7 @@
+sid,search,"splunk_server","_time","is_realtime","ui_dispatch_view","event_count","exec_time","result_count","scan_count",status,"total_run_time","__mv_sid","__mv_search","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_ui_dispatch_view","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_status","__mv_total_run_time"
+"1335943196.6","| metadata type=sourcetypes | tags","linux-ahv8.site-bigjava","1335943196.276229",0,"cisco_security_overview",0,1335943196,4,0,completed,"0.389000",,,,,,,,,,,,
+"1335943196.5","| metadata type=sources | tags","linux-ahv8.site-bigjava","1335943196.294065",0,"cisco_security_overview",0,1335943196,4,0,completed,"0.243000",,,,,,,,,,,,
+"rt_1335943196.9","search eventtype=""cisco*"" OR eventtype=""ironport*"" | stats count by src_ip dest_ip eventtype _time","linux-ahv8.site-bigjava","1335943196.913900",1,"cisco_security_overview",0,1335943198,0,0,completed,"1.292000",,,,,,,,,,,,
+"1335943196.10","| metadata type=sources","linux-ahv8.site-bigjava","1335943197.012730",0,"cisco_security_overview",0,1335943197,4,0,completed,"0.275000",,,,,,,,,,,,
+"1335943197.11","| metadata type=sourcetypes","linux-ahv8.site-bigjava","1335943197.088732",0,"cisco_security_overview",0,1335943197,4,0,completed,"0.270000",,,,,,,,,,,,
+"1335943197.12","| metadata type=hosts","linux-ahv8.site-bigjava","1335943197.194607",0,"cisco_security_overview",0,1335943197,2,0,completed,"0.287000",,,,,,,,,,,,

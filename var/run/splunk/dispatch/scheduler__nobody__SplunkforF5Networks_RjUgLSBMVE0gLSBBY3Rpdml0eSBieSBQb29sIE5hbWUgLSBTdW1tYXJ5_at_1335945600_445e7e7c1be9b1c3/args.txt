@@ -1,0 +1,10 @@
+--id=scheduler__nobody__SplunkforF5Networks_RjUgLSBMVE0gLSBBY3Rpdml0eSBieSBQb29sIE5hbWUgLSBTdW1tYXJ5_at_1335945600_445e7e7c1be9b1c3
+--maxbuckets=0
+--ttl=3600
+--maxout=500000
+--maxtime=0
+--lookups=1
+--reduce_freq=10
+--user=splunk-system-user
+--pro
+--roles=admin:power:user

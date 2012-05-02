@@ -1,0 +1,10 @@
+0	9	  4221	1335941808	1335943428	1335943429	
+1	source::/opt/splunk/var/log/splunk/metrics.log	  2505	1335941831	1335943407	1335943410	
+2	source::/opt/splunk/var/log/splunk/web_service.log	235	1335941808	1335943420	1335943420	
+3	source::/opt/splunk/var/log/splunk/splunkd_stderr.log	  1	1335941830	1335941830	1335941834	
+4	source::/opt/splunk/var/log/splunk/splunkd.log	464	1335941810	1335943428	1335943428	
+5	source::/opt/splunk/var/log/splunk/splunkd_access.log	651	1335941846	1335943428	1335943428	
+6	source::/opt/splunk/var/log/splunk/web_access.log	322	1335941880	1335943428	1335943429	
+7	source::/opt/splunk/var/log/splunk/scheduler.log	 28	1335942016	1335942928	1335942929	
+8	source::/opt/splunk/var/log/splunk/searches.log	 11	1335943173	1335943197	1335943199	
+9	source::/opt/splunk/var/log/splunk/python.log	  4	1335943291	1335943314	1335943315	

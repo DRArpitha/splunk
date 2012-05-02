@@ -1,0 +1,59 @@
+2012-05-02 12:26:14,380 ERROR [HTTP 409] App "unix" already exists; use the "-update true" argument to install anyway
+Traceback (most recent call last):
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 224, in handle_POST
+    b, status = installer.install_from_url(req)
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/clilib/bundle_paths.py", line 186, in install_from_url
+    result = self.install_from_tar(tmppath, force)
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/clilib/bundle_paths.py", line 205, in install_from_tar
+    raise splunk.RESTException(409, msg)
+RESTException: [HTTP 409] App "unix" already exists; use the "-update true" argument to install anyway
+2012-05-02 12:26:14,387 ERROR	__init__:148 - [HTTP 500] [HTTP 409] App "unix" already exists; use the "-update true" argument to install anyway
+Traceback (most recent call last):
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/rest/__init__.py", line 146, in dispatch
+    methodOutput = method()
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 253, in handle_POST
+    raise splunk.InternalServerError(e)
+InternalServerError: [HTTP 500] [HTTP 409] App "unix" already exists; use the "-update true" argument to install anyway
+2012-05-02 12:26:14,387 ERROR [HTTP 500] [HTTP 409] App "unix" already exists; use the "-update true" argument to install anyway
+Traceback (most recent call last):
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/rest/__init__.py", line 146, in dispatch
+    methodOutput = method()
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 253, in handle_POST
+    raise splunk.InternalServerError(e)
+InternalServerError: [HTTP 500] [HTTP 409] App "unix" already exists; use the "-update true" argument to install anyway
+2012-05-02 14:21:31,489 ERROR	__init__:148 - [HTTP 503] Splunk is unable to connect to the Internet to find more apps.
+Traceback (most recent call last):
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/rest/__init__.py", line 146, in dispatch
+    methodOutput = method()
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 166, in handle_GET
+    tree = etree.ElementTree(self._get_feed_root(url))
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 301, in _get_feed_root
+    raise splunk.RESTException(503, "Splunk is unable to connect to the Internet to find more apps.")
+RESTException: [HTTP 503] Splunk is unable to connect to the Internet to find more apps.
+2012-05-02 14:21:31,489 ERROR [HTTP 503] Splunk is unable to connect to the Internet to find more apps.
+Traceback (most recent call last):
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/rest/__init__.py", line 146, in dispatch
+    methodOutput = method()
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 166, in handle_GET
+    tree = etree.ElementTree(self._get_feed_root(url))
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 301, in _get_feed_root
+    raise splunk.RESTException(503, "Splunk is unable to connect to the Internet to find more apps.")
+RESTException: [HTTP 503] Splunk is unable to connect to the Internet to find more apps.
+2012-05-02 14:21:54,860 ERROR	__init__:148 - [HTTP 503] Splunk is unable to connect to the Internet to find more apps.
+Traceback (most recent call last):
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/rest/__init__.py", line 146, in dispatch
+    methodOutput = method()
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 166, in handle_GET
+    tree = etree.ElementTree(self._get_feed_root(url))
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 301, in _get_feed_root
+    raise splunk.RESTException(503, "Splunk is unable to connect to the Internet to find more apps.")
+RESTException: [HTTP 503] Splunk is unable to connect to the Internet to find more apps.
+2012-05-02 14:21:54,860 ERROR [HTTP 503] Splunk is unable to connect to the Internet to find more apps.
+Traceback (most recent call last):
+  File "/opt/splunk/lib/python2.7/site-packages/splunk/rest/__init__.py", line 146, in dispatch
+    methodOutput = method()
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 166, in handle_GET
+    tree = etree.ElementTree(self._get_feed_root(url))
+  File "/opt/splunk/etc/system/bin/appsmanager.py", line 301, in _get_feed_root
+    raise splunk.RESTException(503, "Splunk is unable to connect to the Internet to find more apps.")
+RESTException: [HTTP 503] Splunk is unable to connect to the Internet to find more apps.

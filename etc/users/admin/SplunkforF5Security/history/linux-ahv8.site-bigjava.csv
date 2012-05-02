@@ -1,0 +1,13 @@
+sid,search,"splunk_server","_time","is_realtime","ui_dispatch_view","event_count","exec_time","result_count","scan_count",status,"total_run_time","__mv_sid","__mv_search","__mv_splunk_server","__mv__time","__mv_is_realtime","__mv_ui_dispatch_view","__mv_event_count","__mv_exec_time","__mv_result_count","__mv_scan_count","__mv_status","__mv_total_run_time"
+"1335943591.2","| metadata type=sources | sort -totalCount","linux-ahv8.site-bigjava","1335943591.925710",0,"all_data_dashboard",0,1335943591,4,0,completed,"0.254000",,,,,,,,,,,,
+"1335943591.3","| metadata type=sourcetypes | sort 300 -totalCount","linux-ahv8.site-bigjava","1335943591.937174",0,"all_data_dashboard",0,1335943591,4,0,completed,"0.356000",,,,,,,,,,,,
+"1335943591.4","| metadata type=hosts | sort 300 -totalCount","linux-ahv8.site-bigjava","1335943591.974487",0,"all_data_dashboard",0,1335943591,2,0,completed,"0.216000",,,,,,,,,,,,
+"1335944667.15","| metadata type=sources | sort -totalCount","linux-ahv8.site-bigjava","1335944667.976052",0,"all_data_dashboard",0,1335944667,4,0,completed,"0.209000",,,,,,,,,,,,
+"1335944667.16","| metadata type=sourcetypes | sort 300 -totalCount","linux-ahv8.site-bigjava","1335944668.054621",0,"all_data_dashboard",0,1335944668,4,0,completed,"0.339000",,,,,,,,,,,,
+"1335944668.17","| metadata type=hosts | sort 300 -totalCount","linux-ahv8.site-bigjava","1335944668.063250",0,"all_data_dashboard",0,1335944668,2,0,completed,"0.207000",,,,,,,,,,,,
+"1335944671.18","| metadata type=sources | sort -totalCount","linux-ahv8.site-bigjava","1335944671.735493",0,"all_data_dashboard",0,1335944671,4,0,completed,"0.230000",,,,,,,,,,,,
+"1335944671.19","| metadata type=sourcetypes | sort 300 -totalCount","linux-ahv8.site-bigjava","1335944671.812363",0,"all_data_dashboard",0,1335944671,4,0,completed,"0.257000",,,,,,,,,,,,
+"1335944671.20","| metadata type=hosts | sort 300 -totalCount","linux-ahv8.site-bigjava","1335944671.871410",0,"all_data_dashboard",0,1335944671,2,0,completed,"0.226000",,,,,,,,,,,,
+"1335946259.12","| metadata type=sources | sort -totalCount","linux-ahv8.site-bigjava","1335946259.289552",0,"all_data_dashboard",0,1335946259,4,0,completed,"0.383000",,,,,,,,,,,,
+"1335946259.13","| metadata type=sourcetypes | sort 300 -totalCount","linux-ahv8.site-bigjava","1335946259.358418",0,"all_data_dashboard",0,1335946259,4,0,completed,"0.360000",,,,,,,,,,,,
+"1335946259.14","| metadata type=hosts | sort 300 -totalCount","linux-ahv8.site-bigjava","1335946259.379417",0,"all_data_dashboard",0,1335946259,2,0,completed,"0.336000",,,,,,,,,,,,

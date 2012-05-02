@@ -1,0 +1,8 @@
+0	7	  1515	1335874352	1335936441	1335936442	
+1	source::/opt/splunk/var/log/splunk/metrics.log	608	1335936071	1335936441	1335936442	
+2	source::/opt/splunk/var/log/splunk/splunkd_stderr.log	  1	1335936070	1335936070	1335936074	
+3	source::/opt/splunk/var/log/splunk/splunkd.log	468	1335874352	1335936441	1335936441	
+4	source::/opt/splunk/var/log/splunk/web_service.log	145	1335936083	1335936436	1335936438	
+5	source::/opt/splunk/var/log/splunk/splunkd_access.log	166	1335936086	1335936441	1335936442	
+6	source::/opt/splunk/var/log/splunk/web_access.log	124	1335936098	1335936441	1335936442	
+7	source::/opt/splunk/var/log/splunk/python.log	  3	1335936374	1335936374	1335936374	

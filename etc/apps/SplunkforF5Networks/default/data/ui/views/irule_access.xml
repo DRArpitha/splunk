@@ -1,0 +1,250 @@
+<view template="dashboard.html" stylesheet="dashboard2.css">
+  <label>SFDC Web Data Dashboard</label>
+    <module name="AccountBar" layoutPanel="appHeader"/>
+    <module name="AppBar" layoutPanel="navigationHeader"/>
+    <module name="Message" layoutPanel="messaging">
+        <param name="filter">*</param>
+        <param name="clearOnJobDispatch">False</param>
+        <param name="maxSize">1</param>
+    </module>
+    <module name="TitleBar" layoutPanel="viewHeader">
+        <param name="actionsMenuFilter">dashboard</param>
+    </module>
+   
+    
+    <!--
+        Global index summary counts
+    -->
+
+
+
+   <module name="GenericHeader" layoutPanel="panel_row1_col1">
+      <param name="label">SFDC Web Data</param>
+    </module>
+  
+	    <module name="StaticContentSample" layoutPanel="panel_row1_col1">
+      <param name="text">Reports for the SFDC_WEB Sourcetype
+</param>
+    </module>
+
+
+
+   <module name="TimeRangePicker" layoutPanel="panel_row1_col1" autoRun="True">
+      <param name="selected">Last Month</param>
+      <param name="searchWhenChanged">True</param>
+
+
+
+
+  
+
+	<module name="HiddenSearch" layoutPanel="panel_row1_col1" autoRun="True">
+
+<param name="search">sourcetype="f5_webaccess_irule" | fillnull client_address request_data_size req_elapsed_time response_data_size http_method http_status node server_name url agent value="#" | stats count by client_address request_data_size req_elapsed_time response_data_size http_method http_status node server_name url agent</param>
+
+
+                   <module name="ViewRedirectorLink" layoutPanel="panel_row1_col1">
+                        <param name="viewTarget">flashtimeline</param>
+                        <param name="label">View Full Report</param>
+                      </module>
+
+        
+<module name="JobProgressIndicator"></module>
+
+ 					<module name="HiddenPostProcess" layoutPanel="panel_row3_col1_grp1" group="Web Stats" autoRun="True">
+                        <param name="search">stats dc(organizationId) as orgs | eval range="session"</param>
+                        <module name="SingleValue">
+                          <param name="field">orgs</param>
+                          <param name="afterLabel">Organization(s)</param>
+                          <param name="format">count</param>
+                        </module>
+
+                      </module>
+                	<module name="HiddenPostProcess" layoutPanel="panel_row3_col1_grp2" group="Web Stats" autoRun="True">
+                        <param name="search">| stats dc(remoteAddr) as ips</param>
+                        <module name="SingleValue">
+                          <param name="field">ips</param>
+                          <param name="afterLabel">IP(s)</param>
+                          <param name="format">count</param>
+                        </module>
+                      </module>
+
+          	<module name="HiddenPostProcess" layoutPanel="panel_row3_col1_grp3" group="Web Stats" autoRun="True">
+                        <param name="search">| stats dc(userId) as users</param>
+                        <module name="SingleValue">
+                          <param name="field">users</param>
+                          <param name="afterLabel">User(s)</param>
+                          <param name="format">count</param>
+                        </module>
+                      </module>
+              
+                	<module name="HiddenPostProcess" layoutPanel="panel_row3_col1_grp4" group="Web Stats" autoRun="True">
+                        <param name="search">| stats dc(instance) as instance</param>
+                        <module name="SingleValue">
+                          <param name="field">instance</param>
+                          <param name="afterLabel">Instance(s)</param>
+                          <param name="format">count</param>
+                        </module>
+                      </module>
+                      
+                      
+
+                      
+      
+
+
+
+		<module name="LinkSwitcher" layoutPanel="panel_row4_col1" group="Activty Over Time and by Instance">
+    <param name="mode">independent</param>
+    <param name="label"> </param>
+
+<module name="NullModule" group="Requests by User" layoutPanel="panel_row4_col1" autoRun="True">
+
+
+                      <module name="HiddenPostProcess" group="by User" layoutPanel="panel_row4_col1_grp1" autoRun="True">
+              <param name="groupLabel">User Activity Over Time</param>
+                        <param name="search">|timechart sum(count) as count by userId</param>
+                        <module name="HiddenChartFormatter">
+                          <param name="chart">column</param>
+                          <param name="chart.stackMode">stacked</param>
+                          <param name="legend.placement">bottom</param>
+							<param name="primaryAxisTitle.text">Requests Over Time</param>
+
+
+                          <module name="FlashChart">
+
+
+                          </module>
+                        </module>
+                      </module>
+                        <module name="HiddenPostProcess" group="by User" layoutPanel="panel_row4_col1_grp2" autoRun="True">
+                        <param name="search">	|stats dc(userId) as Users by instance</param>
+                        <module name="HiddenChartFormatter">
+                          <param name="chart">column</param>
+                          <param name="chart.stackMode">stacked</param>
+                          <param name="legend.placement">bottom</param>
+						<param name="primaryAxisTitle.text">Users by Instance</param>
+
+
+                          <module name="FlashChart">
+
+
+                          </module>
+                        </module>
+                      </module>
+
+
+</module>
+
+
+<module name="NullModule" group="Requests by Ip" layoutPanel="panel_row4_col1" autoRun="True">
+
+
+                      <module name="HiddenPostProcess" group="by IP" layoutPanel="panel_row4_col1_grp1" autoRun="True">
+              <param name="groupLabel">User Activity Over Time</param>
+                        <param name="search">|timechart sum(count) as count by remoteAddr</param>
+                        <module name="HiddenChartFormatter">
+                          <param name="chart">column</param>
+                          <param name="chart.stackMode">stacked</param>
+                          <param name="legend.placement">bottom</param>
+							<param name="primaryAxisTitle.text">Requests Over Time</param>
+
+
+                          <module name="FlashChart">
+
+
+                          </module>
+                        </module>
+                      </module>
+                        <module name="HiddenPostProcess" group="by IP" layoutPanel="panel_row4_col1_grp2" autoRun="True">
+                        <param name="search">	|stats dc(remoteAddr) as Users by instance</param>
+                        <module name="HiddenChartFormatter">
+                          <param name="chart">column</param>
+                          <param name="chart.stackMode">stacked</param>
+                          <param name="legend.placement">bottom</param>
+						<param name="primaryAxisTitle.text">Users by Instance</param>
+
+
+                          <module name="FlashChart">
+
+
+                          </module>
+                        </module>
+                      </module>
+
+
+</module>
+
+
+
+
+
+
+
+
+                      </module>    
+       	<module name="HiddenPostProcess" layoutPanel="panel_row6_col1" group="Top User" autoRun="True">
+    <param name="search">|stats sum(count) as count by userId | head 10 | sort - count</param>
+			<module name="HiddenChartFormatter">
+                            <param name="chart">pie</param>
+                            <module name="FlashChart">
+							<param name="height">200px</param>
+
+							
+							</module>
+                          </module>
+	
+   </module>
+   		<module name="HiddenPostProcess" layoutPanel="panel_row6_col2" group="Top Client IP" autoRun="True">
+    <param name="search">|stats sum(count) as count by remoteAddr | head 10 | sort - count</param>
+ 			<module name="HiddenChartFormatter">
+                            <param name="chart">pie</param>
+                            <module name="FlashChart">
+							<param name="height">200px</param>
+
+							
+							</module>
+                          </module>
+   </module>
+ 
+ 
+    		<module name="HiddenPostProcess" layoutPanel="panel_row6_col3" group="Top Organization" autoRun="True">
+    <param name="search">|stats sum(count) as count by organizationId | head 10 | sort - count</param>
+ 			<module name="HiddenChartFormatter">
+                            <param name="chart">pie</param>
+                            <module name="FlashChart">
+							<param name="height">200px</param>
+
+							
+							</module>
+                          </module>
+   </module>
+ 
+ 
+     		<module name="HiddenPostProcess" layoutPanel="panel_row7_col1" group="Instance Statistics" autoRun="True">
+    <param name="search">|stats sum(count) as count dc(userId) as Users values(logName) as Logs by instance | head 10 | sort - count</param>
+ <module name="SimpleResultsTable" layoutPanel="panel_row7_col1">
+     <param name="displayMenu">true</param>  
+     <param name="count">100</param>  
+          <param name="drilldown">row</param>
+          <param name="entityName">results</param>
+          <param name="displayRowNumbers">False</param>
+        </module>
+   </module>
+ 
+ 
+     
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ </module>
+  </module>
+
+ </view>
+

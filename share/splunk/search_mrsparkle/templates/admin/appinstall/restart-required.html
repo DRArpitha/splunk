@@ -28,13 +28,13 @@
 
 
 <div id="restartstatus">
-    <h1>${_('Splunk is restarting.  Please wait. This may take a few minutes.')}</h1>
+    <h1>${_('Genorks is restarting.  Please wait. This may take a few minutes.')}</h1>
     <div id="restart_loader"></div>
 </div>
 <div id="restartsslwarn">
-    <h1>${_('Splunk is restarting.  Please wait. This may take a few minutes.')}</h1>
+    <h1>${_('Genorks is restarting.  Please wait. This may take a few minutes.')}</h1>
     <p>
-    ${_('Check the web_service.log file to determine when Splunk has restarted and then <a href="">click here to continue</a>.')}
+    ${_('Check the web_service.log file to determine when Genorks has restarted and then <a href="">click here to continue</a>.')}
     </p>
 </div>
 <div class="splOverlay"></div>
@@ -52,10 +52,10 @@
 	    <!-- start prompt message --> 
 	    <div class="spl-prompt-message-wrapper"> 
 	        <h3 class="spl-main-description-hdr"> 
-	            ${_('You must restart Splunk to install this app')}
+	            ${_('You must restart Genorks to install this app')}
 	        </h3> 
 	        <p class="spl-main-description"> 
-	            ${_('Installation will be completed after Splunk has restarted')}
+	            ${_('Installation will be completed after Genorks has restarted')}
 	        </p> 
 	        % if not displayRestartButton:
 	            <p class="error">
@@ -69,7 +69,7 @@
     <div class="jmFormActions"> 
         % if displayRestartButton:
             <a class="splButton-primary" href="#">
-                <span><%doc>TRANS: Clicked to restart splunkd</%doc>${_('Restart Bigjava')}</span>
+                <span><%doc>TRANS: Clicked to restart splunkd</%doc>${_('Restart Genorks')}</span>
             </a>
         % endif
         <button class="splButton-secondary">

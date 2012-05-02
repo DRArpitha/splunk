@@ -22,22 +22,22 @@ bc_str = util.build_breadcrumbs_string(breadcrumbs[:-2])
 if input_type == 'file':
     input_label = _('file/directory')
     section_title = _('Add file/directory data')
-    help_text = _('Point Splunk at a single file representative of the data you want to index.')
+    help_text = _('Point Genorks at a single file representative of the data you want to index.')
     example_text = _('On Windows: c:\\apache\\apache.error.log, On Unix: /var/log/foo.log')
 elif input_type == 'tcp':
     input_label = _('TCP')
     section_title = _('Add TCP network data')
-    help_text = _('Point Splunk at a single file representative of the TCP data you want to index.')
+    help_text = _('Point Genorks at a single file representative of the TCP data you want to index.')
     example_text = _('On Windows: c:\\tmp\\tcpdump_capture.log, On Unix: /tmp/tcpdump_capture.log')
 elif input_type == 'udp':
     input_label = _('UDP')
     section_title = _('Add UDP data')
-    help_text = _('Point Splunk at a single file representative of the UDP data you want to index.')
+    help_text = _('Point Genorks at a single file representative of the UDP data you want to index.')
     example_text = _('On Windows: c:\\tmp\\udpdump_capture.log, On Unix: /tmp/udpdump_capture.log')
 else:
     input_label = _('generic')
     section_title = _('Add data')
-    help_text = _('Point Splunk at a single file representative of the data you want to index.')
+    help_text = _('Point Genorks at a single file representative of the data you want to index.')
     example_text = _('On Windows: c:\\apache\\apache.error.log, On Unix: /var/log/foo.log')
 
 %>

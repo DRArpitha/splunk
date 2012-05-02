@@ -109,3 +109,105 @@
 2012-04-30 11:29:43,647 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
 2012-04-30 11:29:43,670 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
 2012-04-30 11:29:43,716 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-05-02 13:49:27,959 - admin	| metadata index=os type=sources
+2012-05-02 13:49:28,024 - admin	| metadata index=os type=sourcetypes
+2012-05-02 13:49:28,144 - admin	| metadata index=os type=hosts
+2012-05-02 13:49:28,621 - admin	| metadata index=os type=sources
+2012-05-02 13:49:28,706 - admin	| metadata index=os type=sourcetypes
+2012-05-02 13:49:28,726 - admin	| metadata index=os type=hosts
+2012-05-02 13:50:00,845 - admin	search index="os" source="vmstat" | multikv fields memFreePct, memUsedPct | timechart avg(memUsedPct) avg(memFreePct) | rename avg(memUsedPct) as "Used Mem", avg(memFreePct) as Free_Mem
+2012-05-02 13:50:00,952 - admin	search index="os" sourcetype=ps | multikv | timechart avg(RSZ_KB) by COMMAND | rename avg(RSZ_KB) as ResidentSize(kb)
+2012-05-02 13:50:00,955 - admin	search index="os" sourcetype=ps | multikv | timechart avg(VSZ_KB) by COMMAND | rename avg(VSZ_KB) as ResidentSize(kb)
+2012-05-02 13:50:01,066 - admin	search `Top_Users_of_VM_for_Host(*)`
+2012-05-02 13:50:01,146 - admin	search index=os source=ps | multikv | timechart avg(VSZ_KB) by USER useother=F limit=10
+2012-05-02 13:50:22,980 - admin	search `CPU_Usage_by_Command_for_Host(*)`
+2012-05-02 13:50:23,004 - admin	search `CPU_Usage_by_User_for_Host(*)`
+2012-05-02 13:50:23,034 - admin	search `Percent_Load_by_Host(*)`
+2012-05-02 13:50:23,090 - admin	search `Top_5_CPU_Processes_by_Host(*)`
+2012-05-02 14:19:33,400 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-05-02 14:19:33,440 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-05-02 14:19:33,513 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-05-02 14:19:56,073 - admin	| metadata type=sources | tags
+2012-05-02 14:19:56,132 - admin	| metadata type=sourcetypes | tags
+2012-05-02 14:19:56,213 - admin	| metadata type=hosts | tags
+2012-05-02 14:19:56,783 - admin	search eventtype="cisco*" OR eventtype="ironport*"  src_ip=* src_ip!=10.* src_ip!=192.* src_ip!=0.0.* | stats count by src_ip | eval count_label="Cisco Security Event" | eval iterator="src_ip" | eval iterator_label="IP" | eval movie_color="#FF0000" | eval output_file="rt_threat_data.xml" | eval app="Splunk_CiscoSecuritySuite" | lookup geoip clientip as src_ip | ciscomap
+2012-05-02 14:19:56,851 - admin	search eventtype="cisco*" OR eventtype="ironport*" | stats count by src_ip dest_ip eventtype _time
+2012-05-02 14:19:56,904 - admin	| metadata type=sources
+2012-05-02 14:19:56,952 - admin	| metadata type=sourcetypes
+2012-05-02 14:19:57,038 - admin	| metadata type=hosts
+2012-05-02 14:26:31,718 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 14:26:31,748 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 14:26:31,777 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 14:37:49,351 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 14:37:49,383 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 14:37:49,419 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 14:37:58,830 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 14:44:03,949 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 14:44:03,978 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 14:44:04,019 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 14:44:08,285 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 14:44:08,291 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 14:44:08,318 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 14:44:19,983 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 14:44:20,011 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 14:44:20,046 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 14:44:27,900 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 14:44:27,931 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 14:44:27,975 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 14:44:31,667 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 14:44:31,686 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 14:44:31,712 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 14:53:38,284 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:00:55,820 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 15:00:55,840 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 15:00:55,867 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 15:01:02,520 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:01:24,846 - admin	search source="/home/bigjava/Downloads/bigjava.com" req_time="26/Apr/2012:15:46:40 +0000"
+2012-05-02 15:08:13,690 - admin	search source="/home/bigjava/Downloads/bigjava.com" req_time="26/Apr/2012:15:46:40 +0000"
+2012-05-02 15:08:32,708 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 15:08:32,733 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 15:08:32,804 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 15:10:50,708 - admin	search source="/home/bigjava/Downloads/bigjava.com" req_time="26/Apr/2012:15:46:40 +0000"
+2012-05-02 15:10:59,229 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 15:10:59,248 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 15:10:59,266 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 15:12:44,950 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 15:12:44,970 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 15:12:44,988 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 15:14:02,663 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 15:14:02,696 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 15:14:02,790 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 15:14:09,546 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:14:25,239 - admin	search sourcetype="F5_SPLUNK_iRULE"    | stats count by client_address http_method http_status node server_name url user_agent _time
+2012-05-02 15:14:42,545 - admin	search sourcetype="F5_SPLUNK_iRULE"    | stats count by client_address http_method http_status node server_name url user_agent _time
+2012-05-02 15:14:50,322 - admin	search sourcetype="F5_SPLUNK_iRULE"    | stats count by response_data_size client_address node server_name url _time
+2012-05-02 15:15:05,745 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 15:15:05,774 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 15:15:05,808 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 15:15:12,870 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:16:19,632 - admin	| metadata type=sources | sort -totalCount
+2012-05-02 15:16:19,663 - admin	| metadata type=sourcetypes | sort 300 -totalCount
+2012-05-02 15:16:19,750 - admin	| metadata type=hosts | sort 300 -totalCount
+2012-05-02 15:16:25,356 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:16:47,865 - admin	search sourcetype="apm_log" "New session" | rex field=_raw "\(ST=(?<geo_state>.*)/CC=(?<geo_country>.*)/C=(?<geo_region>.*)\) at VIP (?<vip>\\d+\.\\d+\.\\d+\.\\d+)" | where len(geo_state) > 0 | chart count over geo_state by geo_country
+2012-05-02 15:16:47,899 - admin	search sourcetype="apm_log" "New session" | rex field=_raw "\(ST=(?<geo_state>.*)/CC=(?<geo_country>.*)/C=(?<geo_region>.*)\) at VIP (?<vip>\\d+\.\\d+\.\\d+\.\\d+)" | where len(geo_country) > 0 | chart count over geo_country by geo_region
+2012-05-02 15:16:48,052 - admin	search sourcetype="apm_log" "New session" | rex field=_raw "\(ST=(?<geo_state>.*)/CC=(?<geo_country>.*)/C=(?<geo_region>.*)\) at VIP (?<vip>\\d+\.\\d+\.\\d+\.\\d+)" | where len(geo_region) > 0 | chart count by geo_region | sort - count
+2012-05-02 15:16:48,063 - admin	search sourcetype="apm_log" User="*" | chart count by User | sort - count
+2012-05-02 15:16:48,109 - admin	search sourcetype="apm_log" DeviceType="*" | chart count by DeviceType | sort - count
+2012-05-02 15:16:48,167 - admin	search sourcetype="apm_log" ((New session) OR (Session deleted)) | transaction session_id startswith="New session" endswith="Session deleted" keepevicted=t| concurrency duration=duration | eval duration=tostring(duration, "duration") | fields session_id, duration, concurrency | chart max(concurrency) over _time
+2012-05-02 15:16:53,617 - admin	search sourcetype="apm_log" statistics NOT "0," | rex field=_raw "bytes in: (?<bytes_in>\\d+), bytes out: (?<bytes_out>\\d+)" | table _time, bytes_in, bytes_out
+2012-05-02 15:16:53,705 - admin	search sourcetype="apm_log" session.user.agent | rex field=_raw "session.user.agent is (?<user_agent>.*$)" | stats count by user_agent | sort - count
+2012-05-02 15:16:53,797 - admin	search sourcetype="apm_log" "Access policy result:" | rex field=_raw "Access policy result: (?<access_type>.*$)" | chart count by access_type
+2012-05-02 15:16:53,930 - admin	search sourcetype="apm_log" Username | rex field=_raw "Username '(?<login_name>.\\S+)'" | where len(login_name) > 0 | stats count by login_name | sort - count
+2012-05-02 15:16:54,019 - admin	search sourcetype="apm_log" Username | rex field=_raw "Username '(?<username>.\\S+)'" | where len(username) > 0 | join session_id [search sourcetype="apm_log" statistics NOT "0," | rex field=_raw "bytes in: (?<bytes_in>\\d+), bytes out: (?<bytes_out>\\d+)" | eval throughput=bytes_in+bytes_out ] | chart max(throughput) over username | sort - max(throughput)
+2012-05-02 15:16:54,274 - admin	search sourcetype="apm_log" session.client.browscap_info | chart count over ctype by cplatform
+2012-05-02 15:16:58,789 - admin	search sourcetype="apm_log" "Access policy result:" | rex field=_raw "Access policy result: (?<access_type>.*$)" | chart count(eval(access_type="Logon_Deny")) AS "Auth Failed", count(eval(NOT access_type="Logon_Deny")) AS "Auth Success" by host
+2012-05-02 15:16:58,865 - admin	search sourcetype=apm_log | head 5
+2012-05-02 15:17:02,364 - admin	search sourcetype="apm_log" "New session" | rex field=_raw "\(ST=(?<geo_state>.*)/CC=(?<geo_country>.*)/C=(?<geo_region>.*)\) at VIP (?<vip>\\d+\.\\d+\.\\d+\.\\d+)" | where len(geo_state) > 0 | chart count over geo_state by geo_country
+2012-05-02 15:20:35,273 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-05-02 15:20:35,322 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-05-02 15:20:35,342 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-05-02 15:20:45,067 - admin	search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:21:02,686 - admin	| metadata type=sources | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table source Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")
+2012-05-02 15:21:02,727 - admin	| metadata type=sourcetypes | search totalCount>0 | rename totalCount as Count recentTime as "Last Update"
+2012-05-02 15:21:02,760 - admin	| metadata type=hosts | search totalCount>0 | rename totalCount as Count recentTime as "Last Update" | table host Count "Last Update" | fieldformat Count=tostring(Count, "commas") | fieldformat "Last Update"=strftime('Last Update', "%c")

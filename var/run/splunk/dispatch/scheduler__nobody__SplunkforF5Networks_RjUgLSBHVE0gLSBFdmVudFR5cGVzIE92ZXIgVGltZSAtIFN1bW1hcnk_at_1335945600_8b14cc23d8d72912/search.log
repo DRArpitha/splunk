@@ -1,0 +1,233 @@
+05-02-2012 15:00:14.366 INFO  ApplicationManager - Initializing applications: /opt/splunk/etc/apps
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkForwarder
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/gettingstarted
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkforF5Access
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkDeploymentMonitor
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/legacy
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/launcher
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkforF5Security
+05-02-2012 15:00:14.367 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkLightForwarder
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/user-prefs
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/splunk_datapreview
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/learned
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/F5
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/sample_app
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/search
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Found application directory: /opt/splunk/etc/apps/SplunkforF5Networks
+05-02-2012 15:00:14.368 INFO  ApplicationManager - Initialized 15 application(s): /opt/splunk/etc/apps
+05-02-2012 15:00:14.369 INFO  ApplicationManager - Found 8 application(s) that might have global exports
+05-02-2012 15:00:14.416 INFO  dispatchRunner - initing LicenseMgr in search process: nonPro=0
+05-02-2012 15:00:14.418 INFO  LicenseMgr - Initing LicenseMgr
+05-02-2012 15:00:14.423 INFO  ServerConfig - My GUID is "AE7C28AE-DB29-41C8-9480-4EBC75C88412".
+05-02-2012 15:00:14.424 INFO  ServerConfig - My server name is "linux-ahv8.site-bigjava".
+05-02-2012 15:00:14.424 INFO  ServerConfig - My hostname is "linux-ahv8.site".
+05-02-2012 15:00:14.439 INFO  SSLCommon - added zlib compression
+05-02-2012 15:00:14.440 INFO  ServerConfig - Setting HTTP server compression state=on
+05-02-2012 15:00:14.441 INFO  ServerConfig - Setting HTTP client compression state=0 (false)
+05-02-2012 15:00:14.441 INFO  ServerConfig - Default output queue for file-based input: parsingQueue.
+05-02-2012 15:00:14.441 INFO  LMConfig - serverName=linux-ahv8.site-bigjava guid=AE7C28AE-DB29-41C8-9480-4EBC75C88412 
+05-02-2012 15:00:14.441 INFO  LMConfig - connection_timeout=30
+05-02-2012 15:00:14.442 INFO  LMConfig - send_timeout=30
+05-02-2012 15:00:14.442 INFO  LMConfig - receive_timeout=30
+05-02-2012 15:00:14.442 INFO  LMConfig - squash_threshold=1000
+05-02-2012 15:00:14.442 INFO  LicenseMgr - Initing LicenseMgr is_splunkd=false
+05-02-2012 15:00:14.444 INFO  LMStackMgr - closing stack mgr
+05-02-2012 15:00:14.444 INFO  LMSlaveInfo - all slaves cleared
+05-02-2012 15:00:14.466 INFO  LMStackMgr - created stack='download-trial'
+05-02-2012 15:00:14.468 INFO  LMStackMgr - have to auto-set active stack group='Trial' reason='invalid/missing group id' gidStr='' oldGid=Invalid
+05-02-2012 15:00:14.468 INFO  LMStackMgr - added pool auto_generated_pool_download-trial to stack download-trial
+05-02-2012 15:00:14.469 INFO  LMStackMgr - added pool auto_generated_pool_forwarder to stack forwarder
+05-02-2012 15:00:14.469 INFO  LMStackMgr - added pool auto_generated_pool_free to stack free
+05-02-2012 15:00:14.469 INFO  LMStackMgr - init completed [AE7C28AE-DB29-41C8-9480-4EBC75C88412,Trial,0]
+05-02-2012 15:00:14.469 INFO  LicenseMgr - StackMgr init complete...
+05-02-2012 15:00:14.469 INFO  LMTracker - this is not splunkd, will perform partial init
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=Auth state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=FwdData state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=RcvData state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=DistSearch state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=RcvSearch state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=ScheduledSearch state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=Alerting state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=DeployClient state=ENABLED (fs=1)
+05-02-2012 15:00:14.469 INFO  LMTracker - setting feature=DeployServer state=ENABLED (fs=1)
+05-02-2012 15:00:14.470 INFO  LMTracker - setting feature=SplunkWeb state=ENABLED (fs=1)
+05-02-2012 15:00:14.470 INFO  LMTracker - setting feature=SyslogOutputProcessor state=ENABLED (fs=1)
+05-02-2012 15:00:14.470 INFO  LMTracker - setting feature=SigningProcessor state=ENABLED (fs=1)
+05-02-2012 15:00:14.470 INFO  LMTracker - setting feature=LocalSearch state=ENABLED (fs=1)
+05-02-2012 15:00:14.470 INFO  LicenseMgr - Tracker init complete...
+05-02-2012 15:00:14.495 INFO  AdminManager - added factory for admin handler: 'licenses'
+05-02-2012 15:00:14.497 INFO  AdminManager - added factory for admin handler: 'pools'
+05-02-2012 15:00:14.497 INFO  AdminManager - added factory for admin handler: 'stacks'
+05-02-2012 15:00:14.500 INFO  AdminManager - added factory for admin handler: 'groups'
+05-02-2012 15:00:14.500 INFO  AdminManager - added factory for admin handler: 'slaves'
+05-02-2012 15:00:14.500 INFO  AdminManager - added factory for admin handler: 'localslave'
+05-02-2012 15:00:14.500 INFO  AdminManager - added factory for admin handler: 'licensermessages'
+05-02-2012 15:00:14.506 INFO  loader - Splunkd starting (build 119532).
+05-02-2012 15:00:14.507 INFO  loader - System info: Linux, linux-ahv8.site, 3.1.10-1.9-default, #1 SMP Thu Apr 5 18:48:38 UTC 2012 (4a97ec8), i686.
+05-02-2012 15:00:14.507 INFO  loader - Detected 1 (virtual) CPUs and 2929MB RAM
+05-02-2012 15:00:14.507 INFO  loader - Arguments are: "splunkd" "search" "--id=scheduler__nobody__SplunkforF5Networks_RjUgLSBHVE0gLSBFdmVudFR5cGVzIE92ZXIgVGltZSAtIFN1bW1hcnk_at_1335945600_8b14cc23d8d72912" "--maxbuckets=0" "--ttl=3600" "--maxout=500000" "--maxtime=0" "--lookups=1" "--reduce_freq=10" "--user=splunk-system-user" "--pro" "--roles=admin:power:user"
+05-02-2012 15:00:14.507 INFO  loader - Getting configuration data from: /opt/splunk/etc/myinstall/splunkd.xml
+05-02-2012 15:00:14.507 INFO  loader - SPLUNK_MODULE_PATH environment variable not found - defaulting to /opt/splunk/etc/modules
+05-02-2012 15:00:14.513 INFO  loader - loading modules from /opt/splunk/etc/modules
+05-02-2012 15:00:14.514 INFO  splunklogger - Module /opt/splunk/etc/modules/parsing loaded
+05-02-2012 15:00:14.514 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment/classes/deployable loaded
+05-02-2012 15:00:14.517 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment/classes/deploymentserver loaded
+05-02-2012 15:00:14.518 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment/classes loaded
+05-02-2012 15:00:14.518 INFO  splunklogger - Module /opt/splunk/etc/modules/distributedDeployment loaded
+05-02-2012 15:00:14.518 INFO  splunklogger - Module /opt/splunk/etc/modules/input/FIFO loaded
+05-02-2012 15:00:14.518 INFO  splunklogger - Module /opt/splunk/etc/modules/input/UDP loaded
+05-02-2012 15:00:14.518 INFO  splunklogger - Module /opt/splunk/etc/modules/input/exec loaded
+05-02-2012 15:00:14.519 INFO  splunklogger - Module /opt/splunk/etc/modules/input/tailfile loaded
+05-02-2012 15:00:14.519 INFO  splunklogger - Module /opt/splunk/etc/modules/input/TCP loaded
+05-02-2012 15:00:14.519 INFO  splunklogger - Module /opt/splunk/etc/modules/input/fschangemanager loaded
+05-02-2012 15:00:14.520 INFO  splunklogger - Module /opt/splunk/etc/modules/input/stashparsing loaded
+05-02-2012 15:00:14.520 INFO  splunklogger - Module /opt/splunk/etc/modules/input loaded
+05-02-2012 15:00:14.520 INFO  splunklogger - Module /opt/splunk/etc/modules/internal/scheduler loaded
+05-02-2012 15:00:14.523 INFO  splunklogger - Module /opt/splunk/etc/modules/internal loaded
+05-02-2012 15:00:14.523 INFO  loader - Writing out composite configuration file: /opt/splunk/var/run/splunk/composite.xml
+05-02-2012 15:00:14.561 INFO  UserManagerPro - Load authentication: forcing roles="admin, power, user"
+05-02-2012 15:00:14.601 INFO  IndexProcessor - setting process pool max groups=20
+05-02-2012 15:00:14.605 INFO  IndexProcessor - setting process pool max groups low priority=1
+05-02-2012 15:00:14.605 INFO  IndexProcessor - initializing with fullInit=0, reloading=0
+05-02-2012 15:00:14.606 INFO  HotDBManager - index=_audit Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.607 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.609 INFO  databasePartitionPolicy - index _audit initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.610 INFO  HotDBManager - index=_blocksignature Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=1048576000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.610 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.610 INFO  databasePartitionPolicy - index _blocksignature initialized with [300,60,0,,,,1048576000,20,true,0,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.613 INFO  HotDBManager - index=_internal Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=104857600 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.614 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.614 INFO  databasePartitionPolicy - index _internal initialized with [300,60,2419200,,,,104857600,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.614 INFO  HotDBManager - index=_thefishbucket Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=10485760 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.614 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.614 INFO  databasePartitionPolicy - index _thefishbucket initialized with [300,60,2419200,,,,10485760,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.614 INFO  HotDBManager - index=history Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=10485760 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.614 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.614 INFO  databasePartitionPolicy - index history initialized with [300,60,604800,,,,10485760,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.614 INFO  HotDBManager - index=main Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=10 maxDataSizeBytes=1073741824 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.614 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.614 INFO  databasePartitionPolicy - index main initialized with [300,60,188697600,,,,1073741824,20,true,500000,20,5,true,6,0,_blocksignature,7776000,1000000,86400,10,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.614 INFO  HotDBManager - index=summary Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.614 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.614 INFO  databasePartitionPolicy - index summary initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.615 INFO  HotDBManager - index=summary_forwarders Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.615 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.615 INFO  databasePartitionPolicy - index summary_forwarders initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.615 INFO  HotDBManager - index=summary_hosts Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.615 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.615 INFO  databasePartitionPolicy - index summary_hosts initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.615 INFO  HotDBManager - index=summary_indexers Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.615 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.615 INFO  databasePartitionPolicy - index summary_indexers initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.615 INFO  HotDBManager - index=summary_pools Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.615 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.615 INFO  databasePartitionPolicy - index summary_pools initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.615 INFO  HotDBManager - index=summary_sources Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.615 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.615 INFO  databasePartitionPolicy - index summary_sources initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.615 INFO  HotDBManager - index=summary_sourcetypes Setting hot mgr params: maxHotSpanSecs=7776000 snapBucketTimespans=false maxHotBuckets=3 maxDataSizeBytes=786432000 quarantinePastSecs=77760000 quarantineFutureSecs=2592000 
+05-02-2012 15:00:14.616 INFO  AuditTrailManager - audit stanza does not exist in audit.conf - no signing will take place
+05-02-2012 15:00:14.616 INFO  databasePartitionPolicy - index summary_sourcetypes initialized with [300,60,188697600,,,,786432000,20,true,500000,5,5,true,3,0,_blocksignature,7776000,1000000,0,3,77760000,2592000,131072,25,0,15,0,0,-1,18446744073709551615ms,2592000,true]
+05-02-2012 15:00:14.616 INFO  UserManager - Setting user context: splunk-system-user
+05-02-2012 15:00:14.616 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+05-02-2012 15:00:14.622 INFO  dispatchRunner - search context: user="splunk-system-user", app="SplunkforF5Networks", bs-pathname="/opt/splunk/etc"
+05-02-2012 15:00:14.622 INFO  SearchParser - PARSING: search sourcetype="gtm_log" | sitimechart count by eventtype | summaryindex spool=t uselb=t addtime=t index="summary" file="F5 - GTM - EventTypes Over Time - Summary_1350067719.stash_new" name="F5 - GTM - EventTypes Over Time - Summary" marker=""
+05-02-2012 15:00:14.623 INFO  DispatchCommand - Not running in splunkd. Bundle replication not triggered.
+05-02-2012 15:00:14.728 INFO  UserManager - Setting user context: splunk-system-user
+05-02-2012 15:00:14.728 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+05-02-2012 15:00:14.969 INFO  PropertiesMapConfig - Expanded file pattern (?i)source::....zip(.\d+)? into (?i)source::.*\.zip(\.\d+)?
+05-02-2012 15:00:14.977 INFO  PropertiesMapConfig - Expanded file pattern source::...((.(bak|old))|,v|~|#) into source::.*((\.(bak|old))|,v|~|#)
+05-02-2012 15:00:14.978 INFO  PropertiesMapConfig - Expanded file pattern source::....(0t|a|ali|asa|au|bmp|cg|cgi|class|d|dat|deb|del|dot|dvi|dylib|elc|eps|exe|ftn|gif|hlp|hqx|hs|icns|ico|inc|iso|jame|jin|jpeg|jpg|kml|la|lhs|lib|lo|lock|mcp|mid|mp3|mpg|msf|nib|o|obj|odt|ogg|ook|opt|os|pal|pbm|pdf|pem|pgm|plo|png|po|pod|pp|ppd|ppm|ppt|prc|ps|psd|psym|pyc|pyd|rast|rb|rde|rdf|rdr|rgb|ro|rpm|rsrc|so|ss|stg|strings|tdt|tif|tiff|tk|uue|vhd|xbm|xlb|xls|xlw) into source::.*\.(0t|a|ali|asa|au|bmp|cg|cgi|class|d|dat|deb|del|dot|dvi|dylib|elc|eps|exe|ftn|gif|hlp|hqx|hs|icns|ico|inc|iso|jame|jin|jpeg|jpg|kml|la|lhs|lib|lo|lock|mcp|mid|mp3|mpg|msf|nib|o|obj|odt|ogg|ook|opt|os|pal|pbm|pdf|pem|pgm|plo|png|po|pod|pp|ppd|ppm|ppt|prc|ps|psd|psym|pyc|pyd|rast|rb|rde|rdf|rdr|rgb|ro|rpm|rsrc|so|ss|stg|strings|tdt|tif|tiff|tk|uue|vhd|xbm|xlb|xls|xlw)
+05-02-2012 15:00:14.978 INFO  PropertiesMapConfig - Expanded file pattern source::....(?<!tar.)gz(.\d+)? into source::.*\.(?<!tar\.)gz(\.\d+)?
+05-02-2012 15:00:14.979 INFO  PropertiesMapConfig - Expanded file pattern source::....(cache|class|cxx|dylib|jar|lo|xslt|md5|rpm|deb|iso|vim) into source::.*\.(cache|class|cxx|dylib|jar|lo|xslt|md5|rpm|deb|iso|vim)
+05-02-2012 15:00:14.979 INFO  PropertiesMapConfig - Expanded file pattern source::....(css|htm|html|sgml|shtml|template) into source::.*\.(css|htm|html|sgml|shtml|template)
+05-02-2012 15:00:14.979 INFO  PropertiesMapConfig - Expanded file pattern source::....(jar)(.\d+)? into source::.*\.(jar)(\.\d+)?
+05-02-2012 15:00:14.979 INFO  PropertiesMapConfig - Expanded file pattern source::....(tar.gz|tgz)(.\d+)? into source::.*\.(tar\.gz|tgz)(\.\d+)?
+05-02-2012 15:00:14.981 INFO  PropertiesMapConfig - Expanded file pattern source::....(tbz|tbz2)(.\d+)? into source::.*\.(tbz|tbz2)(\.\d+)?
+05-02-2012 15:00:14.982 INFO  PropertiesMapConfig - Expanded file pattern source::....Z(.\d+)? into source::.*\.Z(\.\d+)?
+05-02-2012 15:00:14.982 INFO  PropertiesMapConfig - Expanded file pattern source::....bz2?(.\d+)? into source::.*\.bz2?(\.\d+)?
+05-02-2012 15:00:14.982 INFO  PropertiesMapConfig - Expanded file pattern source::....crash.log(.\d+)? into source::.*\.crash\.log(\.\d+)?
+05-02-2012 15:00:14.987 INFO  PropertiesMapConfig - Expanded file pattern source::....csv into source::.*\.csv
+05-02-2012 15:00:14.987 INFO  PropertiesMapConfig - Expanded file pattern source::....tar(.\d+)? into source::.*\.tar(\.\d+)?
+05-02-2012 15:00:14.987 INFO  PropertiesMapConfig - Expanded file pattern source::.../(apache|httpd).../error* into source::.*/(apache|httpd).*/error[^/]*
+05-02-2012 15:00:14.987 INFO  PropertiesMapConfig - Expanded file pattern source::.../(ex|in|nc)(\d{4,8})*?.log into source::.*/(ex|in|nc)(\d{4,8})[^/]*?\.log
+05-02-2012 15:00:14.987 INFO  PropertiesMapConfig - Expanded file pattern source::.../(readme|README)... into source::.*/(readme|README).*
+05-02-2012 15:00:14.987 INFO  PropertiesMapConfig - Expanded file pattern source::.../man/man\d+/*.\d+ into source::.*/man/man\d+/[^/]*\.\d+
+05-02-2012 15:00:14.987 INFO  PropertiesMapConfig - Expanded file pattern source::.../messages(.\d+)? into source::.*/messages(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../mysql.log(.\d+)? into source::.*/mysql\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../private/var/log/mail.log(.\d+)? into source::.*/private/var/log/mail\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../private/var/log/system.log(.\d+)? into source::.*/private/var/log/system\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../private/var/log/windowserver.log(.\d+)? into source::.*/private/var/log/windowserver\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../procmail(_|.)log into source::.*/procmail(_|\.)log
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../splunkd.log(.\d+)? into source::.*/splunkd\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../splunkd_access.log(.\d+)? into source::.*/splunkd_access\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../syslog(.\d+)? into source::.*/syslog(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/anaconda.log(.\d+)? into source::.*/var/log/anaconda\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/anaconda.syslog(.\d+)? into source::.*/var/log/anaconda\.syslog(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/asl.log(.\d+)? into source::.*/var/log/asl\.log(\.\d+)?
+05-02-2012 15:00:14.988 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/audit/audit.log(.\d+)? into source::.*/var/log/audit/audit\.log(\.\d+)?
+05-02-2012 15:00:14.989 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/boot.log(.\d+)? into source::.*/var/log/boot\.log(\.\d+)?
+05-02-2012 15:00:14.989 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/crashreporter.log(.\d+)? into source::.*/var/log/crashreporter\.log(\.\d+)?
+05-02-2012 15:00:14.989 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/cups/access_log(.\d+)? into source::.*/var/log/cups/access_log(\.\d+)?
+05-02-2012 15:00:14.990 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/cups/error_log(.\d+)? into source::.*/var/log/cups/error_log(\.\d+)?
+05-02-2012 15:00:14.990 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/daily.out(.\d+)? into source::.*/var/log/daily\.out(\.\d+)?
+05-02-2012 15:00:14.992 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/dmesg(.\d+)? into source::.*/var/log/dmesg(\.\d+)?
+05-02-2012 15:00:14.992 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/ftp.log(.\d+)? into source::.*/var/log/ftp\.log(\.\d+)?
+05-02-2012 15:00:14.992 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/httpd/error_log(.\d+)? into source::.*/var/log/httpd/error_log(\.\d+)?
+05-02-2012 15:00:14.992 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/httpd/httpd/ssl_error_log(.\d+)? into source::.*/var/log/httpd/httpd/ssl_error_log(\.\d+)?
+05-02-2012 15:00:14.992 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/install.log(.\d+)? into source::.*/var/log/install\.log(\.\d+)?
+05-02-2012 15:00:14.992 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/lastlog(.\d+)? into source::.*/var/log/lastlog(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/monthly.out(.\d+)? into source::.*/var/log/monthly\.out(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/rpmpkgs(.\d+)? into source::.*/var/log/rpmpkgs(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/sa/sar\d+ into source::.*/var/log/sa/sar\d+
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/secure(.\d+)? into source::.*/var/log/secure(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/secure.log(.\d+)? into source::.*/var/log/secure\.log(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/(license_usage).log(.\d+)? into source::.*/var/log/splunk/(license_usage)\.log(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/(web|report)_access.log into source::.*/var/log/splunk/(web|report)_access\.log
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/(web|report)_service.log into source::.*/var/log/splunk/(web|report)_service\.log
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/*crash-*.log into source::.*/var/log/splunk/[^/]*crash-[^/]*\.log
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/audit.log(.\d+)? into source::.*/var/log/splunk/audit\.log(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/btool.log(.\d+)? into source::.*/var/log/splunk/btool\.log(\.\d+)?
+05-02-2012 15:00:14.993 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/intentions.log(.\d+)? into source::.*/var/log/splunk/intentions\.log(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/license_audit.log(.\d+)? into source::.*/var/log/splunk/license_audit\.log(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/metrics.log(.\d+)? into source::.*/var/log/splunk/metrics\.log(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/python.log(.\d+)? into source::.*/var/log/splunk/python\.log(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/scheduler.log(.\d+)? into source::.*/var/log/splunk/scheduler\.log(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/searches.log into source::.*/var/log/splunk/searches\.log
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/searchhistory.log(.\d+)? into source::.*/var/log/splunk/searchhistory\.log(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/splunk_stdout.log into source::.*/var/log/splunk/splunk_stdout\.log
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/splunk/splunkd_stderr.log into source::.*/var/log/splunk/splunkd_stderr\.log
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/spooler(.\d+)? into source::.*/var/log/spooler(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/weekly.out(.\d+)? into source::.*/var/log/weekly\.out(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::.../var/log/wtmp(.\d+)? into source::.*/var/log/wtmp(\.\d+)?
+05-02-2012 15:00:14.994 INFO  PropertiesMapConfig - Expanded file pattern source::...stash into source::.*stash
+05-02-2012 15:00:14.995 INFO  PropertiesMapConfig - Expanded file pattern source::...stash_new into source::.*stash_new
+05-02-2012 15:00:14.995 INFO  PropertiesMapConfig - Expanded file pattern source::WMI... into source::WMI.*
+05-02-2012 15:00:14.995 INFO  PropertiesMapConfig - Expanded file pattern source::WinEventLog... into source::WinEventLog.*
+05-02-2012 15:00:15.099 WARN  SearchOperator:kv - Invalid key-value parser, ignoring it, transform_name='pool_member_src_ip2'
+05-02-2012 15:00:15.101 WARN  SearchOperator:kv - Invalid key-value parser, ignoring it, transform_name='pool_name'
+05-02-2012 15:00:15.218 INFO  UnifiedSearch - base lispy: [ AND sourcetype::gtm_log ]
+05-02-2012 15:00:15.226 INFO  IndexProcessor - lazy loading index main
+05-02-2012 15:00:15.227 INFO  BucketMover - initiatializing BucketMoverExecutor
+05-02-2012 15:00:15.227 INFO  IndexScopedSearch - LISPY for index=main is lispy='[ AND sourcetype::gtm_log ]' ct=1335945600 et=1335942000 lt=1335945600 dbsize=0
+05-02-2012 15:00:15.227 INFO  SearchParser - PARSING: prediscretize bins=100 _time | fillnull value=NULL "eventtype" | prestats count AS "count" by _time eventtype
+05-02-2012 15:00:15.227 INFO  SearchParser - PARSING: addinfo type=count label=prereport_events
+05-02-2012 15:00:15.228 INFO  SearchParser - PARSING: fields keepcolorder=t "_time" "eventtype" "prestats_reserved_*" "psrsvd_*"
+05-02-2012 15:00:15.239 INFO  DispatchCommand - using single thread to setup ResultProviders
+05-02-2012 15:00:15.239 INFO  UserManager - Setting user context: splunk-system-user
+05-02-2012 15:00:15.241 INFO  UserManager - Done setting user context: splunk-system-user -> splunk-system-user
+05-02-2012 15:00:15.241 INFO  DispatchCommand - Creating result provider for peer: local
+05-02-2012 15:00:15.241 INFO  SearchParser - PARSING: litsearch sourcetype=gtm_log | litsearch sourcetype="gtm_log" | addinfo  type=count label=prereport_events | fields  keepcolorder=t "_time" "eventtype" "prestats_reserved_*" "psrsvd_*" | prediscretize  bins=100 _time  | fillnull  value=NULL "eventtype"  | prestats  count AS "count" by _time eventtype
+05-02-2012 15:00:15.351 INFO  IndexScopedSearch - LISPY for index=main is lispy='[ AND sourcetype::gtm_log ]' ct=1335945600 et=1335942000 lt=1335945600 dbsize=0
+05-02-2012 15:00:15.351 INFO  SearchParser - PARSING: typer | tags
+05-02-2012 15:00:15.359 INFO  FastTyper - found nodes count: comparisons=6, unique_comparisons=5, terms=4, unique_terms=4, phrases=12, unique_phrases=12, total leaves=22
+05-02-2012 15:00:15.419 INFO  DispatchCommand - Successfully created result provider for peer: local in 0.178000 seconds
+05-02-2012 15:00:15.420 INFO  UserManager - Unwound user context: splunk-system-user -> splunk-system-user
+05-02-2012 15:00:15.422 INFO  DispatchCommand - Disk quota = 10485760000
+05-02-2012 15:00:15.506 INFO  SummaryIndexProcessor - No results to summary index.
+05-02-2012 15:00:15.506 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+05-02-2012 15:00:15.510 INFO  UserManager - Setting user context: splunk-system-user
+05-02-2012 15:00:15.510 INFO  UserManager - Done setting user context: NULL -> splunk-system-user
+05-02-2012 15:00:15.535 INFO  UserManager - Unwound user context: splunk-system-user -> NULL
+05-02-2012 15:00:15.535 INFO  DispatchCommand - DispatchManager::dispatchHasFinished(id='scheduler__nobody__SplunkforF5Networks_RjUgLSBHVE0gLSBFdmVudFR5cGVzIE92ZXIgVGltZSAtIFN1bW1hcnk_at_1335945600_8b14cc23d8d72912', username='splunk-system-user')
+05-02-2012 15:00:15.535 INFO  UserManager - Unwound user context: splunk-system-user -> NULL

@@ -1,0 +1,106 @@
+Stopping splunkweb...
+splunkd is not running.
+
+Splunk> Be an IT superhero. Go home early.
+
+Checking prerequisites...
+	Checking http port [8000]: open
+	Checking mgmt port [8089]: 	Checking configuration...  Done.
+	Validated databases: _audit _blocksignature _internal _thefishbucket history main os summary summary_forwarders summary_hosts summary_indexers summary_pools summary_sources summary_sourcetypes
+Success
+open
+	Checking index directory...
+	Done
+	Checking conf files for typos...
+All preliminary checks passed.
+
+Starting splunk server daemon (splunkd)... 
+Done.
+Starting splunkweb... Done.
+
+If you get stuck, we're here to help.  
+Look for answers here: http://docs.splunk.com/Documentation/Splunk
+
+The Splunk web interface is at http://linux-ahv8.site:8000
+
+Stopping splunkweb...
+splunkd is not running.
+
+Splunk> Be an IT superhero. Go home early.
+
+Checking prerequisites...
+	Checking http port [8000]: open
+	Checking mgmt port [8089]: 	Checking configuration...  Done.
+	Validated databases: _audit _blocksignature _internal _thefishbucket history main summary summary_forwarders summary_hosts summary_indexers summary_pools summary_sources summary_sourcetypes
+Success
+Possible typo in stanza [connection_failed] in /opt/splunk/etc/apps/SplunkforF5Security/default/eventtypes.conf, line 3: viewstate.resultView  =  normalView
+Possible typo in stanza [connection_success] in /opt/splunk/etc/apps/SplunkforF5Security/default/eventtypes.conf, line 7: viewstate.resultView  =  normalView
+open
+	Checking index directory...
+	Done
+	Checking conf files for typos...
+All preliminary checks passed.
+
+Starting splunk server daemon (splunkd)... 
+Done.
+Starting splunkweb... Done.
+
+If you get stuck, we're here to help.  
+Look for answers here: http://docs.splunk.com/Documentation/Splunk
+
+The Splunk web interface is at http://linux-ahv8.site:8000
+
+Stopping splunkweb...
+splunkd is not running.
+
+Splunk> Be an IT superhero. Go home early.
+
+Checking prerequisites...
+	Checking http port [8000]: open
+	Checking mgmt port [8089]: 	Checking configuration...  Done.
+	Validated databases: _audit _blocksignature _internal _thefishbucket history main summary summary_forwarders summary_hosts summary_indexers summary_pools summary_sources summary_sourcetypes
+Success
+Possible typo in stanza [connection_failed] in /opt/splunk/etc/apps/SplunkforF5Security/default/eventtypes.conf, line 3: viewstate.resultView  =  normalView
+Possible typo in stanza [connection_success] in /opt/splunk/etc/apps/SplunkforF5Security/default/eventtypes.conf, line 7: viewstate.resultView  =  normalView
+open
+	Checking index directory...
+	Done
+	Checking conf files for typos...
+All preliminary checks passed.
+
+Starting splunk server daemon (splunkd)... 
+Done.
+Starting splunkweb... Done.
+
+If you get stuck, we're here to help.  
+Look for answers here: http://docs.splunk.com/Documentation/Splunk
+
+The Splunk web interface is at http://linux-ahv8.site:8000
+
+Stopping splunkweb...
+splunkd is not running.
+
+Splunk> Be an IT superhero. Go home early.
+
+Checking prerequisites...
+	Checking http port [8000]: open
+	Checking mgmt port [8089]: 	Checking configuration...  Done.
+	Validated databases: _audit _blocksignature _internal _thefishbucket history main summary summary_forwarders summary_hosts summary_indexers summary_pools summary_sources summary_sourcetypes
+Success
+Possible typo in stanza [connection_failed] in /opt/splunk/etc/apps/SplunkforF5Security/default/eventtypes.conf, line 3: viewstate.resultView  =  normalView
+Possible typo in stanza [connection_success] in /opt/splunk/etc/apps/SplunkforF5Security/default/eventtypes.conf, line 7: viewstate.resultView  =  normalView
+open
+	Checking index directory...
+	Done
+	Checking conf files for typos...
+All preliminary checks passed.
+
+Starting splunk server daemon (splunkd)... 
+Done.
+Starting splunkweb... Done.
+
+If you get stuck, we're here to help.  
+Look for answers here: http://docs.splunk.com/Documentation/Splunk
+
+The Splunk web interface is at http://linux-ahv8.site:8000
+

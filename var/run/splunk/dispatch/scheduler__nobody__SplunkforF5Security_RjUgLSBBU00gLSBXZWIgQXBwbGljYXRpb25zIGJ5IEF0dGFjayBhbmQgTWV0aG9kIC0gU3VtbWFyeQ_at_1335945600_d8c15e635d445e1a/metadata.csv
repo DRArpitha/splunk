@@ -1,0 +1,2 @@
+access,owner,app,ttl
+"read : [ * ], write : [ admin ]",nobody,SplunkforF5Security,3600

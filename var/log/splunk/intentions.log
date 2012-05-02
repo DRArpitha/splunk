@@ -6,3 +6,13 @@
 2012-04-30 11:05:14,256 PARSE 1335758714.23.2 OUT5 search source="/home/bigjava/My Work/log/cek.log"
 2012-04-30 11:18:51,674 PARSE 1335759531.65.3 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
 2012-04-30 11:29:19,839 PARSE 1335760159.82.4 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 14:37:55,402 PARSE 1335944275.38.1 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:00:59,353 PARSE 1335945659.33.1 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:01:24,807 PARSE 1335945684.78.2 OUT5 search source="/home/bigjava/Downloads/bigjava.com" req_time="26/Apr/2012:15:46:40 +0000"
+2012-05-02 15:14:05,628 PARSE 1335946445.61.1 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:14:24,918 PARSE 1335946464.88.2 OUT5 search sourcetype="F5_SPLUNK_iRULE" | stats count by client_address http_method http_status node server_name url user_agent _time
+2012-05-02 15:14:42,295 PARSE 1335946482.24.3 OUT5 search sourcetype="F5_SPLUNK_iRULE" | stats count by client_address http_method http_status node server_name url user_agent _time
+2012-05-02 15:14:50,024 PARSE 1335946489.95.4 OUT5 search sourcetype="F5_SPLUNK_iRULE" | stats count by response_data_size client_address node server_name url _time
+2012-05-02 15:15:10,388 PARSE 1335946510.37.5 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:16:22,832 PARSE 1335946582.81.6 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
+2012-05-02 15:20:40,698 PARSE 1335946840.65.7 OUT5 search source="/home/bigjava/Downloads/bigjava.com"
